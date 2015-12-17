@@ -1,0 +1,10 @@
+F:\EPOC\EEG_Gateway\EEG_Gateway\bin\x86\Debug\EEG Gateway.exe.config
+F:\EPOC\EEG_Gateway\EEG_Gateway\bin\x86\Debug\EEG Gateway.exe
+F:\EPOC\EEG_Gateway\EEG_Gateway\bin\x86\Debug\EEG Gateway.pdb
+F:\EPOC\EEG_Gateway\EEG_Gateway\bin\x86\Debug\DotNetEmotivSDK-vs2010.dll
+F:\EPOC\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG_Gateway.EEG_Main.resources
+F:\EPOC\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG_Gateway.Properties.Resources.resources
+F:\EPOC\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG Gateway.csproj.GenerateResource.Cache
+F:\EPOC\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG Gateway.exe
+F:\EPOC\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG Gateway.pdb
+F:\EPOC\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG Gateway.csprojResolveAssemblyReference.cache

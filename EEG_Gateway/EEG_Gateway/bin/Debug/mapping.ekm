@@ -1,0 +1,34 @@
+<EmoMappingModel mappingName="mapping.ekm" >
+    <EmoMapping enabled="1" name="Forward" keys="1" sendOnce="0" sendToFocus="1" targetApp="" sendHotKeys="0" ctrlKey="0" altKey="0" shiftKey="0" winKey="0" enterKey="0" hotKey="0" holdKey="0" holdTime="20" triggerDelayTime="20" player="0" mouseclickset="0" mousebutnum="-1">
+        <EmoStateCondition>
+            <enabled value="1" />
+            <action value="19" />
+            <threshold type="double" value="0.2" />
+            <actionRule value="2" />
+        </EmoStateCondition>
+    </EmoMapping>
+    <EmoMapping enabled="1" name="Pull" keys="2" sendOnce="0" sendToFocus="1" targetApp="" sendHotKeys="0" ctrlKey="0" altKey="0" shiftKey="0" winKey="0" enterKey="0" hotKey="0" holdKey="0" holdTime="20" triggerDelayTime="20" player="0" mouseclickset="0" mousebutnum="-1">
+        <EmoStateCondition>
+            <enabled value="1" />
+            <action value="20" />
+            <threshold type="double" value="0.2" />
+            <actionRule value="2" />
+        </EmoStateCondition>
+    </EmoMapping>
+    <EmoMapping enabled="1" name="Left" keys="3" sendOnce="0" sendToFocus="1" targetApp="" sendHotKeys="0" ctrlKey="0" altKey="0" shiftKey="0" winKey="0" enterKey="0" hotKey="0" holdKey="0" holdTime="20" triggerDelayTime="20" player="0" mouseclickset="0" mousebutnum="-1">
+        <EmoStateCondition>
+            <enabled value="1" />
+            <action value="23" />
+            <threshold type="double" value="0.2" />
+            <actionRule value="2" />
+        </EmoStateCondition>
+    </EmoMapping>
+    <EmoMapping enabled="1" name="Right" keys="4" sendOnce="0" sendToFocus="1" targetApp="" sendHotKeys="0" ctrlKey="0" altKey="0" shiftKey="0" winKey="0" enterKey="0" hotKey="0" holdKey="0" holdTime="20" triggerDelayTime="20" player="0" mouseclickset="0" mousebutnum="-1">
+        <EmoStateCondition>
+            <enabled value="1" />
+            <action value="24" />
+            <threshold type="double" value="0.2" />
+            <actionRule value="2" />
+        </EmoStateCondition>
+    </EmoMapping>
+</EmoMappingModel>
