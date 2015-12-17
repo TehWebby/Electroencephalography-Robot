@@ -231,8 +231,11 @@ namespace EEG_Gateway
             engine.SetUserProfile(userId, profile);
 
             //Parse username from file and update label
-            profileNameLbl.Text = "Profile: " + fName.Split('_')[1].Split('.')[0];
-
+            if (fName.Contains('_'))
+                fName = fName.Split('_')[1].Split('.')[0];
+            else
+                fName = fName.Split('.')[0];
+            profileNameLbl.Text = "Profile: " + fName;
             //if not initializing (first time through) then reset all chart data
             if (init == 0)
             {
