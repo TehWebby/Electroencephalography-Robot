@@ -38,6 +38,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EEG_Main));
             this.latestCogTxt = new System.Windows.Forms.TextBox();
             this.cognitiveActionTimer = new System.Windows.Forms.Timer(this.components);
             this.upBtn = new System.Windows.Forms.Button();
@@ -267,6 +268,7 @@
             this.Controls.Add(this.downBtn);
             this.Controls.Add(this.upBtn);
             this.Controls.Add(this.latestCogTxt);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EEG_Main";
             this.Text = "EEG Gateway - Shaun Webb";
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).EndInit();

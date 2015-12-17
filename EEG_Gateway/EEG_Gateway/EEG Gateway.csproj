@@ -54,8 +54,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetEmotivSDK-vs2010">
-      <HintPath>..\..\..\Program Files (x86)\Emotiv standard libraries v3.0.0.41\Examples\EpocExamples\examples_DotNet\bin\x86\DotNetEmotivSDK-vs2010.dll</HintPath>
+    <Reference Include="DotNetEmotivSDK-vs2010, Version=0.8.4.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\DotNetEmotivSDK-vs2010.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

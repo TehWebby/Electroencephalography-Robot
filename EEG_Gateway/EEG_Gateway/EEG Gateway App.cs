@@ -149,9 +149,9 @@ namespace EEG_Gateway
             EmoState es = e.emoState;
             Affective af = new Affective(es);
             eegAffectiveData.Add(af);
-
+            
             int totalChartPoints = 8;
-
+            //Only draw a limited amount of data to the chart.
             if (eegEmotionChart.Series["Short Term Excitement"].Points.Count >= totalChartPoints)
             {
                 eegEmotionChart.Series["Short Term Excitement"].Points.RemoveAt(0);
