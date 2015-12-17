@@ -16,10 +16,7 @@ namespace EEG_Gateway
     public partial class EEG_Main : Form
     {
         bool cogAction;
-
-        //public string profileName = "";
-        //public bool oneTime = false;
-
+        
         public bool isLoad = true;
         public bool updateChartData = false;
         List<Affective> eegAffectiveData = new List<Affective>();
