@@ -33,29 +33,39 @@ namespace EEG_Gateway
             busy = !es.CognitivIsActive();//inverted bool, as to check if busy seems more appropriate
             signalStrength = es.GetWirelessSignalStatus();
             timestamp = es.GetTimeFromStart();
-            
-
         }
 
+        //setters added but likely wont need to modify the object
         public void setShortExcitLvl(EmoState es)
         {
-            this.shortExcitementLvl = es.AffectivGetExcitementShortTermScore();
+            shortExcitementLvl = es.AffectivGetExcitementShortTermScore();
         }
         public void setLongExcitLvl(EmoState es)
         {
-            this.longExcitementLvl = es.AffectivGetExcitementLongTermScore();
+            longExcitementLvl = es.AffectivGetExcitementLongTermScore();
         }
         public void setFrustLvl(EmoState es)
         {
-            this.frustrationLvl = es.AffectivGetFrustrationScore();
+            frustrationLvl = es.AffectivGetFrustrationScore();
         }
         public void setMeditLvl(EmoState es)
         {
-            this.meditationLvl = es.AffectivGetMeditationScore();
+            meditationLvl = es.AffectivGetMeditationScore();
         }
-
-        //set valance + more
-
+        public void setValenceLvl(EmoState es)
+        {
+            valenceLvl = es.AffectivGetValenceScore();
+        }
+        public void setEngagementBoredomLvl(EmoState es)
+        {
+            engagementBoredomLvl = es.AffectivGetEngagementBoredomScore();
+        }
+        public void setSmileLvl(EmoState es)
+        {
+            smileLvl = es.ExpressivGetSmileExtent();
+        }
+        
+        //Getters
 
         public float getShortExcitLvl()
         {
