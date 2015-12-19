@@ -40,6 +40,7 @@ namespace EEG_Gateway
         {
             shortExcitementLvl = es.AffectivGetExcitementShortTermScore();
         }
+      
         public void setLongExcitLvl(EmoState es)
         {
             longExcitementLvl = es.AffectivGetExcitementLongTermScore();

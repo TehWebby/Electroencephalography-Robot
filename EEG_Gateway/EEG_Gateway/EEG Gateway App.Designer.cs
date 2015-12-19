@@ -258,6 +258,7 @@
             this.settingsBtn.TabIndex = 16;
             this.settingsBtn.Text = "Settings";
             this.settingsBtn.UseVisualStyleBackColor = true;
+            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
             // 
             // EEG_Main
             // 

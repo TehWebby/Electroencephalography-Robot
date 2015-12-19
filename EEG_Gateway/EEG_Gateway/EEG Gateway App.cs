@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Emotiv;
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace EEG_Gateway
 {
@@ -22,11 +25,15 @@ namespace EEG_Gateway
         List<Affective> eegAffectiveData = new List<Affective>();
 
         EmoEngine engine = EmoEngine.Instance;
+        ApplicationSettings appSettings = new ApplicationSettings();
 
         public EEG_Main()
         {
             InitializeComponent();
             //liveEEG.Enabled = false;
+
+            //Used for application configuration settings, such as enable/disable logging
+            //add more here
 
             //Set the correct directory for loading the user profile data file
             browseForProfileDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\Profiles";
@@ -290,5 +297,44 @@ namespace EEG_Gateway
             //used to update the chart at a consistent speed/time
             updateChartData = true;
         }
+
+        private void settingsBtn_Click(object sender, EventArgs e)
+        {
+            deserializeSettings();
+            appSettings.Logging += 1;
+            serializeSettings(appSettings);
+            MessageBox.Show(appSettings.Logging.ToString());
+        }
+        public void serializeSettings(ApplicationSettings appSettings)
+        {
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("ConfigurationSettings.bin", FileMode.Create, FileAccess.Write, FileShare.None);
+                formatter.Serialize(stream, appSettings);
+                stream.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Unable to serialize settings");
+            }
+            
+        }
+        public void deserializeSettings()
+        {
+            try
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("ConfigurationSettings.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+                appSettings = (ApplicationSettings)formatter.Deserialize(stream);
+                stream.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Unable to deserialize settings");
+            }
+            
+        }
+
     }
 }
