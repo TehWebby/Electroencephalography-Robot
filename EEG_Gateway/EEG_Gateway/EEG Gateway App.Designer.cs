@@ -56,6 +56,7 @@
             this.signalImg = new System.Windows.Forms.PictureBox();
             this.browseForProfileDialog = new System.Windows.Forms.OpenFileDialog();
             this.profileNameLbl = new System.Windows.Forms.Label();
+            this.settingsBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).BeginInit();
             this.SuspendLayout();
@@ -249,12 +250,22 @@
             this.profileNameLbl.TabIndex = 15;
             this.profileNameLbl.Text = "Profile: name";
             // 
+            // settingsBtn
+            // 
+            this.settingsBtn.Location = new System.Drawing.Point(874, 356);
+            this.settingsBtn.Name = "settingsBtn";
+            this.settingsBtn.Size = new System.Drawing.Size(88, 30);
+            this.settingsBtn.TabIndex = 16;
+            this.settingsBtn.Text = "Settings";
+            this.settingsBtn.UseVisualStyleBackColor = true;
+            // 
             // EEG_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 577);
+            this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.profileNameLbl);
             this.Controls.Add(this.signalImg);
             this.Controls.Add(this.loadProfBtn);
@@ -297,6 +308,7 @@
         private System.Windows.Forms.PictureBox signalImg;
         private System.Windows.Forms.OpenFileDialog browseForProfileDialog;
         private System.Windows.Forms.Label profileNameLbl;
+        private System.Windows.Forms.Button settingsBtn;
     }
 }
 
