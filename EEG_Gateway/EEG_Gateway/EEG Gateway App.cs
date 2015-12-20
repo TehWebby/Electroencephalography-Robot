@@ -300,7 +300,9 @@ namespace EEG_Gateway
 
         private void settingsBtn_Click(object sender, EventArgs e)
         {
-            deserializeSettings();
+            if (File.Exists("ConfigurationSettings.bin"))
+                deserializeSettings();
+            
             appSettings.Logging += 1;
             serializeSettings(appSettings);
             MessageBox.Show(appSettings.Logging.ToString());
