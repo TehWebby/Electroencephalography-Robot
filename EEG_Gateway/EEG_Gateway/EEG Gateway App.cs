@@ -148,7 +148,16 @@ namespace EEG_Gateway
             }
 
             if (updateChartData == true)
+            {
                 updateChart(e);
+                //logEEG_Data();
+            }
+                
+        }
+        
+        public void logEEG_Data()
+        {
+            MessageBox.Show(eegAffectiveData[eegAffectiveData.Count-1].ToString());
         }
 
         public void updateChart(EmoStateUpdatedEventArgs e)
@@ -302,11 +311,19 @@ namespace EEG_Gateway
         {
             if (File.Exists("ConfigurationSettings.bin"))
                 deserializeSettings();
-            
-            appSettings.Logging += 1;
+
+            switchLoggingSettings();
+
             serializeSettings(appSettings);
             MessageBox.Show(appSettings.Logging.ToString());
         }
+
+        public void switchLoggingSettings()
+        {
+            appSettings.Logging = !appSettings.Logging;
+        }
+
+
         public void serializeSettings(ApplicationSettings appSettings)
         {
             try

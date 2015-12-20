@@ -10,8 +10,8 @@ namespace EEG_Gateway
     [Serializable]
     public class ApplicationSettings
     {
-        private int logging;
-        public int Logging
+        private bool logging;
+        public bool Logging
         {
             get
             {
