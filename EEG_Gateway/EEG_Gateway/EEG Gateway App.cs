@@ -61,9 +61,9 @@ namespace EEG_Gateway
                 engine.Disconnect();
                 //TODO could backup or log data completed to a csv file
             }
-            catch
+            catch(Exception eX)
             {
-
+                logEEG_Data(eX);
             }
         }
 
@@ -80,6 +80,7 @@ namespace EEG_Gateway
                 catch (Exception eX)
                 {
                     //incorrect value
+                    logEEG_Data(eX);
                 }
 
                 latestCogTxt.Text = "";
@@ -90,8 +91,7 @@ namespace EEG_Gateway
                 if (cogAction == true)
                     setupControls();
                 cogAction = false;
-            }
-               
+            }               
         }
 
         private void run_cmd(int cog)
@@ -155,8 +155,10 @@ namespace EEG_Gateway
                 
         }
         
-        public void logEEG_Data()
+        public void logEEG_Data(Exception eX)//maybe add extra param to specifiy which log file to append
         {
+            //ensure eX is formatted before adding to .log file
+            //have both error.log and data.log
             MessageBox.Show(eegAffectiveData[eegAffectiveData.Count-1].ToString());
         }
 
@@ -203,9 +205,9 @@ namespace EEG_Gateway
                         setSignalImg(signalStrength.ToString());
                 }
             }
-            catch
+            catch (Exception eX)
             {
-
+                logEEG_Data(eX);
             }
             updateChartData = false;
         }
@@ -283,7 +285,6 @@ namespace EEG_Gateway
             if (currentAction == EdkDll.EE_CognitivAction_t.COG_RIGHT)
                 latestCogTxt.Text = "4";
             float power = es.CognitivGetCurrentActionPower();
-            
         }
 
         private void loadProfBtn_Click(object sender, EventArgs e)
@@ -333,9 +334,10 @@ namespace EEG_Gateway
                 formatter.Serialize(stream, appSettings);
                 stream.Close();
             }
-            catch
+            catch(Exception eX)
             {
-                MessageBox.Show("Unable to serialize settings");
+                logEEG_Data(eX);
+                MessageBox.Show("Unable to serialize settings:"+ eX);
             }
             
         }
@@ -348,9 +350,10 @@ namespace EEG_Gateway
                 appSettings = (ApplicationSettings)formatter.Deserialize(stream);
                 stream.Close();
             }
-            catch
+            catch(Exception eX)
             {
-                MessageBox.Show("Unable to deserialize settings");
+                logEEG_Data(eX);
+                MessageBox.Show("Unable to deserialize settings:"+eX);
             }
             
         }
