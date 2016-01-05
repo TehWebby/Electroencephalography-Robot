@@ -63,7 +63,7 @@ namespace EEG_Gateway
             }
             catch(Exception eX)
             {
-                logEEG_Data(eX);
+                logEEG_Data(eX, "error");
             }
         }
 
@@ -80,7 +80,7 @@ namespace EEG_Gateway
                 catch (Exception eX)
                 {
                     //incorrect value
-                    logEEG_Data(eX);
+                    logEEG_Data(eX, "error");
                 }
 
                 latestCogTxt.Text = "";
@@ -155,11 +155,49 @@ namespace EEG_Gateway
                 
         }
         
-        public void logEEG_Data(Exception eX)//maybe add extra param to specifiy which log file to append
+        public void logEEG_Data(Exception eX, string file)//maybe add extra param to specifiy which log file to append
         {
+
             //ensure eX is formatted before adding to .log file
             //have both error.log and data.log
-            MessageBox.Show(eegAffectiveData[eegAffectiveData.Count-1].ToString());
+            //MessageBox.Show(eegAffectiveData[eegAffectiveData.Count-1].ToString());
+            if (file == "error")
+            {
+                //MessageBox.Show(eX.ToString());
+                //System.Console.Write(eX.ToString());
+
+                //maybe only check at start of program but make sure file exists before trying to append.
+                string errorF = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\error.log";
+                
+                using (StreamWriter w = File.AppendText(errorF))
+                {
+                    Log(eX.ToString(), w);
+                    //Log("Test2", w);
+                }
+
+                using (StreamReader r = File.OpenText(errorF))
+                {
+                    DumpLog(r);
+                }
+            }
+        }
+        public static void Log(string logMessage, TextWriter w)
+        {
+            w.Write("\r\nLog Entry : ");
+            w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
+                DateTime.Now.ToLongDateString());
+            w.WriteLine("  :");
+            w.WriteLine("  :{0}", logMessage);
+            w.WriteLine("-------------------------------");
+        }
+
+        public static void DumpLog(StreamReader r)
+        {
+            string line;
+            while ((line = r.ReadLine()) != null)
+            {
+                Console.WriteLine(line);
+            }
         }
 
         public void updateChart(EmoStateUpdatedEventArgs e)
@@ -207,7 +245,7 @@ namespace EEG_Gateway
             }
             catch (Exception eX)
             {
-                logEEG_Data(eX);
+                logEEG_Data(eX, "error");
             }
             updateChartData = false;
         }
@@ -336,7 +374,7 @@ namespace EEG_Gateway
             }
             catch(Exception eX)
             {
-                logEEG_Data(eX);
+                logEEG_Data(eX, "error");
                 MessageBox.Show("Unable to serialize settings:"+ eX);
             }
             
@@ -352,7 +390,7 @@ namespace EEG_Gateway
             }
             catch(Exception eX)
             {
-                logEEG_Data(eX);
+                logEEG_Data(eX, "error");
                 MessageBox.Show("Unable to deserialize settings:"+eX);
             }
             
