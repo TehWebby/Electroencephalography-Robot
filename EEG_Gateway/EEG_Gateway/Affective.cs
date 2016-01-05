@@ -36,77 +36,80 @@ namespace EEG_Gateway
         }
 
         //setters added but likely wont need to modify the object
-        public void setShortExcitLvl(EmoState es)
+        public float ShortExcitementLevel
         {
-            shortExcitementLvl = es.AffectivGetExcitementShortTermScore();
+            //shortExcitementLvl = es.AffectivGetExcitementShortTermScore();
+            get{
+                return shortExcitementLvl;
+            }
+            set{
+                shortExcitementLvl = value;
+            }
         }
       
-        public void setLongExcitLvl(EmoState es)
+        public float LongExcitementLevel
         {
-            longExcitementLvl = es.AffectivGetExcitementLongTermScore();
+            //longExcitementLvl = es.AffectivGetExcitementLongTermScore();
+            get{
+                return longExcitementLvl;
+            }
+            set{
+                longExcitementLvl = value;
+            }
         }
-        public void setFrustLvl(EmoState es)
+        public float FrustrationLevel
         {
-            frustrationLvl = es.AffectivGetFrustrationScore();
+            //frustrationLvl = es.AffectivGetFrustrationScore();
+            get{ 
+                return frustrationLvl;
+            }
+            set
+            {
+                frustrationLvl = value;
+            }
         }
-        public void setMeditLvl(EmoState es)
+        public float MeditationLevel
         {
-            meditationLvl = es.AffectivGetMeditationScore();
+            get{
+                return meditationLvl;
+            }
+            set
+            {
+                //meditationLvl = es.AffectivGetMeditationScore();
+                meditationLvl = value;
+            }
+            
         }
-        public void setValenceLvl(EmoState es)
+        public float ValenceLevel
         {
-            valenceLvl = es.AffectivGetValenceScore();
+            //valenceLvl = es.AffectivGetValenceScore();
+            get{ return valenceLvl; }            
+            set{ valenceLvl = value; }
         }
-        public void setEngagementBoredomLvl(EmoState es)
+        public float EngagementBoredomLevel
         {
-            engagementBoredomLvl = es.AffectivGetEngagementBoredomScore();
+            //engagementBoredomLvl = es.AffectivGetEngagementBoredomScore();
+            get{ return engagementBoredomLvl; }
+            set{ engagementBoredomLvl = value; }
         }
-        public void setSmileLvl(EmoState es)
+        public float SmileLevel
         {
-            smileLvl = es.ExpressivGetSmileExtent();
+            //smileLvl = es.ExpressivGetSmileExtent();
+            get{ return smileLvl; }
+            set{ smileLvl = value; }
         }
         
-        //Getters
-
-        public float getShortExcitLvl()
+        public bool Busy
         {
-            return shortExcitementLvl;
+            get { return busy; }
         }
-        public float getLongExcitLvl()
+        public EdkDll.EE_SignalStrength_t SignalStrength
         {
-            return longExcitementLvl;
-        }    
-        public float getFrustLvl()
-        {
-            return frustrationLvl;
+            get{ return signalStrength; }            
         }
-        public float getMeditLvl()
+        public float Timestamp
         {
-            return meditationLvl;
-        }
-        public float getValenceLvl()
-        {
-            return valenceLvl;
-        }
-        public float getEngagementBoredomLvl()
-        {
-            return engagementBoredomLvl;
-        }
-        public float getSmileLvl()
-        {
-            return smileLvl;
-        }
-        public bool getBusy()
-        {
-            return busy;
-        }
-        public EdkDll.EE_SignalStrength_t getSignalStrength()
-        {
-            return signalStrength;
-        }
-        public float getTimestamp()
-        {
-            return timestamp;
+            get { return timestamp; }
         }
 
     }

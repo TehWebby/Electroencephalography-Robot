@@ -185,23 +185,23 @@ namespace EEG_Gateway
                 //use i as the index for collection of objects (-1 to not go out of bounds)
                 int i = eegAffectiveData.Count-1;
                 
-                double timeVal = Math.Round(Convert.ToDouble(eegAffectiveData[i].getTimestamp()), 2);
+                double timeVal = Math.Round(Convert.ToDouble(eegAffectiveData[i].Timestamp), 2);
                 //EEG Emotion data
                 //first time through a data set, set the x axis to the correct time stamp
                 //@Trick, using toString() and manually adding the X value (for time)
                 //adds the same value to all subsequent series in this chart.
-                eegEmotionChart.Series["Short Term Excitement"].Points.AddXY(timeVal.ToString(), eegAffectiveData[i].getShortExcitLvl());
-                eegEmotionChart.Series["Long Term Excitement"].Points.AddY(eegAffectiveData[i].getLongExcitLvl());
-                eegEmotionChart.Series["Engagement/Boredom"].Points.AddY(eegAffectiveData[i].getEngagementBoredomLvl());
-                eegEmotionChart.Series["Frustration"].Points.AddY(eegAffectiveData[i].getFrustLvl());
-                eegEmotionChart.Series["Smile"].Points.AddY(eegAffectiveData[i].getSmileLvl());
-                eegEmotionChart.Series["Valence"].Points.AddY(eegAffectiveData[i].getValenceLvl());
+                eegEmotionChart.Series["Short Term Excitement"].Points.AddXY(timeVal.ToString(), eegAffectiveData[i].ShortExcitementLevel);
+                eegEmotionChart.Series["Long Term Excitement"].Points.AddY(eegAffectiveData[i].LongExcitementLevel);
+                eegEmotionChart.Series["Engagement/Boredom"].Points.AddY(eegAffectiveData[i].EngagementBoredomLevel);
+                eegEmotionChart.Series["Frustration"].Points.AddY(eegAffectiveData[i].FrustrationLevel);
+                eegEmotionChart.Series["Smile"].Points.AddY(eegAffectiveData[i].SmileLevel);
+                eegEmotionChart.Series["Valence"].Points.AddY(eegAffectiveData[i].ValenceLevel);
 
                 //if not the first time loading then update signal img if changed from previous
                 if (i != 0)
                 {
-                    EdkDll.EE_SignalStrength_t signalStrength = eegAffectiveData[i].getSignalStrength();
-                    if (signalStrength != eegAffectiveData[i - 1].getSignalStrength())
+                    EdkDll.EE_SignalStrength_t signalStrength = eegAffectiveData[i].SignalStrength;
+                    if (signalStrength != eegAffectiveData[i - 1].SignalStrength)
                         setSignalImg(signalStrength.ToString());
                 }
             }
