@@ -161,25 +161,30 @@ namespace EEG_Gateway
             //ensure eX is formatted before adding to .log file
             //have both error.log and data.log
             //MessageBox.Show(eegAffectiveData[eegAffectiveData.Count-1].ToString());
+            string logFile="";
             if (file == "error")
             {
-                //MessageBox.Show(eX.ToString());
-                //System.Console.Write(eX.ToString());
+                logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\error.log";
+            }
+            else if (file == "data")
+            {
+                logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\data.log";
+            }
 
-                //maybe only check at start of program but make sure file exists before trying to append.
-                string errorF = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\error.log";
-                
-                using (StreamWriter w = File.AppendText(errorF))
+            if (logFile != "")//ensure a file is being appended
+            {
+                using (StreamWriter w = File.AppendText(logFile))
                 {
                     Log(eX.ToString(), w);
                     //Log("Test2", w);
                 }
 
-                using (StreamReader r = File.OpenText(errorF))
+                using (StreamReader r = File.OpenText(logFile))
                 {
                     DumpLog(r);
                 }
             }
+
         }
         public static void Log(string logMessage, TextWriter w)
         {
