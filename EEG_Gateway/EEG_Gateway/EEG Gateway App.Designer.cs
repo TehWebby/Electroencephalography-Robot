@@ -57,6 +57,8 @@
             this.browseForProfileDialog = new System.Windows.Forms.OpenFileDialog();
             this.profileNameLbl = new System.Windows.Forms.Label();
             this.settingsBtn = new System.Windows.Forms.Button();
+            this.loggingLbl = new System.Windows.Forms.Label();
+            this.loggingEnabledLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).BeginInit();
             this.SuspendLayout();
@@ -252,7 +254,7 @@
             // 
             // settingsBtn
             // 
-            this.settingsBtn.Location = new System.Drawing.Point(874, 356);
+            this.settingsBtn.Location = new System.Drawing.Point(874, 378);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(88, 30);
             this.settingsBtn.TabIndex = 16;
@@ -260,12 +262,32 @@
             this.settingsBtn.UseVisualStyleBackColor = true;
             this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
             // 
+            // loggingLbl
+            // 
+            this.loggingLbl.AutoSize = true;
+            this.loggingLbl.Location = new System.Drawing.Point(903, 358);
+            this.loggingLbl.Name = "loggingLbl";
+            this.loggingLbl.Size = new System.Drawing.Size(38, 17);
+            this.loggingLbl.TabIndex = 17;
+            this.loggingLbl.Text = "True";
+            // 
+            // loggingEnabledLbl
+            // 
+            this.loggingEnabledLbl.AutoSize = true;
+            this.loggingEnabledLbl.Location = new System.Drawing.Point(788, 358);
+            this.loggingEnabledLbl.Name = "loggingEnabledLbl";
+            this.loggingEnabledLbl.Size = new System.Drawing.Size(118, 17);
+            this.loggingEnabledLbl.TabIndex = 18;
+            this.loggingEnabledLbl.Text = "Logging enabled:";
+            // 
             // EEG_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 577);
+            this.Controls.Add(this.loggingEnabledLbl);
+            this.Controls.Add(this.loggingLbl);
             this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.profileNameLbl);
             this.Controls.Add(this.signalImg);
@@ -310,6 +332,8 @@
         private System.Windows.Forms.OpenFileDialog browseForProfileDialog;
         private System.Windows.Forms.Label profileNameLbl;
         private System.Windows.Forms.Button settingsBtn;
+        private System.Windows.Forms.Label loggingLbl;
+        private System.Windows.Forms.Label loggingEnabledLbl;
     }
 }
 

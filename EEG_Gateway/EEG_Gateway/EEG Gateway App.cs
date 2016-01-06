@@ -13,6 +13,7 @@ using Emotiv;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Reflection;
 
 namespace EEG_Gateway
 {
@@ -38,6 +39,11 @@ namespace EEG_Gateway
             //Set the correct directory for loading the user profile data file
             browseForProfileDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\Profiles";
             
+            //set configuration settings
+            if (File.Exists("ConfigurationSettings.bin"))
+                deserializeSettings();
+            loggingLbl.Text = appSettings.Logging.ToString();
+
             //Modifications to GUI after init completed
             eegEmotionChart.ChartAreas[0].AxisY.Maximum = 1;
             setupControls();
@@ -148,51 +154,70 @@ namespace EEG_Gateway
             }
 
             if (updateChartData == true)
-            {
-                updateChart(e);
-                //logEEG_Data();
-            }
+                updateChart(e);                
+            
                 
         }
-        
-        public void logEEG_Data(Exception eX, string file)//maybe add extra param to specifiy which log file to append
+
+        public void logEEG_Data(Affective af, string file)//overloaded, used for data logs
         {
-
-            //ensure eX is formatted before adding to .log file
-            //have both error.log and data.log
-            //MessageBox.Show(eegAffectiveData[eegAffectiveData.Count-1].ToString());
-            string logFile="";
-            if (file == "error")
+            //ensure logging is enabled first
+            if (appSettings.Logging == true)
             {
-                logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\error.log";
+                string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\data.log";
+                string logData = convertAftoString(af);
+                LogData(logData, logFile);
             }
-            else if (file == "data")
+        }
+        public void logEEG_Data(Exception eX, string file)//overloaded, used for error logs
+        {
+            //ensure logging is enabled first
+            if (appSettings.Logging == true)
             {
-                logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\data.log";
+                string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\error.log";
+                string logData = eX.ToString();
+                LogData(logData, logFile);
             }
+        }
 
+        public string convertAftoString(Affective af)
+        {
+            string afString="";
+            //use reflection to get all property names and values of object
+            Type type = af.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                afString += "Name: " + property.Name + ", Value: " + property.GetValue(af, null) + Environment.NewLine;
+            }
+            return afString;
+        }
+
+        
+
+        public static void LogData(string logData, string logFile)
+        {
             if (logFile != "")//ensure a file is being appended
             {
                 using (StreamWriter w = File.AppendText(logFile))
                 {
-                    Log(eX.ToString(), w);
-                    //Log("Test2", w);
+                    Log(logData, w);
                 }
 
-                using (StreamReader r = File.OpenText(logFile))
+                /*using (StreamReader r = File.OpenText(logFile))
                 {
                     DumpLog(r);
-                }
+                }*/
             }
-
         }
+
         public static void Log(string logMessage, TextWriter w)
         {
             w.Write("\r\nLog Entry : ");
-            w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
-                DateTime.Now.ToLongDateString());
+            DateTime now = DateTime.Now;
+            w.WriteLine("{0} {1} ", now.ToLongTimeString(), now.ToLongDateString());
             w.WriteLine("  :");
-            w.WriteLine("  :{0}", logMessage);
+            w.WriteLine(logMessage);
             w.WriteLine("-------------------------------");
         }
 
@@ -209,6 +234,9 @@ namespace EEG_Gateway
         {
             EmoState es = e.emoState;
             Affective af = new Affective(es);
+            
+            logEEG_Data(af, "data");
+
             eegAffectiveData.Add(af);
             
             int totalChartPoints = 8;
@@ -306,6 +334,7 @@ namespace EEG_Gateway
 
                 //reset profile data
                 eegAffectiveData.Clear();
+
                 //clear user data from chart
                 foreach (var series in eegEmotionChart.Series)
                     series.Points.Clear();
@@ -336,7 +365,13 @@ namespace EEG_Gateway
             if (result == DialogResult.OK) // Test result.
             {
                 string fName = browseForProfileDialog.SafeFileName;
-                loadUp(fName, 0);
+                try{
+                    loadUp(fName, 0);
+                }
+                catch(Exception eX){
+                    logEEG_Data(eX, "error");
+                }
+                
             }
         }
 
@@ -353,13 +388,18 @@ namespace EEG_Gateway
 
         private void settingsBtn_Click(object sender, EventArgs e)
         {
+            //ensure that correct settings are already loaded before attempting to change them
             if (File.Exists("ConfigurationSettings.bin"))
                 deserializeSettings();
 
+            //invert the logging value from appSettings class
             switchLoggingSettings();
 
+            //serialize the settings to be remembered
             serializeSettings(appSettings);
-            MessageBox.Show(appSettings.Logging.ToString());
+
+            //Update the relevant GUI label with latest status
+            loggingLbl.Text = appSettings.Logging.ToString();
         }
 
         public void switchLoggingSettings()
