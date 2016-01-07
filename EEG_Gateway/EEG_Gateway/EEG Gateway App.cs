@@ -24,7 +24,7 @@ namespace EEG_Gateway
         public bool isLoad = true;
         public bool updateChartData = false;
         List<Affective> eegAffectiveData = new List<Affective>();
-
+        EdkDll.EE_CognitivAction_t latestAction;
         EmoEngine engine = EmoEngine.Instance;
         ApplicationSettings appSettings = new ApplicationSettings();
 
@@ -138,6 +138,17 @@ namespace EEG_Gateway
         {
             Button thisButton = (Button)sender;
             thisButton.BackColor = Color.CornflowerBlue;
+
+            if (latestAction != 0)
+            {
+                float cogPower;
+                if (powerLbl.Text != "Power")//ensure some power value is set
+                    cogPower = float.Parse(powerLbl.Text);
+                else
+                    cogPower = 0;
+
+                logEEG_Data(latestAction, cogPower, "data");
+            }
             //use button text as command to send to robot
             string cBtn = thisButton.Text;
             textBox1.Text = cBtn;
@@ -154,12 +165,24 @@ namespace EEG_Gateway
             }
 
             if (updateChartData == true)
-                updateChart(e);                
-            
-                
+                updateChart(e); 
         }
 
-        public void logEEG_Data(Affective af, string file)//overloaded, used for data logs
+        private void logEEG_Data(EdkDll.EE_CognitivAction_t currentAction, float power, string file)//overloaded, used for data logs for cognitive actions
+        {
+            //ensure logging is enabled first
+            if (appSettings.Logging == true)
+            {
+                string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\data.log";
+                
+                string logData = convertCAtoString(currentAction, power);
+                LogData(logData, logFile);
+            }
+        }
+
+        
+
+        public void logEEG_Data(Affective af, string file)//overloaded, used for data logs for affective info
         {
             //ensure logging is enabled first
             if (appSettings.Logging == true)
@@ -179,6 +202,7 @@ namespace EEG_Gateway
                 LogData(logData, logFile);
             }
         }
+        
 
         public string convertAftoString(Affective af)
         {
@@ -192,8 +216,13 @@ namespace EEG_Gateway
             }
             return afString;
         }
-
-        
+        private string convertCAtoString(EdkDll.EE_CognitivAction_t currentAction, float power)
+        {
+            string cgString = "";
+            //use reflection to get all property names and values of object
+            cgString = currentAction.ToString() + " - " + power; 
+            return cgString;
+        }
 
         public static void LogData(string logData, string logFile)
         {
@@ -357,7 +386,11 @@ namespace EEG_Gateway
             if (currentAction == EdkDll.EE_CognitivAction_t.COG_RIGHT)
                 latestCogTxt.Text = "4";
             float power = es.CognitivGetCurrentActionPower();
+            powerLbl.Text = power.ToString();
+            latestAction = currentAction;
         }
+
+        
 
         private void loadProfBtn_Click(object sender, EventArgs e)
         {
@@ -371,7 +404,6 @@ namespace EEG_Gateway
                 catch(Exception eX){
                     logEEG_Data(eX, "error");
                 }
-                
             }
         }
 
@@ -438,7 +470,6 @@ namespace EEG_Gateway
                 logEEG_Data(eX, "error");
                 MessageBox.Show("Unable to deserialize settings:"+eX);
             }
-            
         }
 
     }
