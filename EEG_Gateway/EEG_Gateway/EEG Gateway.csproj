@@ -74,7 +74,9 @@
   <ItemGroup>
     <Compile Include="Affective.cs" />
     <Compile Include="ApplicationSettings.cs" />
-    <Compile Include="CognitiveTraining.cs" />
+    <Compile Include="CognitiveTraining.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EEG Gateway App.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +85,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CognitiveTraining.resx">
+      <DependentUpon>CognitiveTraining.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EEG Gateway App.resx">
       <DependentUpon>EEG Gateway App.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,7 +113,7 @@
     <None Include="Resources\signal0.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
