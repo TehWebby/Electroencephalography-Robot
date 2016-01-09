@@ -472,5 +472,10 @@ namespace EEG_Gateway
             }
         }
 
+        private void newProfileBtn_Click(object sender, EventArgs e)
+        {
+            CognitiveTraining cognitiveTraining = new CognitiveTraining();
+            cognitiveTraining.Initialize();
+        }
     }
 }

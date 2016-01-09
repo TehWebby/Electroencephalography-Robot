@@ -60,6 +60,7 @@
             this.loggingLbl = new System.Windows.Forms.Label();
             this.loggingEnabledLbl = new System.Windows.Forms.Label();
             this.powerLbl = new System.Windows.Forms.Label();
+            this.newProfileBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).BeginInit();
             this.SuspendLayout();
@@ -290,12 +291,23 @@
             this.powerLbl.TabIndex = 19;
             this.powerLbl.Text = "Power";
             // 
+            // newProfileBtn
+            // 
+            this.newProfileBtn.Location = new System.Drawing.Point(848, 464);
+            this.newProfileBtn.Name = "newProfileBtn";
+            this.newProfileBtn.Size = new System.Drawing.Size(114, 28);
+            this.newProfileBtn.TabIndex = 20;
+            this.newProfileBtn.Text = "New Profile";
+            this.newProfileBtn.UseVisualStyleBackColor = true;
+            this.newProfileBtn.Click += new System.EventHandler(this.newProfileBtn_Click);
+            // 
             // EEG_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 577);
+            this.Controls.Add(this.newProfileBtn);
             this.Controls.Add(this.powerLbl);
             this.Controls.Add(this.loggingEnabledLbl);
             this.Controls.Add(this.loggingLbl);
@@ -346,6 +358,7 @@
         private System.Windows.Forms.Label loggingLbl;
         private System.Windows.Forms.Label loggingEnabledLbl;
         private System.Windows.Forms.Label powerLbl;
+        private System.Windows.Forms.Button newProfileBtn;
     }
 }
 

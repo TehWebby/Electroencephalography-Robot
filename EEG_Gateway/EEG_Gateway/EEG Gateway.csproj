@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Affective.cs" />
     <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="CognitiveTraining.cs" />
     <Compile Include="EEG Gateway App.cs">
       <SubType>Form</SubType>
     </Compile>
