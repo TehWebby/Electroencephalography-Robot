@@ -49,6 +49,7 @@ namespace EEG_Gateway
         private CheckBox trainBox2;
         private CheckBox trainBox1;
         private Timer trainingTimer;
+        private Label newProfileHeaderLbl;
         private System.ComponentModel.IContainer components;
         
 
@@ -71,6 +72,7 @@ namespace EEG_Gateway
             this.trainBox2 = new System.Windows.Forms.CheckBox();
             this.trainBox1 = new System.Windows.Forms.CheckBox();
             this.trainingTimer = new System.Windows.Forms.Timer(this.components);
+            this.newProfileHeaderLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // profileNameTxt
@@ -152,9 +154,20 @@ namespace EEG_Gateway
             // 
             this.trainingTimer.Tick += new System.EventHandler(this.trainingTimer_Tick);
             // 
+            // newProfileHeaderLbl
+            // 
+            this.newProfileHeaderLbl.AutoSize = true;
+            this.newProfileHeaderLbl.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newProfileHeaderLbl.Location = new System.Drawing.Point(28, 9);
+            this.newProfileHeaderLbl.Name = "newProfileHeaderLbl";
+            this.newProfileHeaderLbl.Size = new System.Drawing.Size(390, 37);
+            this.newProfileHeaderLbl.TabIndex = 15;
+            this.newProfileHeaderLbl.Text = "Create a new EPOC EEG Profile";
+            // 
             // CognitiveTraining
             // 
             this.ClientSize = new System.Drawing.Size(414, 403);
+            this.Controls.Add(this.newProfileHeaderLbl);
             this.Controls.Add(this.trainBox1);
             this.Controls.Add(this.trainBox2);
             this.Controls.Add(this.trainBox3);
