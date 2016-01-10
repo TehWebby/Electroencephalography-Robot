@@ -347,37 +347,34 @@ namespace EEG_Gateway
             try
             {
                 engine.LoadUserProfile(userId, "Profiles\\" + fName);
+                profile = engine.GetUserProfile(userId);
+                engine.SetUserProfile(userId, profile);
+
+                //Parse username from file and update label
+                if (fName.Contains('_'))
+                    fName = fName.Split('_')[1].Split('.')[0];
+                else
+                    fName = fName.Split('.')[0];
+                profileNameLbl.Text = "Profile: " + fName;
+                //if not initializing (first time through) then reset all chart data
+                if (init == 0)
+                {
+                    //reset emotive engine
+                    engine.Disconnect();
+                    engine.Connect();
+
+                    //reset profile data
+                    eegAffectiveData.Clear();
+
+                    //clear user data from chart
+                    foreach (var series in eegEmotionChart.Series)
+                        series.Points.Clear();
+                }
             }
-            catch(Exception eX)
+            catch (Exception eX)
             {
                 logEEG_Data(eX, "error");
             }
-
-            
-            profile = engine.GetUserProfile(userId);
-            engine.SetUserProfile(userId, profile);
-
-            //Parse username from file and update label
-            if (fName.Contains('_'))
-                fName = fName.Split('_')[1].Split('.')[0];
-            else
-                fName = fName.Split('.')[0];
-            profileNameLbl.Text = "Profile: " + fName;
-            //if not initializing (first time through) then reset all chart data
-            if (init == 0)
-            {
-                //reset emotive engine
-                engine.Disconnect();
-                engine.Connect();
-
-                //reset profile data
-                eegAffectiveData.Clear();
-
-                //clear user data from chart
-                foreach (var series in eegEmotionChart.Series)
-                    series.Points.Clear();
-            }
-            //MessageBox.Show("Profile " + fName + " loaded");
         }
 
         void Instance_CognitivEmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
