@@ -17,6 +17,7 @@ namespace EEG_Gateway
         bool write = false;
         int numOfActions = 0;
         int totalActions = 0;
+        int finalAction = 0;
         Profile userProfile = new Profile();
         string profileName;
         bool[] action = new bool[4]; //used to determine how many actions to activate
@@ -184,7 +185,11 @@ namespace EEG_Gateway
             for (int i = 0; i < action.Length; i++)
             {
                 if (action[i])
+                {
                     totalActions++;
+                    finalAction = i;
+                }
+                    
             }
             /*
             action[0] == UP
@@ -277,6 +282,14 @@ namespace EEG_Gateway
             
             if (write)
                 EmoEngine.Instance.EE_SaveUserProfile((uint)userId, "Profiles\\" + profileName);
+
+            if (notComplete[finalAction] == false)
+            {
+                EmoEngine.Instance.Disconnect();
+                trainingTimer.Enabled = false;
+                Dispose();
+                Close();
+            }
         }
 
         void Instance_CognitivTrainingSucceeded(object sender, EmoEngineEventArgs e)
@@ -369,7 +382,9 @@ namespace EEG_Gateway
                 notComplete[3] = false;
             }
 
-
+            
+            
+            
 
             //write is the save bool. Use this in the last training step (or each)
         }

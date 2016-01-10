@@ -343,8 +343,17 @@ namespace EEG_Gateway
         {
             Profile profile = new Profile();
             uint userId = 0;
+
+            try
+            {
+                engine.LoadUserProfile(userId, "Profiles\\" + fName);
+            }
+            catch(Exception eX)
+            {
+                logEEG_Data(eX, "error");
+            }
+
             
-            engine.LoadUserProfile(userId, "Profiles\\" + fName);
             profile = engine.GetUserProfile(userId);
             engine.SetUserProfile(userId, profile);
 
@@ -398,10 +407,18 @@ namespace EEG_Gateway
             if (result == DialogResult.OK) // Test result.
             {
                 string fName = browseForProfileDialog.SafeFileName;
-                try{
+                try
+                {
                     loadUp(fName, 0);
                 }
-                catch(Exception eX){
+                catch (EmoEngineException eX)
+                {
+                    engine.Connect();
+                    loadUp(fName, 0);
+                    //if (eX.Message == "EmoEngine has not been initialized")
+                    
+                }
+                catch (Exception eX){
                     logEEG_Data(eX, "error");
                 }
             }
@@ -475,7 +492,19 @@ namespace EEG_Gateway
         private void newProfileBtn_Click(object sender, EventArgs e)
         {
             CognitiveTraining cognitiveTraining = new CognitiveTraining();
+            
             cognitiveTraining.Initialize();
+        }
+
+        /*cognitiveTraining += new FormClosedEventHandler(CognitiveTraining_FormClosed);
+        private void CognitiveTraining_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MessageBox.Show("CLOSED");
+        }*/
+
+        void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Do something
         }
     }
 }
