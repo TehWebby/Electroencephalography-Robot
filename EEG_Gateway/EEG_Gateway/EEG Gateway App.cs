@@ -57,6 +57,13 @@ namespace EEG_Gateway
             
             // Handle the ApplicationExit event to know when the application is exiting.
             Application.ApplicationExit += new EventHandler(OnApplicationExit);
+
+            /*ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = "C:\\Users\\Webby\\Microsoft Robotics Dev Studio 4\\bin\\DssHost32.exe";
+            startInfo.Arguments = "-p:50000 -t:50001 -m:Config\\SimpleSimulatedRobot.user.manifest.xml";
+            Process.Start(startInfo);*/
+
+
         }
 
         private void OnApplicationExit(object sender, EventArgs e)
@@ -153,6 +160,9 @@ namespace EEG_Gateway
             string cBtn = thisButton.Text;
             textBox1.Text = cBtn;
 
+            //thisButton.Text;
+            string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\robot.log";
+            RobotCmd(cBtn, logFile);
             // do stuff
         }
 
@@ -232,11 +242,6 @@ namespace EEG_Gateway
                 {
                     Log(logData, w);
                 }
-
-                /*using (StreamReader r = File.OpenText(logFile))
-                {
-                    DumpLog(r);
-                }*/
             }
         }
 
@@ -248,6 +253,20 @@ namespace EEG_Gateway
             w.WriteLine("  :");
             w.WriteLine(logMessage);
             w.WriteLine("-------------------------------");
+        }
+        public static void RobotCmd(string cmdData, string logFile)
+        {
+            if (logFile != "")//ensure a file is being appended
+            {
+                using (StreamWriter w = File.CreateText(logFile))
+                {
+                    RobotCmdFile(cmdData, w);
+                }
+            }
+        }
+        public static void RobotCmdFile(string cmd, TextWriter w)
+        {
+            w.WriteLine(cmd);
         }
 
         public static void DumpLog(StreamReader r)
