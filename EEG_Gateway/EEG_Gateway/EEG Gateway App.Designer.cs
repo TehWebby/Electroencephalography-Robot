@@ -50,17 +50,18 @@
             this.eegEmotionChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.eegTimelbl2 = new System.Windows.Forms.Label();
             this.eegStrlbl2 = new System.Windows.Forms.Label();
-            this.loadProfBtn = new System.Windows.Forms.Button();
+            this.btnLoadProf = new System.Windows.Forms.Button();
             this.eegTimer = new System.Windows.Forms.Timer(this.components);
             this.emotionTimer = new System.Windows.Forms.Timer(this.components);
             this.signalImg = new System.Windows.Forms.PictureBox();
             this.browseForProfileDialog = new System.Windows.Forms.OpenFileDialog();
             this.profileNameLbl = new System.Windows.Forms.Label();
-            this.settingsBtn = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.loggingLbl = new System.Windows.Forms.Label();
             this.loggingEnabledLbl = new System.Windows.Forms.Label();
             this.powerLbl = new System.Windows.Forms.Label();
-            this.newProfileBtn = new System.Windows.Forms.Button();
+            this.btnNewProfile = new System.Windows.Forms.Button();
+            this.btnRunSimulator = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).BeginInit();
             this.SuspendLayout();
@@ -213,15 +214,15 @@
             this.eegStrlbl2.TabIndex = 12;
             this.eegStrlbl2.Text = "Strength";
             // 
-            // loadProfBtn
+            // btnLoadProf
             // 
-            this.loadProfBtn.Location = new System.Drawing.Point(848, 539);
-            this.loadProfBtn.Name = "loadProfBtn";
-            this.loadProfBtn.Size = new System.Drawing.Size(114, 26);
-            this.loadProfBtn.TabIndex = 13;
-            this.loadProfBtn.Text = "Load Profile";
-            this.loadProfBtn.UseVisualStyleBackColor = true;
-            this.loadProfBtn.Click += new System.EventHandler(this.loadProfBtn_Click);
+            this.btnLoadProf.Location = new System.Drawing.Point(848, 539);
+            this.btnLoadProf.Name = "btnLoadProf";
+            this.btnLoadProf.Size = new System.Drawing.Size(114, 26);
+            this.btnLoadProf.TabIndex = 13;
+            this.btnLoadProf.Text = "Load Profile";
+            this.btnLoadProf.UseVisualStyleBackColor = true;
+            this.btnLoadProf.Click += new System.EventHandler(this.loadProfBtn_Click);
             // 
             // eegTimer
             // 
@@ -254,15 +255,15 @@
             this.profileNameLbl.TabIndex = 15;
             this.profileNameLbl.Text = "Profile: name";
             // 
-            // settingsBtn
+            // btnSettings
             // 
-            this.settingsBtn.Location = new System.Drawing.Point(874, 378);
-            this.settingsBtn.Name = "settingsBtn";
-            this.settingsBtn.Size = new System.Drawing.Size(88, 30);
-            this.settingsBtn.TabIndex = 16;
-            this.settingsBtn.Text = "Settings";
-            this.settingsBtn.UseVisualStyleBackColor = true;
-            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
+            this.btnSettings.Location = new System.Drawing.Point(874, 378);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(88, 30);
+            this.btnSettings.TabIndex = 16;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.settingsBtn_Click);
             // 
             // loggingLbl
             // 
@@ -291,15 +292,25 @@
             this.powerLbl.TabIndex = 19;
             this.powerLbl.Text = "Power";
             // 
-            // newProfileBtn
+            // btnNewProfile
             // 
-            this.newProfileBtn.Location = new System.Drawing.Point(848, 464);
-            this.newProfileBtn.Name = "newProfileBtn";
-            this.newProfileBtn.Size = new System.Drawing.Size(114, 28);
-            this.newProfileBtn.TabIndex = 20;
-            this.newProfileBtn.Text = "New Profile";
-            this.newProfileBtn.UseVisualStyleBackColor = true;
-            this.newProfileBtn.Click += new System.EventHandler(this.newProfileBtn_Click);
+            this.btnNewProfile.Location = new System.Drawing.Point(848, 464);
+            this.btnNewProfile.Name = "btnNewProfile";
+            this.btnNewProfile.Size = new System.Drawing.Size(114, 28);
+            this.btnNewProfile.TabIndex = 20;
+            this.btnNewProfile.Text = "New Profile";
+            this.btnNewProfile.UseVisualStyleBackColor = true;
+            this.btnNewProfile.Click += new System.EventHandler(this.newProfileBtn_Click);
+            // 
+            // btnRunSimulator
+            // 
+            this.btnRunSimulator.Location = new System.Drawing.Point(657, 493);
+            this.btnRunSimulator.Name = "btnRunSimulator";
+            this.btnRunSimulator.Size = new System.Drawing.Size(130, 33);
+            this.btnRunSimulator.TabIndex = 21;
+            this.btnRunSimulator.Text = "Run Simulator";
+            this.btnRunSimulator.UseVisualStyleBackColor = true;
+            this.btnRunSimulator.Click += new System.EventHandler(this.btnRunSimulator_Click);
             // 
             // EEG_Main
             // 
@@ -307,14 +318,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 577);
-            this.Controls.Add(this.newProfileBtn);
+            this.Controls.Add(this.btnRunSimulator);
+            this.Controls.Add(this.btnNewProfile);
             this.Controls.Add(this.powerLbl);
             this.Controls.Add(this.loggingEnabledLbl);
             this.Controls.Add(this.loggingLbl);
-            this.Controls.Add(this.settingsBtn);
+            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.profileNameLbl);
             this.Controls.Add(this.signalImg);
-            this.Controls.Add(this.loadProfBtn);
+            this.Controls.Add(this.btnLoadProf);
             this.Controls.Add(this.eegStrlbl2);
             this.Controls.Add(this.eegTimelbl2);
             this.Controls.Add(this.eegEmotionChart);
@@ -348,17 +360,18 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart eegEmotionChart;
         private System.Windows.Forms.Label eegTimelbl2;
         private System.Windows.Forms.Label eegStrlbl2;
-        private System.Windows.Forms.Button loadProfBtn;
+        private System.Windows.Forms.Button btnLoadProf;
         private System.Windows.Forms.Timer eegTimer;
         private System.Windows.Forms.Timer emotionTimer;
         private System.Windows.Forms.PictureBox signalImg;
         private System.Windows.Forms.OpenFileDialog browseForProfileDialog;
         private System.Windows.Forms.Label profileNameLbl;
-        private System.Windows.Forms.Button settingsBtn;
+        private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Label loggingLbl;
         private System.Windows.Forms.Label loggingEnabledLbl;
         private System.Windows.Forms.Label powerLbl;
-        private System.Windows.Forms.Button newProfileBtn;
+        private System.Windows.Forms.Button btnNewProfile;
+        private System.Windows.Forms.Button btnRunSimulator;
     }
 }
 

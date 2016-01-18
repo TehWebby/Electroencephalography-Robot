@@ -14,6 +14,8 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Reflection;
+using System.Management.Automation;
+using System.Threading;
 
 namespace EEG_Gateway
 {
@@ -522,5 +524,23 @@ namespace EEG_Gateway
         {
             // Do something
         }
+
+        private void btnRunSimulator_Click(object sender, EventArgs e)
+        {
+            //execute Simulation program, just run PS with parameters for correct manifest (simulation info)
+            //use new thread, improved performance and "async"
+            new Thread(() =>
+            {
+                //Set as background thread
+                //Taken from MSDN
+                //Background threads are identical to foreground threads, except that background threads do not prevent a process from terminating
+                Thread.CurrentThread.IsBackground = true;
+                PowerShell ps = PowerShell.Create();
+                Console.WriteLine("Running Simulator");
+                ps.AddScript(@"& 'C:\Users\Webby\Microsoft Robotics Dev Studio 4\bin\DssHost32.exe' -port:50000 -tcpport:50001 -manifest:'C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\Config\LEGO.NXT.Tribot.Simulation.user.manifest.xml' -manifest:'C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\Config\SimpleDashboard.user.manifest.xml'");
+                ps.Invoke();
+            }).Start();
+        }
+
     }
 }
