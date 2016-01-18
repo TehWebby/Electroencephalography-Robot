@@ -34,7 +34,7 @@ namespace EEG_Gateway
         {
             InitializeComponent();
             //liveEEG.Enabled = false;
-
+            
             //Used for application configuration settings, such as enable/disable logging
             //add more here
 
@@ -162,10 +162,12 @@ namespace EEG_Gateway
             string cBtn = thisButton.Text;
             textBox1.Text = cBtn;
 
-            //thisButton.Text;
+            //only do this is simulation is open
             string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\robot.log";
             RobotCmd(cBtn, logFile);
-            // do stuff
+
+            //RobotCommand.command = cBtn;
+
         }
 
         void Instance_EmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)

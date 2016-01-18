@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EEG Gateway", "EEG_Gateway\EEG Gateway.csproj", "{2F1E83C0-7901-48A0-A93B-487B44D139E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotSimulator", "C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\UX\SimpleDashboard\RobotSimulator.csproj", "{0EF15C7D-0506-4BB0-A9AA-DBEBA64BB630}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleDashboard", "C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\UX\SimpleDashboard\SimpleDashboard.csproj", "{0EF15C7D-0506-4BB0-A9AA-DBEBA64BB630}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

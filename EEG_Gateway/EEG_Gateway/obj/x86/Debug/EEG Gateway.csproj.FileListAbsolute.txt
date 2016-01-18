@@ -19,4 +19,3 @@ F:\Electroencephalography-Robot\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG_Gatewa
 F:\Electroencephalography-Robot\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG Gateway.csproj.GenerateResource.Cache
 F:\Electroencephalography-Robot\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG_Gateway.CognitiveTraining.resources
 F:\Electroencephalography-Robot\EEG_Gateway\EEG_Gateway\bin\x86\Debug\System.Management.Automation.dll
-F:\Electroencephalography-Robot\EEG_Gateway\EEG_Gateway\obj\x86\Debug\EEG Gateway.csprojResolveAssemblyReference.cache
