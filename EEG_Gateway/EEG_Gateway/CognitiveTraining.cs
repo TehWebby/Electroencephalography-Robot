@@ -230,7 +230,7 @@ namespace EEG_Gateway
             foreach (Control c in Controls)
             {
                 if ((c is CheckBox) && ((CheckBox)c).Checked)
-                    action[i] = true;
+                    action[i-1] = true;
                 i++;
             }
             return action;
@@ -298,7 +298,7 @@ namespace EEG_Gateway
 
             if (notComplete[finalAction] == false)
             {
-                EmoEngine.Instance.Disconnect();
+                //EmoEngine.Instance.Disconnect();
                 trainingTimer.Enabled = false;
                 Dispose();
                 Close();

@@ -215,9 +215,9 @@
             // 
             // loadProfBtn
             // 
-            this.loadProfBtn.Location = new System.Drawing.Point(848, 542);
+            this.loadProfBtn.Location = new System.Drawing.Point(848, 539);
             this.loadProfBtn.Name = "loadProfBtn";
-            this.loadProfBtn.Size = new System.Drawing.Size(114, 23);
+            this.loadProfBtn.Size = new System.Drawing.Size(114, 26);
             this.loadProfBtn.TabIndex = 13;
             this.loadProfBtn.Text = "Load Profile";
             this.loadProfBtn.UseVisualStyleBackColor = true;
