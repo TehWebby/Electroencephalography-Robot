@@ -165,8 +165,7 @@ namespace EEG_Gateway
             //only do this is simulation is open
             string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\robot.log";
             RobotCmd(cBtn, logFile);
-
-            //RobotCommand.command = cBtn;
+            
 
         }
 

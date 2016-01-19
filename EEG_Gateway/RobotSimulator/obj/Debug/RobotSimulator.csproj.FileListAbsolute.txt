@@ -11,3 +11,4 @@ F:\Electroencephalography-Robot\EEG_Gateway\RobotSimulator\obj\Debug\RobotSimula
 F:\Electroencephalography-Robot\EEG_Gateway\RobotSimulator\obj\Debug\User.SimpleDashboard.Y2006.M01.dll
 F:\Electroencephalography-Robot\EEG_Gateway\RobotSimulator\obj\Debug\User.SimpleDashboard.Y2006.M01.pdb
 F:\Electroencephalography-Robot\EEG_Gateway\RobotSimulator\obj\Debug\Microsoft.Robotics.Services.SimpleDashboard.DriveControl.resources
+F:\Electroencephalography-Robot\EEG_Gateway\RobotSimulator\obj\Debug\RobotSimulator.csprojResolveAssemblyReference.cache

@@ -25,16 +25,23 @@ using System.IO;
 using Microsoft.Dss.Core;
 using Microsoft.Robotics.Simulation.Physics.Proxy;
 using Microsoft.Robotics.PhysicalModel.Proxy;
-
+using System.ServiceModel;
+using MessagingInterfaces;
+using System.Threading;
 
 namespace Microsoft.Robotics.Services.SimpleDashboard
 {
-    partial class DriveControl : Form
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.Single)]
+    partial class DriveControl : Form, IFromServerToClientMessages
     {
         DriveControlEvents _eventsPort;
         double _translateScaleFactor;
         double _rotateScaleFactor;
-        
+
+        //used for WCF transmition between "server" and "client"
+        Guid _clientID;
+        ServiceHost _clientHost;
+
         public DriveControl(DriveControlEvents EventsPort, double translateScaleFactor, double rotateScaleFactor)
         {
             _eventsPort = EventsPort;
@@ -43,7 +50,62 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
 
             InitializeComponent();
             txtPort.ValidatingType = typeof(ushort);
+            
             Load += FormOnLoad_Shown;
+
+            new Thread(() =>
+            {
+                //after connected to simulation localhost
+                //setup WCF details
+                _clientID = Guid.NewGuid();
+                _clientHost = new ServiceHost(this);
+                _clientHost.AddServiceEndpoint((typeof(IFromServerToClientMessages)), new NetNamedPipeBinding(), "net.pipe://localhost/Client_" + _clientID.ToString());
+                try
+                {
+                    _clientHost.Open();
+                    Register(_clientID);
+                }
+                catch(Exception eX)
+                {
+                    MessageBox.Show(eX.ToString());
+                }
+                
+            }).Start();
+        }
+        public void Register(Guid clientID)
+        {
+            using (ChannelFactory<IFromClientToServerMessages> factory = new ChannelFactory<IFromClientToServerMessages>(new NetNamedPipeBinding(), new EndpointAddress("net.pipe://localhost/Server")))
+            {
+                IFromClientToServerMessages clientToServerChannel = factory.CreateChannel();
+                try
+                {
+                    clientToServerChannel.Register(clientID);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+                    CloseChannel((ICommunicationObject)clientToServerChannel);
+                }
+            }
+        }
+
+        private void CloseChannel(ICommunicationObject channel)
+        {
+            try
+            {
+                channel.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                channel.Abort();
+            }
         }
 
         private void FormOnLoad_Shown(Object sender, EventArgs e)
@@ -761,6 +823,11 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             else if (f.StartsWith("RIGHT"))
                 cmdAxes.X = 1000;
             return cmdAxes;
+        }
+
+        public void DisplayTextInClient(string text)
+        {
+            MessageBox.Show(text);
         }
     }
 

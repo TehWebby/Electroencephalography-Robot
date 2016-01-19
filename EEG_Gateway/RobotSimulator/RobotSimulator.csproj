@@ -85,6 +85,7 @@
       <SpecificVersion>True</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="User.GameController.Y2006.M09.Proxy">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
@@ -145,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MessagingInterfaces\MessagingInterfaces.csproj">
+      <Project>{67b58360-68f3-47d4-9088-094c6ae65550}</Project>
+      <Name>MessagingInterfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <PropertyGroup Condition="'$(DelaySign)'!=''">

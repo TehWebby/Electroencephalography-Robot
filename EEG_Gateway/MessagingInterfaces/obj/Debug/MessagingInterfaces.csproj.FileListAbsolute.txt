@@ -1,0 +1,9 @@
+C:\Users\Webby\Downloads\SingleCentralServer\SingleCentralServer\MessagingInterfaces\bin\Debug\MessagingInterfaces.dll
+C:\Users\Webby\Downloads\SingleCentralServer\SingleCentralServer\MessagingInterfaces\bin\Debug\MessagingInterfaces.pdb
+C:\Users\Webby\Downloads\SingleCentralServer\SingleCentralServer\MessagingInterfaces\obj\Debug\MessagingInterfaces.csprojResolveAssemblyReference.cache
+C:\Users\Webby\Downloads\SingleCentralServer\SingleCentralServer\MessagingInterfaces\obj\Debug\MessagingInterfaces.dll
+C:\Users\Webby\Downloads\SingleCentralServer\SingleCentralServer\MessagingInterfaces\obj\Debug\MessagingInterfaces.pdb
+F:\Electroencephalography-Robot\EEG_Gateway\MessagingInterfaces\bin\Debug\MessagingInterfaces.dll
+F:\Electroencephalography-Robot\EEG_Gateway\MessagingInterfaces\bin\Debug\MessagingInterfaces.pdb
+F:\Electroencephalography-Robot\EEG_Gateway\MessagingInterfaces\obj\Debug\MessagingInterfaces.dll
+F:\Electroencephalography-Robot\EEG_Gateway\MessagingInterfaces\obj\Debug\MessagingInterfaces.pdb
