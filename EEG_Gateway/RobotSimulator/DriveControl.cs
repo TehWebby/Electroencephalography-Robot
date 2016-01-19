@@ -791,24 +791,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             listDirectory_DoubleClick(null, null);
             startTimer.Enabled = false;
         }
-
-        private void cmdTimer_Tick(object sender, EventArgs e)
-        {
-            //once the joystick has moved then 
-            string fileName = @"F:\Electroencephalography-Robot\EEG_Gateway\EEG_Gateway\bin\x86\Debug\Logging\robot.log";
-            string f = File.ReadAllText(fileName);
-            //string f = RobotCommand.command;
-            //axes
-            UpdateJoystickAxes(robotAxes(f));
-
-            if ((fileName != "") && (f != "0"))//ensure a file is being appended
-            {
-                using (StreamWriter w = File.CreateText(fileName))
-                {
-                    w.WriteLine(0);
-                }
-            }            
-        }
+        
 
         private game.Axes robotAxes(string f)
         {
@@ -827,7 +810,9 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
 
         public void DisplayTextInClient(string text)
         {
-            MessageBox.Show(text);
+            UpdateJoystickAxes(robotAxes(text));
+            Thread.Sleep(500);
+            UpdateJoystickAxes(robotAxes("0"));
         }
     }
 

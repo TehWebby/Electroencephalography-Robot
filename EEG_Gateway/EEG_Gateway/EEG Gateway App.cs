@@ -16,10 +16,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Reflection;
 using System.Management.Automation;
 using System.Threading;
+using System.ServiceModel;
+using MessagingInterfaces;
 
 namespace EEG_Gateway
 {
-    public partial class EEG_Main : Form
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.Single)]
+    public partial class EEG_Main : Form, IFromClientToServerMessages
     {
         bool cogAction;
         
@@ -29,6 +32,10 @@ namespace EEG_Gateway
         EdkDll.EE_CognitivAction_t latestAction;
         EmoEngine engine = EmoEngine.Instance;
         ApplicationSettings appSettings = new ApplicationSettings();
+
+        //used to contact simulation
+        ServiceHost _serverHost;
+        List<Guid> _registeredClients = new List<Guid>();
 
         public EEG_Main()
         {
@@ -164,8 +171,13 @@ namespace EEG_Gateway
 
             //only do this is simulation is open
             string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\robot.log";
-            RobotCmd(cBtn, logFile);
-            
+            //RobotCmd(cBtn, logFile);
+            //todo REMOVE ROBOTcmD and related stuff
+
+            //ONLY IF SIMULATOR IS RUNNING
+            Guid client = new Guid(_registeredClients[0].ToString());
+            SendText(client, cBtn);
+
 
         }
 
@@ -528,6 +540,25 @@ namespace EEG_Gateway
 
         private void btnRunSimulator_Click(object sender, EventArgs e)
         {
+            new Thread(() =>
+            {
+                //listen for simulation localhost
+                //setup WCF details
+                _serverHost = new ServiceHost(this);
+                _serverHost.AddServiceEndpoint((typeof(IFromClientToServerMessages)), new NetNamedPipeBinding(), "net.pipe://localhost/Server");
+               
+                try
+                {
+                    _serverHost.Open();
+                    MessageBox.Show("SERVER STATE: " + _serverHost.State.ToString());
+                }
+                catch (Exception eX)
+                {
+                    MessageBox.Show(eX.ToString());
+                }
+
+            }).Start();
+
             //execute Simulation program, just run PS with parameters for correct manifest (simulation info)
             //use new thread, improved performance and "async"
             new Thread(() =>
@@ -541,7 +572,64 @@ namespace EEG_Gateway
                 ps.AddScript(@"& 'C:\Users\Webby\Microsoft Robotics Dev Studio 4\bin\DssHost32.exe' -port:50000 -tcpport:50001 -manifest:'C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\Config\LEGO.NXT.Tribot.Simulation.user.manifest.xml' -manifest:'C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\Config\SimpleDashboard.user.manifest.xml'");
                 ps.Invoke();
             }).Start();
+            
+            
         }
 
+        public void Register(Guid clientID)
+        {
+            if (!_registeredClients.Contains(clientID))
+                _registeredClients.Add(clientID);
+            MessageBox.Show(clientID.ToString());
+        }
+
+        public void DisplayTextOnServer(string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayTextOnServerAsFromThisClient(Guid clientID, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetLastAnonMessage()
+        {
+            throw new NotImplementedException();
+        }
+        private void SendText(Guid client, string text)
+        {
+            using (ChannelFactory<IFromServerToClientMessages> factory = new ChannelFactory<IFromServerToClientMessages>(new NetNamedPipeBinding(), new EndpointAddress("net.pipe://localhost/Client_" + client.ToString())))
+            {
+                IFromServerToClientMessages serverToClientChannel = factory.CreateChannel();
+                try
+                {
+                    serverToClientChannel.DisplayTextInClient(text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+                    CloseChannel((ICommunicationObject)serverToClientChannel);
+                }
+            }
+        }
+        private void CloseChannel(ICommunicationObject channel)
+        {
+            try
+            {
+                channel.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                channel.Abort();
+            }
+        }
     }
 }

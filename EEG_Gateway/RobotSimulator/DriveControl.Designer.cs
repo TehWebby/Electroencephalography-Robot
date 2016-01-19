@@ -85,7 +85,6 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             this.btnJointParamsApply = new System.Windows.Forms.Button();
             this.textBoxJointAngle = new System.Windows.Forms.TextBox();
             this.startTimer = new System.Windows.Forms.Timer(this.components);
-            this.cmdTimer = new System.Windows.Forms.Timer(this.components);
             label1 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
@@ -227,7 +226,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // cbJoystick
             // 
-            this.cbJoystick.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.cbJoystick.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbJoystick.FormattingEnabled = true;
             this.cbJoystick.Location = new System.Drawing.Point(80, 27);
@@ -269,7 +268,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // lblButtons
             // 
-            this.lblButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lblButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblButtons.Font = new System.Drawing.Font("Lucida Console", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblButtons.Location = new System.Drawing.Point(84, 124);
@@ -344,7 +343,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.linkDirectory);
             this.groupBox2.Controls.Add(this.lblNode);
@@ -380,7 +379,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // lblNode
             // 
-            this.lblNode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.lblNode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNode.AutoEllipsis = true;
             this.lblNode.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -392,8 +391,8 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // listDirectory
             // 
-            this.listDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.listDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listDirectory.FormattingEnabled = true;
             this.listDirectory.ItemHeight = 16;
@@ -427,7 +426,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // txtMachine
             // 
-            this.txtMachine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.txtMachine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMachine.Location = new System.Drawing.Point(85, 21);
             this.txtMachine.Margin = new System.Windows.Forms.Padding(4);
@@ -438,8 +437,8 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.btnDisconnect);
             this.groupBox3.Controls.Add(this.lblDelay);
@@ -503,8 +502,8 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // picLRF
             // 
-            this.picLRF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.picLRF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picLRF.Location = new System.Drawing.Point(116, 22);
             this.picLRF.Margin = new System.Windows.Forms.Padding(4);
@@ -602,7 +601,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // groupBox6
             // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.lblActiveJointValue);
             this.groupBox6.Controls.Add(lblActiveJoint);
@@ -631,8 +630,8 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             // 
             // listArticulatedArmJoints
             // 
-            this.listArticulatedArmJoints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.listArticulatedArmJoints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listArticulatedArmJoints.FormattingEnabled = true;
             this.listArticulatedArmJoints.ItemHeight = 16;
@@ -679,12 +678,6 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             this.startTimer.Enabled = true;
             this.startTimer.Interval = 250;
             this.startTimer.Tick += new System.EventHandler(this.startTimer_Tick);
-            // 
-            // cmdTimer
-            // 
-            this.cmdTimer.Enabled = true;
-            this.cmdTimer.Interval = 500;
-            this.cmdTimer.Tick += new System.EventHandler(this.cmdTimer_Tick);
             // 
             // DriveControl
             // 
@@ -760,6 +753,5 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
         private System.Windows.Forms.ListBox listArticulatedArmJoints;
         private System.Windows.Forms.Label lblActiveJointValue;
         private System.Windows.Forms.Timer startTimer;
-        private System.Windows.Forms.Timer cmdTimer;
     }
 }
