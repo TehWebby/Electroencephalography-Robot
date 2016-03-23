@@ -72,6 +72,11 @@ namespace EEG_Gateway
             startInfo.Arguments = "-p:50000 -t:50001 -m:Config\\SimpleSimulatedRobot.user.manifest.xml";
             Process.Start(startInfo);*/
 
+
+            //listen for simulation localhost
+            //setup WCF details
+            _serverHost = new ServiceHost(this);
+
             serialPortArduino.PortName = "COM5";
             serialPortArduino.BaudRate = 9600;
 
@@ -89,12 +94,7 @@ namespace EEG_Gateway
             {
                 logEEG_Data(eX, "error");
             }
-        }
-
-        private void cognitiveActionTimer_Tick(object sender, EventArgs e)
-        {
-                       
-        }
+        }      
 
 
         void Instance_EmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
@@ -466,7 +466,7 @@ namespace EEG_Gateway
                 try
                 {
                     _serverHost.Open();
-                    MessageBox.Show("SERVER STATE: " + _serverHost.State.ToString());
+                    //MessageBox.Show("SERVER STATE: " + _serverHost.State.ToString());
                 }
                 catch (Exception eX)
                 {
@@ -491,14 +491,13 @@ namespace EEG_Gateway
 
             simRunning = true;
 
-
         }
 
         public void Register(Guid clientID)
         {
             if (!_registeredClients.Contains(clientID))
                 _registeredClients.Add(clientID);
-            MessageBox.Show(clientID.ToString());
+            //MessageBox.Show(clientID.ToString());
         }
 
         public void DisplayTextOnServer(string text)
@@ -526,7 +525,8 @@ namespace EEG_Gateway
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    //MessageBox.Show(ex.ToString());
+                    disconnectFromSim();
                 }
                 finally
                 {
@@ -542,7 +542,7 @@ namespace EEG_Gateway
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
             }
             finally
             {
@@ -599,15 +599,11 @@ namespace EEG_Gateway
         }
 
         private void setupControls()
-        {
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                upBtn.BackColor = Color.Empty;
-                downBtn.BackColor = Color.Empty;
-                leftBtn.BackColor = Color.Empty;
-                rightBtn.BackColor = Color.Empty;
-            }).Start();
+        {  
+            upBtn.BackColor = Color.Empty;
+            downBtn.BackColor = Color.Empty;
+            leftBtn.BackColor = Color.Empty;
+            rightBtn.BackColor = Color.Empty;
         }
 
 
@@ -631,6 +627,7 @@ namespace EEG_Gateway
             string cBtn = thisButton.Text;
             textBox1.Text = cBtn;
 
+            //string simState = _serverHost.State.ToString();
             if (simRunning)
             {
                 new Thread(() =>
@@ -639,11 +636,16 @@ namespace EEG_Gateway
                     //only do this is simulation is open
                     string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\robot.log";
                     //RobotCmd(cBtn, logFile);
-                    //todo REMOVE ROBOTcmD and related stuff
 
-                    //ONLY IF SIMULATOR IS RUNNING
-                    Guid client = new Guid(_registeredClients[0].ToString());
-                    SendText(client, cBtn);
+                    //ONLY IF SIMULATOR IS RUNNING 
+                    //SendText handles cancelling the sim disconnect if it was somehow left open
+                    if (_registeredClients.Count > 0)
+                    {
+                        Guid client = new Guid(_registeredClients[0].ToString());
+                        SendText(client, cBtn);
+                    }
+                    
+                    
                 }).Start();
             }
 
@@ -704,6 +706,25 @@ namespace EEG_Gateway
                 return true;
             else
                 return false;
+        }
+
+        private void timerStatus_Tick(object sender, EventArgs e)
+        {
+            Console.WriteLine(_registeredClients.Count);
+            Console.WriteLine(_serverHost.State);
+        }
+
+        private void btnExitSim_Click(object sender, EventArgs e)
+        {
+            disconnectFromSim();
+        }
+
+        public void disconnectFromSim()
+        {
+            _serverHost.Close();
+            if (_registeredClients.Count > 0)
+                _registeredClients.RemoveAt(0);
+            simRunning = false;
         }
     }
 }

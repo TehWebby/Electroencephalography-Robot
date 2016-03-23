@@ -155,6 +155,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
         private void DriveControl_FormClosed(object sender, FormClosedEventArgs e)
         {
             _eventsPort.Post(new OnClosed(this));
+            //_clientHost.Close();
         }
 
         public void ReplaceJoystickList(IEnumerable<game.Controller> controllers)

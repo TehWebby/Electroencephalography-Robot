@@ -61,11 +61,12 @@
             this.powerLbl = new System.Windows.Forms.Label();
             this.btnNewProfile = new System.Windows.Forms.Button();
             this.btnRunSimulator = new System.Windows.Forms.Button();
-            this.lblSimRunning = new System.Windows.Forms.Label();
             this.btnRobot = new System.Windows.Forms.Button();
             this.serialPortArduino = new System.IO.Ports.SerialPort(this.components);
             this.lblRobotStatus = new System.Windows.Forms.Label();
             this.lblRobotStatusData = new System.Windows.Forms.Label();
+            this.timerStatus = new System.Windows.Forms.Timer(this.components);
+            this.btnExitSim = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).BeginInit();
             this.SuspendLayout();
@@ -305,20 +306,11 @@
             // 
             this.btnRunSimulator.Location = new System.Drawing.Point(657, 493);
             this.btnRunSimulator.Name = "btnRunSimulator";
-            this.btnRunSimulator.Size = new System.Drawing.Size(130, 33);
+            this.btnRunSimulator.Size = new System.Drawing.Size(154, 33);
             this.btnRunSimulator.TabIndex = 21;
             this.btnRunSimulator.Text = "Run Simulator";
             this.btnRunSimulator.UseVisualStyleBackColor = true;
             this.btnRunSimulator.Click += new System.EventHandler(this.btnRunSimulator_Click);
-            // 
-            // lblSimRunning
-            // 
-            this.lblSimRunning.AutoSize = true;
-            this.lblSimRunning.Location = new System.Drawing.Point(677, 529);
-            this.lblSimRunning.Name = "lblSimRunning";
-            this.lblSimRunning.Size = new System.Drawing.Size(82, 17);
-            this.lblSimRunning.TabIndex = 22;
-            this.lblSimRunning.Text = "Not running";
             // 
             // btnRobot
             // 
@@ -349,16 +341,32 @@
             this.lblRobotStatusData.TabIndex = 25;
             this.lblRobotStatusData.Text = "Disconnected";
             // 
+            // timerStatus
+            // 
+            this.timerStatus.Enabled = true;
+            this.timerStatus.Interval = 1000;
+            this.timerStatus.Tick += new System.EventHandler(this.timerStatus_Tick);
+            // 
+            // btnExitSim
+            // 
+            this.btnExitSim.Location = new System.Drawing.Point(657, 532);
+            this.btnExitSim.Name = "btnExitSim";
+            this.btnExitSim.Size = new System.Drawing.Size(154, 30);
+            this.btnExitSim.TabIndex = 26;
+            this.btnExitSim.Text = "Disconnect from Sim";
+            this.btnExitSim.UseVisualStyleBackColor = true;
+            this.btnExitSim.Click += new System.EventHandler(this.btnExitSim_Click);
+            // 
             // EEG_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 577);
+            this.Controls.Add(this.btnExitSim);
             this.Controls.Add(this.lblRobotStatusData);
             this.Controls.Add(this.lblRobotStatus);
             this.Controls.Add(this.btnRobot);
-            this.Controls.Add(this.lblSimRunning);
             this.Controls.Add(this.btnRunSimulator);
             this.Controls.Add(this.btnNewProfile);
             this.Controls.Add(this.powerLbl);
@@ -412,11 +420,12 @@
         private System.Windows.Forms.Label powerLbl;
         private System.Windows.Forms.Button btnNewProfile;
         private System.Windows.Forms.Button btnRunSimulator;
-        private System.Windows.Forms.Label lblSimRunning;
         private System.Windows.Forms.Button btnRobot;
         private System.IO.Ports.SerialPort serialPortArduino;
         private System.Windows.Forms.Label lblRobotStatus;
         private System.Windows.Forms.Label lblRobotStatusData;
+        private System.Windows.Forms.Timer timerStatus;
+        private System.Windows.Forms.Button btnExitSim;
     }
 }
 
