@@ -254,7 +254,7 @@ namespace EEG_Gateway
                 Console.WriteLine("Pull Training");
                 //    EmoEngine.Instance.CognitivSetActiveActions((uint)userId, 0x0004);
             }
-            else if ((cognitivAction == EdkDll.EE_CognitivAction_t.COG_LEFT) && (action[2]))
+            /*else if ((cognitivAction == EdkDll.EE_CognitivAction_t.COG_LEFT) && (action[2]))
             {
                 Console.WriteLine("Left Training");
                 //EmoEngine.Instance.CognitivSetActiveActions((uint)userId, 0x0010);
@@ -263,7 +263,7 @@ namespace EEG_Gateway
             {
                 Console.WriteLine("Right Training");
                 //    EmoEngine.Instance.CognitivSetActiveActions((uint)userId, 0x0012);
-            }
+            }*/
 
             EmoEngine.Instance.CognitivSetTrainingAction(userId, cognitivAction);
             EmoEngine.Instance.CognitivSetTrainingControl(userId, EdkDll.EE_CognitivTrainingControl_t.COG_START);
@@ -286,10 +286,10 @@ namespace EEG_Gateway
                 push = true;
             else if ((notComplete[1]) && (action[1]))
                 pull = true;
-            else if ((notComplete[2]) && (action[2]))
+            /*else if ((notComplete[2]) && (action[2]))
                 left = true;
             else if ((notComplete[3]) && (action[3]))
-                right = true;
+                right = true;*/
             //else
                 //write = false;
             
@@ -318,7 +318,7 @@ namespace EEG_Gateway
 
         void Instance_CognitivEmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
         {
-            /*
+            
             if (numOfActions >= totalActions)//total of action[] that is true
             {
                 Console.WriteLine("Cognitiv EmoState Updated...");
@@ -330,14 +330,14 @@ namespace EEG_Gateway
                     Console.WriteLine("Current Action is COG_PUSH");
                 if (currentAction == EdkDll.EE_CognitivAction_t.COG_PULL)
                     Console.WriteLine("Current Action is COG_PULL");
-                if (currentAction == EdkDll.EE_CognitivAction_t.COG_LEFT)
+                /*if (currentAction == EdkDll.EE_CognitivAction_t.COG_LEFT)
                     Console.WriteLine("Current Action is COG_LEFT");
                 if (currentAction == EdkDll.EE_CognitivAction_t.COG_RIGHT)
-                    Console.WriteLine("Current Action is COG_RIGHT");
+                    Console.WriteLine("Current Action is COG_RIGHT");*/
                 float power = es.CognitivGetCurrentActionPower();
                 Console.WriteLine("Current action power {0}: " + power);
             }
-            */
+            
         }
 
         void Instance_EmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
@@ -347,13 +347,13 @@ namespace EEG_Gateway
             if (neutral)
             {
                 //7 highest sensitivity
-                EmoEngine.Instance.CognitivSetActivationLevel(0, 4);
+                EmoEngine.Instance.CognitivSetActivationLevel(0, 7);
 
                 EdkDll.EE_CognitivAction_t actions =
-                EdkDll.EE_CognitivAction_t.COG_PULL
-                | EdkDll.EE_CognitivAction_t.COG_PUSH
-                | EdkDll.EE_CognitivAction_t.COG_LEFT
-                | EdkDll.EE_CognitivAction_t.COG_RIGHT;
+                EdkDll.EE_CognitivAction_t.COG_PUSH
+                | EdkDll.EE_CognitivAction_t.COG_PULL;
+                /*| EdkDll.EE_CognitivAction_t.COG_LEFT
+                | EdkDll.EE_CognitivAction_t.COG_RIGHT;*/
 
                 EmoEngine.Instance.CognitivSetActiveActions((uint)userId, (UInt32)actions);
 
@@ -378,7 +378,7 @@ namespace EEG_Gateway
                 numOfActions++;
                 notComplete[1] = false;
             }
-            else if (left)
+            /*else if (left)
             {
                 StartCognitivTraining(EdkDll.EE_CognitivAction_t.COG_LEFT);
                 write = true;
@@ -393,10 +393,8 @@ namespace EEG_Gateway
                 right = false;
                 numOfActions++;
                 notComplete[3] = false;
-            }
+            }*/
 
-            
-            
             
 
             //write is the save bool. Use this in the last training step (or each)

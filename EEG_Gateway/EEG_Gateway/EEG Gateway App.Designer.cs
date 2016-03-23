@@ -62,6 +62,7 @@
             this.powerLbl = new System.Windows.Forms.Label();
             this.btnNewProfile = new System.Windows.Forms.Button();
             this.btnRunSimulator = new System.Windows.Forms.Button();
+            this.lblSimRunning = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).BeginInit();
             this.SuspendLayout();
@@ -312,12 +313,22 @@
             this.btnRunSimulator.UseVisualStyleBackColor = true;
             this.btnRunSimulator.Click += new System.EventHandler(this.btnRunSimulator_Click);
             // 
+            // lblSimRunning
+            // 
+            this.lblSimRunning.AutoSize = true;
+            this.lblSimRunning.Location = new System.Drawing.Point(677, 529);
+            this.lblSimRunning.Name = "lblSimRunning";
+            this.lblSimRunning.Size = new System.Drawing.Size(82, 17);
+            this.lblSimRunning.TabIndex = 22;
+            this.lblSimRunning.Text = "Not running";
+            // 
             // EEG_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 577);
+            this.Controls.Add(this.lblSimRunning);
             this.Controls.Add(this.btnRunSimulator);
             this.Controls.Add(this.btnNewProfile);
             this.Controls.Add(this.powerLbl);
@@ -372,6 +383,7 @@
         private System.Windows.Forms.Label powerLbl;
         private System.Windows.Forms.Button btnNewProfile;
         private System.Windows.Forms.Button btnRunSimulator;
+        private System.Windows.Forms.Label lblSimRunning;
     }
 }
 

@@ -36,6 +36,7 @@ namespace EEG_Gateway
         //used to contact simulation
         ServiceHost _serverHost;
         List<Guid> _registeredClients = new List<Guid>();
+        bool simRunning = false;
 
         public EEG_Main()
         {
@@ -92,7 +93,7 @@ namespace EEG_Gateway
         private void cognitiveActionTimer_Tick(object sender, EventArgs e)
         {
             string val = latestCogTxt.Text;
-            if (val != "")
+            if (val != "" && val != "0")
             {
                 try
                 {
@@ -169,15 +170,19 @@ namespace EEG_Gateway
             string cBtn = thisButton.Text;
             textBox1.Text = cBtn;
 
-            //only do this is simulation is open
-            string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\robot.log";
-            //RobotCmd(cBtn, logFile);
-            //todo REMOVE ROBOTcmD and related stuff
+            if (simRunning)
+            {
+                //only do this is simulation is open
+                string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\robot.log";
+                //RobotCmd(cBtn, logFile);
+                //todo REMOVE ROBOTcmD and related stuff
 
-            //ONLY IF SIMULATOR IS RUNNING
-            Guid client = new Guid(_registeredClients[0].ToString());
-            SendText(client, cBtn);
-
+                //ONLY IF SIMULATOR IS RUNNING
+                Guid client = new Guid(_registeredClients[0].ToString());
+                SendText(client, cBtn);
+            }
+            
+            
 
         }
 
@@ -417,13 +422,13 @@ namespace EEG_Gateway
             EdkDll.EE_CognitivAction_t currentAction = es.CognitivGetCurrentAction();
             if (currentAction == EdkDll.EE_CognitivAction_t.COG_NEUTRAL)
                 latestCogTxt.Text = "0";
-            if (currentAction == EdkDll.EE_CognitivAction_t.COG_PUSH)
+            else if (currentAction == EdkDll.EE_CognitivAction_t.COG_PUSH)
                 latestCogTxt.Text = "1";
-            if (currentAction == EdkDll.EE_CognitivAction_t.COG_PULL)
+            else if (currentAction == EdkDll.EE_CognitivAction_t.COG_PULL)
                 latestCogTxt.Text = "2";
-            if (currentAction == EdkDll.EE_CognitivAction_t.COG_LEFT)
+            else if (currentAction == EdkDll.EE_CognitivAction_t.COG_LEFT)
                 latestCogTxt.Text = "3";
-            if (currentAction == EdkDll.EE_CognitivAction_t.COG_RIGHT)
+            else if (currentAction == EdkDll.EE_CognitivAction_t.COG_RIGHT)
                 latestCogTxt.Text = "4";
             float power = es.CognitivGetCurrentActionPower();
             powerLbl.Text = power.ToString();
@@ -572,8 +577,10 @@ namespace EEG_Gateway
                 ps.AddScript(@"& 'C:\Users\Webby\Microsoft Robotics Dev Studio 4\bin\DssHost32.exe' -port:50000 -tcpport:50001 -manifest:'C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\Config\LEGO.NXT.Tribot.Simulation.user.manifest.xml' -manifest:'C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\Config\SimpleDashboard.user.manifest.xml'");
                 ps.Invoke();
             }).Start();
-            
-            
+
+            simRunning = true;
+
+
         }
 
         public void Register(Guid clientID)
