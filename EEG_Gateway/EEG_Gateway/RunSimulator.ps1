@@ -1,1 +1,0 @@
-﻿& 'C:\Users\Webby\Microsoft Robotics Dev Studio 4\bin\DssHost32.exe' -port:50000 -tcpport:50001 -manifest:'C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\Config\LEGO.NXT.Tribot.Simulation.user.manifest.xml' -manifest:'C:\Users\Webby\Microsoft Robotics Dev Studio 4\samples\Config\SimpleDashboard.user.manifest.xml'

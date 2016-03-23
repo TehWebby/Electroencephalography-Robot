@@ -109,7 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="RunSimulator.ps1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\signal4.png" />

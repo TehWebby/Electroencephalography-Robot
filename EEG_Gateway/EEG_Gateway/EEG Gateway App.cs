@@ -557,8 +557,16 @@ namespace EEG_Gateway
                 serialPortArduino.Close();
             }
             else
-            {                
-                serialPortArduino.Open();
+            {
+                try
+                {
+                    serialPortArduino.Open();
+                }
+                catch(IOException eX)
+                {
+                    MessageBox.Show(eX.ToString());
+                }
+                
             }
 
             //check status before updating UI
