@@ -23,9 +23,7 @@ namespace EEG_Gateway
 {
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.Single)]
     public partial class EEG_Main : Form, IFromClientToServerMessages
-    {
-        bool cogAction;
-        
+    {        
         public bool isLoad = true;
         public bool updateChartData = false;
         List<Affective> eegAffectiveData = new List<Affective>();
@@ -37,6 +35,7 @@ namespace EEG_Gateway
         ServiceHost _serverHost;
         List<Guid> _registeredClients = new List<Guid>();
         bool simRunning = false;
+        
 
         public EEG_Main()
         {
@@ -73,6 +72,8 @@ namespace EEG_Gateway
             startInfo.Arguments = "-p:50000 -t:50001 -m:Config\\SimpleSimulatedRobot.user.manifest.xml";
             Process.Start(startInfo);*/
 
+            serialPortArduino.PortName = "COM5";
+            serialPortArduino.BaudRate = 9600;
 
         }
 
@@ -92,99 +93,9 @@ namespace EEG_Gateway
 
         private void cognitiveActionTimer_Tick(object sender, EventArgs e)
         {
-            string val = latestCogTxt.Text;
-            if (val != "" && val != "0")
-            {
-                try
-                {
-                    int cog = Convert.ToInt16(latestCogTxt.Text);
-                    run_cmd(cog);
-                }
-                catch (Exception eX)
-                {
-                    //incorrect value
-                    logEEG_Data(eX, "error");
-                }
-
-                latestCogTxt.Text = "";
-                cogAction = true;
-            }
-            else
-            {
-                if (cogAction == true)
-                    setupControls();
-                cogAction = false;
-            }               
+                       
         }
 
-        private void run_cmd(int cog)
-        {
-            setupControls();
-            switch (cog)
-            {
-                case 1:
-                    ButtonClicked(upBtn, EventArgs.Empty);                    
-                    break;
-                case 2:
-                    ButtonClicked(downBtn, EventArgs.Empty);
-                    break;
-                case 3:
-                    ButtonClicked(leftBtn, EventArgs.Empty);
-                    break;
-                case 4:
-                    ButtonClicked(rightBtn, EventArgs.Empty);
-                    break;
-            }
-        }
-
-        private void setupControls()
-        {
-            upBtn.BackColor = Color.Empty;
-            downBtn.BackColor = Color.Empty;
-            leftBtn.BackColor = Color.Empty;
-            rightBtn.BackColor = Color.Empty;
-        }
-
-        /*private void liveEEG_Tick(object sender, EventArgs e)
-        {
-            //Reset after EEG reading finished
-            textBox1.Text = "";
-        }*/
-
-        void ButtonClicked(object sender, EventArgs e)
-        {
-            Button thisButton = (Button)sender;
-            thisButton.BackColor = Color.CornflowerBlue;
-
-            if (latestAction != 0)
-            {
-                float cogPower;
-                if (powerLbl.Text != "Power")//ensure some power value is set
-                    cogPower = float.Parse(powerLbl.Text);
-                else
-                    cogPower = 0;
-
-                logEEG_Data(latestAction, cogPower, "data");
-            }
-            //use button text as command to send to robot
-            string cBtn = thisButton.Text;
-            textBox1.Text = cBtn;
-
-            if (simRunning)
-            {
-                //only do this is simulation is open
-                string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\robot.log";
-                //RobotCmd(cBtn, logFile);
-                //todo REMOVE ROBOTcmD and related stuff
-
-                //ONLY IF SIMULATOR IS RUNNING
-                Guid client = new Guid(_registeredClients[0].ToString());
-                SendText(client, cBtn);
-            }
-            
-            
-
-        }
 
         void Instance_EmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
         {
@@ -637,6 +548,162 @@ namespace EEG_Gateway
             {
                 channel.Abort();
             }
+        }
+
+        private void btnRobot_Click(object sender, EventArgs e)
+        {                          
+            if (serialPortArduino.IsOpen)
+            {
+                serialPortArduino.Close();
+            }
+            else
+            {                
+                serialPortArduino.Open();
+            }
+
+            //check status before updating UI
+            if (serialPortArduino.IsOpen)
+            {
+                btnRobot.BackColor = Color.White;
+                btnRobot.Text = "Disconnect";
+                lblRobotStatusData.Text = "Connected";
+                lblRobotStatusData.ForeColor = Color.Lime;
+            }
+            else
+            {
+                btnRobot.BackColor = SystemColors.ButtonFace;
+                btnRobot.Text = "Connect to Robot";
+                lblRobotStatusData.Text = "Disconnected";
+                lblRobotStatusData.ForeColor = Color.Red;
+            }
+        }
+
+
+        private void run_cmd(int cog)
+        {            
+            switch (cog)
+            {
+                case 1:
+                    ButtonClicked(upBtn, EventArgs.Empty, cog);
+                    break;
+                case 2:
+                    ButtonClicked(downBtn, EventArgs.Empty, cog);
+                    break;
+                case 3:
+                    ButtonClicked(leftBtn, EventArgs.Empty, cog);
+                    break;
+                case 4:
+                    ButtonClicked(rightBtn, EventArgs.Empty, cog);
+                    break;
+            }
+        }
+
+        private void setupControls()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                upBtn.BackColor = Color.Empty;
+                downBtn.BackColor = Color.Empty;
+                leftBtn.BackColor = Color.Empty;
+                rightBtn.BackColor = Color.Empty;
+            }).Start();
+        }
+
+
+        void ButtonClicked(object sender, EventArgs e, int cog)
+        {            
+            Button thisButton = (Button)sender;
+            thisButton.BackColor = Color.CornflowerBlue;
+            
+            if (latestAction != 0)
+            {
+                float cogPower;
+                if (powerLbl.Text != "Power")//ensure some power value is set
+                    cogPower = float.Parse(powerLbl.Text);
+                else
+                    cogPower = 0;
+
+                logEEG_Data(latestAction, cogPower, "data");
+            }
+
+            //use button text as command to send to robot
+            string cBtn = thisButton.Text;
+            textBox1.Text = cBtn;
+
+            if (simRunning)
+            {
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    //only do this is simulation is open
+                    string logFile = Path.GetDirectoryName(Application.ExecutablePath) + "\\Logging\\robot.log";
+                    //RobotCmd(cBtn, logFile);
+                    //todo REMOVE ROBOTcmD and related stuff
+
+                    //ONLY IF SIMULATOR IS RUNNING
+                    Guid client = new Guid(_registeredClients[0].ToString());
+                    SendText(client, cBtn);
+                }).Start();
+            }
+
+            //Only if robot is connected
+            if (serialPortArduino.IsOpen)
+            {
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    Console.WriteLine("Connected!");
+                    // If the port is Open, declare a char[] array with one element.
+                    char[] buff = new char[1];
+                    // Load element 0 with the key character.
+                    Console.WriteLine(cog);
+                    buff[0] = Convert.ToChar(cog.ToString());
+
+                    //// Send the one character buffer. As .Write requires char[]
+                    serialPortArduino.Write(buff, 0, 1);
+                    //// Set the KeyPress event as handled so the character won't
+                    //// display locally. If you want it to display, omit the next line.
+                    //e.Handled = true;
+                }).Start();
+            }
+            //Thread.Sleep(2000);
+            //thisButton.BackColor
+            //setupControls();
+        }
+
+        private void latestCogTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (isCmdValid())
+            {
+                setupControls();
+                try
+                {
+                    int cog = Convert.ToInt16(latestCogTxt.Text);
+                    run_cmd(cog);
+                }
+                catch (Exception eX)
+                {
+                    //incorrect value
+                    logEEG_Data(eX, "error");
+                }
+
+                latestCogTxt.Text = "";
+
+                //setupControls();
+            }
+            else
+                latestCogTxt.Text = ""; 
+
+        }
+
+        private bool isCmdValid()
+        {
+            string cmd = latestCogTxt.Text;
+            if (cmd == "1" || cmd == "2" || cmd == "3" || cmd == "4")
+                return true;
+            else
+                return false;
         }
     }
 }

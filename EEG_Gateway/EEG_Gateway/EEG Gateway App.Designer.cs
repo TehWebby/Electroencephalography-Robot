@@ -40,7 +40,6 @@
             System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EEG_Main));
             this.latestCogTxt = new System.Windows.Forms.TextBox();
-            this.cognitiveActionTimer = new System.Windows.Forms.Timer(this.components);
             this.upBtn = new System.Windows.Forms.Button();
             this.downBtn = new System.Windows.Forms.Button();
             this.leftBtn = new System.Windows.Forms.Button();
@@ -63,6 +62,10 @@
             this.btnNewProfile = new System.Windows.Forms.Button();
             this.btnRunSimulator = new System.Windows.Forms.Button();
             this.lblSimRunning = new System.Windows.Forms.Label();
+            this.btnRobot = new System.Windows.Forms.Button();
+            this.serialPortArduino = new System.IO.Ports.SerialPort(this.components);
+            this.lblRobotStatus = new System.Windows.Forms.Label();
+            this.lblRobotStatusData = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).BeginInit();
             this.SuspendLayout();
@@ -74,12 +77,7 @@
             this.latestCogTxt.Name = "latestCogTxt";
             this.latestCogTxt.Size = new System.Drawing.Size(192, 22);
             this.latestCogTxt.TabIndex = 0;
-            // 
-            // cognitiveActionTimer
-            // 
-            this.cognitiveActionTimer.Enabled = true;
-            this.cognitiveActionTimer.Interval = 500;
-            this.cognitiveActionTimer.Tick += new System.EventHandler(this.cognitiveActionTimer_Tick);
+            this.latestCogTxt.TextChanged += new System.EventHandler(this.latestCogTxt_TextChanged);
             // 
             // upBtn
             // 
@@ -122,7 +120,7 @@
             this.textBox1.Location = new System.Drawing.Point(59, 360);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(659, 102);
+            this.textBox1.Size = new System.Drawing.Size(555, 102);
             this.textBox1.TabIndex = 5;
             // 
             // eegCogLbl
@@ -322,12 +320,44 @@
             this.lblSimRunning.TabIndex = 22;
             this.lblSimRunning.Text = "Not running";
             // 
+            // btnRobot
+            // 
+            this.btnRobot.Location = new System.Drawing.Point(224, 493);
+            this.btnRobot.Name = "btnRobot";
+            this.btnRobot.Size = new System.Drawing.Size(162, 33);
+            this.btnRobot.TabIndex = 23;
+            this.btnRobot.Text = "Connect to Robot";
+            this.btnRobot.UseVisualStyleBackColor = true;
+            this.btnRobot.Click += new System.EventHandler(this.btnRobot_Click);
+            // 
+            // lblRobotStatus
+            // 
+            this.lblRobotStatus.AutoSize = true;
+            this.lblRobotStatus.Location = new System.Drawing.Point(221, 529);
+            this.lblRobotStatus.Name = "lblRobotStatus";
+            this.lblRobotStatus.Size = new System.Drawing.Size(94, 17);
+            this.lblRobotStatus.TabIndex = 24;
+            this.lblRobotStatus.Text = "Robot Status:";
+            // 
+            // lblRobotStatusData
+            // 
+            this.lblRobotStatusData.AutoSize = true;
+            this.lblRobotStatusData.ForeColor = System.Drawing.Color.Red;
+            this.lblRobotStatusData.Location = new System.Drawing.Point(321, 529);
+            this.lblRobotStatusData.Name = "lblRobotStatusData";
+            this.lblRobotStatusData.Size = new System.Drawing.Size(94, 17);
+            this.lblRobotStatusData.TabIndex = 25;
+            this.lblRobotStatusData.Text = "Disconnected";
+            // 
             // EEG_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 577);
+            this.Controls.Add(this.lblRobotStatusData);
+            this.Controls.Add(this.lblRobotStatus);
+            this.Controls.Add(this.btnRobot);
             this.Controls.Add(this.lblSimRunning);
             this.Controls.Add(this.btnRunSimulator);
             this.Controls.Add(this.btnNewProfile);
@@ -361,7 +391,6 @@
         #endregion 
 
         private System.Windows.Forms.TextBox latestCogTxt;
-        private System.Windows.Forms.Timer cognitiveActionTimer;
         private System.Windows.Forms.Button upBtn;
         private System.Windows.Forms.Button downBtn;
         private System.Windows.Forms.Button leftBtn;
@@ -384,6 +413,10 @@
         private System.Windows.Forms.Button btnNewProfile;
         private System.Windows.Forms.Button btnRunSimulator;
         private System.Windows.Forms.Label lblSimRunning;
+        private System.Windows.Forms.Button btnRobot;
+        private System.IO.Ports.SerialPort serialPortArduino;
+        private System.Windows.Forms.Label lblRobotStatus;
+        private System.Windows.Forms.Label lblRobotStatusData;
     }
 }
 
