@@ -180,8 +180,7 @@ namespace EEG_Gateway
         {
             w.Write("\r\nLog Entry : ");
             DateTime now = DateTime.Now;
-            w.WriteLine("{0} {1} ", now.ToLongTimeString(), now.ToLongDateString());
-            w.WriteLine("  :");
+            w.WriteLine("{0} {1} ", now.ToLongTimeString(), now.ToLongDateString());            
             w.WriteLine(logMessage);
             w.WriteLine("-------------------------------");
         }
@@ -331,9 +330,9 @@ namespace EEG_Gateway
         {
             EmoState es = e.emoState;
             EdkDll.EE_CognitivAction_t currentAction = es.CognitivGetCurrentAction();
-            if (currentAction == EdkDll.EE_CognitivAction_t.COG_NEUTRAL)
-                latestCogTxt.Text = "0";
-            else if (currentAction == EdkDll.EE_CognitivAction_t.COG_PUSH)
+            //if (currentAction == EdkDll.EE_CognitivAction_t.COG_NEUTRAL)
+                //latestCogTxt.Text = "0";
+            if (currentAction == EdkDll.EE_CognitivAction_t.COG_PUSH)
                 latestCogTxt.Text = "1";
             else if (currentAction == EdkDll.EE_CognitivAction_t.COG_PULL)
                 latestCogTxt.Text = "2";
@@ -374,6 +373,7 @@ namespace EEG_Gateway
         private void eegTimer_Tick(object sender, EventArgs e)
         {
             engine.ProcessEvents();
+            simRunning = true;
         }
 
         private void emotionTimer_Tick(object sender, EventArgs e)
@@ -651,8 +651,8 @@ namespace EEG_Gateway
                     {
                         Guid client = new Guid(_registeredClients[0].ToString());
                         SendText(client, cBtn);
+                        simRunning = false;
                     }
-                    
                     
                 }).Start();
             }
@@ -675,6 +675,7 @@ namespace EEG_Gateway
                     //// Set the KeyPress event as handled so the character won't
                     //// display locally. If you want it to display, omit the next line.
                     //e.Handled = true;
+
                 }).Start();
             }
             //Thread.Sleep(2000);
@@ -684,6 +685,7 @@ namespace EEG_Gateway
 
         private void latestCogTxt_TextChanged(object sender, EventArgs e)
         {
+            
             if (isCmdValid())
             {
                 setupControls();
@@ -699,11 +701,14 @@ namespace EEG_Gateway
                 }
 
                 latestCogTxt.Text = "";
-
                 //setupControls();
             }
             else
-                latestCogTxt.Text = ""; 
+            {
+                Thread.Sleep(100);
+                latestCogTxt.Text = "";
+            }
+                
 
         }
 

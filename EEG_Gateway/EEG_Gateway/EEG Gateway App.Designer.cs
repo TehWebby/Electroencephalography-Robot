@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EEG_Main));
             this.latestCogTxt = new System.Windows.Forms.TextBox();
             this.upBtn = new System.Windows.Forms.Button();
@@ -73,10 +73,13 @@
             // 
             // latestCogTxt
             // 
-            this.latestCogTxt.Location = new System.Drawing.Point(702, 305);
+            this.latestCogTxt.BackColor = System.Drawing.Color.Black;
+            this.latestCogTxt.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.latestCogTxt.ForeColor = System.Drawing.Color.White;
+            this.latestCogTxt.Location = new System.Drawing.Point(836, 280);
             this.latestCogTxt.MaxLength = 1;
             this.latestCogTxt.Name = "latestCogTxt";
-            this.latestCogTxt.Size = new System.Drawing.Size(192, 22);
+            this.latestCogTxt.Size = new System.Drawing.Size(28, 23);
             this.latestCogTxt.TabIndex = 0;
             this.latestCogTxt.TextChanged += new System.EventHandler(this.latestCogTxt_TextChanged);
             // 
@@ -127,7 +130,7 @@
             // eegCogLbl
             // 
             this.eegCogLbl.AutoSize = true;
-            this.eegCogLbl.Location = new System.Drawing.Point(691, 276);
+            this.eegCogLbl.Location = new System.Drawing.Point(740, 260);
             this.eegCogLbl.Name = "eegCogLbl";
             this.eegCogLbl.Size = new System.Drawing.Size(215, 17);
             this.eegCogLbl.TabIndex = 6;
@@ -135,63 +138,63 @@
             // 
             // eegEmotionChart
             // 
-            chartArea1.Name = "ChartArea1";
-            this.eegEmotionChart.ChartAreas.Add(chartArea1);
-            legend1.AutoFitMinFontSize = 8;
-            legend1.Name = "Legend1";
-            this.eegEmotionChart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.eegEmotionChart.ChartAreas.Add(chartArea2);
+            legend2.AutoFitMinFontSize = 8;
+            legend2.Name = "Legend1";
+            this.eegEmotionChart.Legends.Add(legend2);
             this.eegEmotionChart.Location = new System.Drawing.Point(80, 35);
             this.eegEmotionChart.Name = "eegEmotionChart";
             this.eegEmotionChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Red;
-            series1.Legend = "Legend1";
-            series1.Name = "Short Term Excitement";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Sienna;
-            series2.Legend = "Legend1";
-            series2.Name = "Long Term Excitement";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Lime;
-            series3.Legend = "Legend1";
-            series3.Name = "Engagement/Boredom";
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            series4.Legend = "Legend1";
-            series4.Name = "Smile";
-            series5.BorderWidth = 2;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Color = System.Drawing.Color.LightSkyBlue;
-            series5.Legend = "Legend1";
-            series5.Name = "Valence";
-            series6.BorderWidth = 2;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series6.Legend = "Legend1";
-            series6.Name = "Frustration";
-            series7.BorderWidth = 2;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series7.Color = System.Drawing.Color.CornflowerBlue;
-            series7.Legend = "Legend1";
-            series7.Name = "Meditation";
-            this.eegEmotionChart.Series.Add(series1);
-            this.eegEmotionChart.Series.Add(series2);
-            this.eegEmotionChart.Series.Add(series3);
-            this.eegEmotionChart.Series.Add(series4);
-            this.eegEmotionChart.Series.Add(series5);
-            this.eegEmotionChart.Series.Add(series6);
-            this.eegEmotionChart.Series.Add(series7);
+            series8.BorderWidth = 2;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series8.Color = System.Drawing.Color.Red;
+            series8.Legend = "Legend1";
+            series8.Name = "Short Term Excitement";
+            series9.BorderWidth = 2;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series9.Color = System.Drawing.Color.Sienna;
+            series9.Legend = "Legend1";
+            series9.Name = "Long Term Excitement";
+            series10.BorderWidth = 2;
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series10.Color = System.Drawing.Color.Lime;
+            series10.Legend = "Legend1";
+            series10.Name = "Engagement/Boredom";
+            series11.BorderWidth = 2;
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series11.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            series11.Legend = "Legend1";
+            series11.Name = "Smile";
+            series12.BorderWidth = 2;
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series12.Color = System.Drawing.Color.LightSkyBlue;
+            series12.Legend = "Legend1";
+            series12.Name = "Valence";
+            series13.BorderWidth = 2;
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series13.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            series13.Legend = "Legend1";
+            series13.Name = "Frustration";
+            series14.BorderWidth = 2;
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series14.Color = System.Drawing.Color.CornflowerBlue;
+            series14.Legend = "Legend1";
+            series14.Name = "Meditation";
+            this.eegEmotionChart.Series.Add(series8);
+            this.eegEmotionChart.Series.Add(series9);
+            this.eegEmotionChart.Series.Add(series10);
+            this.eegEmotionChart.Series.Add(series11);
+            this.eegEmotionChart.Series.Add(series12);
+            this.eegEmotionChart.Series.Add(series13);
+            this.eegEmotionChart.Series.Add(series14);
             this.eegEmotionChart.Size = new System.Drawing.Size(571, 202);
             this.eegEmotionChart.TabIndex = 8;
             this.eegEmotionChart.Text = "chart1";
@@ -227,13 +230,13 @@
             // eegTimer
             // 
             this.eegTimer.Enabled = true;
-            this.eegTimer.Interval = 500;
+            this.eegTimer.Interval = 1000;
             this.eegTimer.Tick += new System.EventHandler(this.eegTimer_Tick);
             // 
             // emotionTimer
             // 
             this.emotionTimer.Enabled = true;
-            this.emotionTimer.Interval = 500;
+            this.emotionTimer.Interval = 1000;
             this.emotionTimer.Tick += new System.EventHandler(this.emotionTimer_Tick);
             // 
             // signalImg
@@ -286,7 +289,7 @@
             // powerLbl
             // 
             this.powerLbl.AutoSize = true;
-            this.powerLbl.Location = new System.Drawing.Point(764, 86);
+            this.powerLbl.Location = new System.Drawing.Point(764, 90);
             this.powerLbl.Name = "powerLbl";
             this.powerLbl.Size = new System.Drawing.Size(47, 17);
             this.powerLbl.TabIndex = 19;
