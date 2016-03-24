@@ -669,12 +669,20 @@ namespace EEG_Gateway
                     // Load element 0 with the key character.
                     Console.WriteLine(cog);
                     buff[0] = Convert.ToChar(cog.ToString());
+                    try
+                    {
+                        //// Send the one character buffer. As .Write requires char[]
+                        serialPortArduino.Write(buff, 0, 1);
+                        //// Set the KeyPress event as handled so the character won't
+                        //// display locally. If you want it to display, omit the next line.
+                        //e.Handled = true;
+                    }
+                    catch(Exception eX)
+                    {
+                        Console.WriteLine(eX);
+                    }
 
-                    //// Send the one character buffer. As .Write requires char[]
-                    serialPortArduino.Write(buff, 0, 1);
-                    //// Set the KeyPress event as handled so the character won't
-                    //// display locally. If you want it to display, omit the next line.
-                    //e.Handled = true;
+
 
                 }).Start();
             }

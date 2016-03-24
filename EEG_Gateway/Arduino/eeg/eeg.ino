@@ -24,9 +24,8 @@ void loop(){
     //ensure the direction entered is valid
     if (isValid(str)){
       //set the speed to negative if command is reverse (2)
-      if (str == 2){      
-        setReverseSpeed();            
-      }
+      if (str == 2)
+        setReverseSpeed();
       setMotors(str);
     }
     resetValues();
