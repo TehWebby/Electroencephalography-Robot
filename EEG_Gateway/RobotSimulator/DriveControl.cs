@@ -799,20 +799,20 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             game.Axes cmdAxes = new game.Axes();
             //f = RobotCommand.command;
             if (f.StartsWith("UP"))
-                cmdAxes.Y = -500;
+                cmdAxes.Y = -1000;
             else if (f.StartsWith("DOWN")) 
-                cmdAxes.Y = 500;
+                cmdAxes.Y = 1000;
             else if (f.StartsWith("LEFT"))
-                cmdAxes.X = -200;
+                cmdAxes.X = -500;
             else if (f.StartsWith("RIGHT"))
-                cmdAxes.X = 200;
+                cmdAxes.X = 500;
             return cmdAxes;
         }
 
         public void DisplayTextInClient(string text)
         {
             UpdateJoystickAxes(robotAxes(text));
-            Thread.Sleep(100);
+            Thread.Sleep(500);
             UpdateJoystickAxes(robotAxes("0"));
         }
     }

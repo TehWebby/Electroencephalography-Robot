@@ -26,15 +26,15 @@ namespace EEG_Gateway
     {        
         public bool isLoad = true;
         public bool updateChartData = false;
-        List<Affective> eegAffectiveData = new List<Affective>();
-        EdkDll.EE_CognitivAction_t latestAction;
+        public List<Affective> eegAffectiveData = new List<Affective>();
+        public EdkDll.EE_CognitivAction_t latestAction;
         EmoEngine engine = EmoEngine.Instance;
         ApplicationSettings appSettings = new ApplicationSettings();
 
         //used to contact simulation
-        ServiceHost _serverHost;
-        List<Guid> _registeredClients = new List<Guid>();
-        bool simRunning = false;
+        public ServiceHost _serverHost;
+        public List<Guid> _registeredClients = new List<Guid>();
+        public bool simRunning = false;
         
 
         public EEG_Main()
@@ -456,13 +456,18 @@ namespace EEG_Gateway
 
         private void btnRunSimulator_Click(object sender, EventArgs e)
         {
+            runSim();
+        }
+
+        public void runSim()
+        {
             new Thread(() =>
             {
                 //listen for simulation localhost
                 //setup WCF details
                 _serverHost = new ServiceHost(this);
                 _serverHost.AddServiceEndpoint((typeof(IFromClientToServerMessages)), new NetNamedPipeBinding(), "net.pipe://localhost/Server");
-               
+
                 try
                 {
                     _serverHost.Open();
@@ -490,7 +495,6 @@ namespace EEG_Gateway
             }).Start();
 
             simRunning = true;
-
         }
 
         public void Register(Guid clientID)
@@ -551,7 +555,12 @@ namespace EEG_Gateway
         }
 
         private void btnRobot_Click(object sender, EventArgs e)
-        {                          
+        {
+            connectToRobot();
+        }
+
+        public void connectToRobot()
+        {
             if (serialPortArduino.IsOpen)
             {
                 serialPortArduino.Close();
@@ -562,7 +571,7 @@ namespace EEG_Gateway
                 {
                     serialPortArduino.Open();
                 }
-                catch(IOException eX)
+                catch (IOException eX)
                 {
                     MessageBox.Show(eX.ToString());
                 }

@@ -1,0 +1,22 @@
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\EEG Gateway UnitTests.dll
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\EEG Gateway UnitTests.pdb
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\EEG Gateway.exe
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\MessagingInterfaces.dll
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.SimpleDashboard.Y2006.M01.dll
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\System.Management.Automation.dll
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.GameController.Y2006.M09.Proxy.dll
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.SickLRF.Y2005.M12.Proxy.dll
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\RoboticsCommon.Proxy.dll
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\EEG Gateway.pdb
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\MessagingInterfaces.pdb
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.SimpleDashboard.Y2006.M01.pdb
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.SimpleDashboard.Y2006.M01.xml
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.GameController.Y2006.M09.Proxy.pdb
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.GameController.Y2006.M09.Proxy.xml
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.SickLRF.Y2005.M12.Proxy.pdb
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.SickLRF.Y2005.M12.Proxy.xml
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\obj\Debug\EEG Gateway UnitTests.csprojResolveAssemblyReference.cache
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\obj\Debug\EEG Gateway UnitTests.dll
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\obj\Debug\EEG Gateway UnitTests.pdb

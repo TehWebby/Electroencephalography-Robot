@@ -7,4 +7,3 @@ F:\Electroencephalography-Robot\EEG_Gateway\MessagingInterfaces\bin\Debug\Messag
 F:\Electroencephalography-Robot\EEG_Gateway\MessagingInterfaces\bin\Debug\MessagingInterfaces.pdb
 F:\Electroencephalography-Robot\EEG_Gateway\MessagingInterfaces\obj\Debug\MessagingInterfaces.dll
 F:\Electroencephalography-Robot\EEG_Gateway\MessagingInterfaces\obj\Debug\MessagingInterfaces.pdb
-F:\Electroencephalography-Robot\EEG_Gateway\MessagingInterfaces\obj\Debug\MessagingInterfaces.csprojResolveAssemblyReference.cache
