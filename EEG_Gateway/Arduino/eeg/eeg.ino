@@ -19,7 +19,7 @@ void loop(){
     str = Serial.parseInt(); 
 
     //used a custom timer when coding to increase performance
-    //unsigned long start = micros();
+    unsigned long start = micros();
     
     //ensure the direction entered is valid
     if (isValid(str)){
@@ -31,9 +31,9 @@ void loop(){
     resetValues();
 
     //used a custom timer when coding to increase performance
-    //unsigned long end = micros();
-    //unsigned long delta = end - start;
-    //Serial.println(delta);
+    unsigned long end = micros();
+    unsigned long delta = end - start;
+    Serial.println(delta);
   }
 }
 
@@ -43,31 +43,26 @@ void setMotors(int dir){
   //can minimize code by this method
   int *lSpeed = &speed;
   int *rSpeed = &speed;
-  if (dir == 3){
+  if (dir == 3)
     lSpeed = 0;
-  }else if (dir == 4){
+  else if (dir == 4)
     rSpeed = 0;
-  }
+  
 
   //loop from 0 to 400
   //unless reverse is active then speed=-400,limit=0
   //allows 1 loop to do the same for all directions
   for (speed; speed <= limit; speed++)
   {
-    motors.setRightSpeed(*rSpeed);
-    motors.setLeftSpeed(*lSpeed);
+    motors.setSpeeds(*lSpeed, *rSpeed);
     delay(2);
   }
   //after the movement has completed, stop the motors (set speed to 0)
   stopMotors();
-  Serial.println(speed);
-  Serial.println(limit);
   
 }
 
 bool isValid(int dir){
-  Serial.println("num");
-  Serial.println(dir);
   //ensure the direction entered is valid
   if (dir > 0 && dir < 5){     
     return true;
@@ -87,7 +82,6 @@ void resetValues(){
 }
 
 void stopMotors(){
-  motors.setRightSpeed(0);
-  motors.setLeftSpeed(0);
+  motors.setSpeeds(0,0);
 }
 

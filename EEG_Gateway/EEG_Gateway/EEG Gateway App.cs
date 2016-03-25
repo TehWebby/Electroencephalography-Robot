@@ -566,7 +566,11 @@ namespace EEG_Gateway
                 {
                     MessageBox.Show(eX.ToString());
                 }
-                
+                catch (UnauthorizedAccessException eX)
+                {
+                    MessageBox.Show(eX.ToString());
+                }
+
             }
 
             //check status before updating UI
