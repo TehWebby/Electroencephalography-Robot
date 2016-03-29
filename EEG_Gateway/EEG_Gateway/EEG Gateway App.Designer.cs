@@ -67,6 +67,7 @@
             this.lblRobotStatusData = new System.Windows.Forms.Label();
             this.timerStatus = new System.Windows.Forms.Timer(this.components);
             this.btnExitSim = new System.Windows.Forms.Button();
+            this.lblSignal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).BeginInit();
             this.SuspendLayout();
@@ -85,7 +86,7 @@
             // 
             // upBtn
             // 
-            this.upBtn.Location = new System.Drawing.Point(751, 35);
+            this.upBtn.Location = new System.Drawing.Point(763, 69);
             this.upBtn.Name = "upBtn";
             this.upBtn.Size = new System.Drawing.Size(76, 44);
             this.upBtn.TabIndex = 1;
@@ -94,7 +95,7 @@
             // 
             // downBtn
             // 
-            this.downBtn.Location = new System.Drawing.Point(751, 119);
+            this.downBtn.Location = new System.Drawing.Point(763, 153);
             this.downBtn.Name = "downBtn";
             this.downBtn.Size = new System.Drawing.Size(76, 44);
             this.downBtn.TabIndex = 2;
@@ -103,7 +104,7 @@
             // 
             // leftBtn
             // 
-            this.leftBtn.Location = new System.Drawing.Point(657, 76);
+            this.leftBtn.Location = new System.Drawing.Point(669, 110);
             this.leftBtn.Name = "leftBtn";
             this.leftBtn.Size = new System.Drawing.Size(76, 44);
             this.leftBtn.TabIndex = 3;
@@ -112,7 +113,7 @@
             // 
             // rightBtn
             // 
-            this.rightBtn.Location = new System.Drawing.Point(848, 76);
+            this.rightBtn.Location = new System.Drawing.Point(860, 110);
             this.rightBtn.Name = "rightBtn";
             this.rightBtn.Size = new System.Drawing.Size(76, 44);
             this.rightBtn.TabIndex = 4;
@@ -289,7 +290,7 @@
             // powerLbl
             // 
             this.powerLbl.AutoSize = true;
-            this.powerLbl.Location = new System.Drawing.Point(764, 90);
+            this.powerLbl.Location = new System.Drawing.Point(776, 124);
             this.powerLbl.Name = "powerLbl";
             this.powerLbl.Size = new System.Drawing.Size(47, 17);
             this.powerLbl.TabIndex = 19;
@@ -360,12 +361,22 @@
             this.btnExitSim.UseVisualStyleBackColor = true;
             this.btnExitSim.Click += new System.EventHandler(this.btnExitSim_Click);
             // 
+            // lblSignal
+            // 
+            this.lblSignal.AutoSize = true;
+            this.lblSignal.Location = new System.Drawing.Point(899, 61);
+            this.lblSignal.Name = "lblSignal";
+            this.lblSignal.Size = new System.Drawing.Size(47, 17);
+            this.lblSignal.TabIndex = 27;
+            this.lblSignal.Text = "Signal";
+            // 
             // EEG_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 577);
+            this.Controls.Add(this.lblSignal);
             this.Controls.Add(this.btnExitSim);
             this.Controls.Add(this.lblRobotStatusData);
             this.Controls.Add(this.lblRobotStatus);
@@ -428,6 +439,7 @@
         public System.IO.Ports.SerialPort serialPortArduino;
         public System.Windows.Forms.Button leftBtn;
         public System.Windows.Forms.Button rightBtn;
+        private System.Windows.Forms.Label lblSignal;
     }
 }
 
