@@ -76,7 +76,7 @@
             this.latestCogTxt.BackColor = System.Drawing.Color.Black;
             this.latestCogTxt.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.latestCogTxt.ForeColor = System.Drawing.Color.White;
-            this.latestCogTxt.Location = new System.Drawing.Point(836, 280);
+            this.latestCogTxt.Location = new System.Drawing.Point(878, 262);
             this.latestCogTxt.MaxLength = 1;
             this.latestCogTxt.Name = "latestCogTxt";
             this.latestCogTxt.Size = new System.Drawing.Size(28, 23);
@@ -121,16 +121,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(59, 360);
+            this.textBox1.Location = new System.Drawing.Point(806, 262);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(555, 102);
+            this.textBox1.Size = new System.Drawing.Size(56, 23);
             this.textBox1.TabIndex = 5;
             // 
             // eegCogLbl
             // 
             this.eegCogLbl.AutoSize = true;
-            this.eegCogLbl.Location = new System.Drawing.Point(740, 260);
+            this.eegCogLbl.Location = new System.Drawing.Point(712, 220);
             this.eegCogLbl.Name = "eegCogLbl";
             this.eegCogLbl.Size = new System.Drawing.Size(215, 17);
             this.eegCogLbl.TabIndex = 6;
@@ -219,7 +219,7 @@
             // 
             // btnLoadProf
             // 
-            this.btnLoadProf.Location = new System.Drawing.Point(848, 539);
+            this.btnLoadProf.Location = new System.Drawing.Point(848, 532);
             this.btnLoadProf.Name = "btnLoadProf";
             this.btnLoadProf.Size = new System.Drawing.Size(114, 26);
             this.btnLoadProf.TabIndex = 13;
@@ -260,7 +260,7 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(874, 378);
+            this.btnSettings.Location = new System.Drawing.Point(857, 374);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(88, 30);
             this.btnSettings.TabIndex = 16;
@@ -271,7 +271,7 @@
             // loggingLbl
             // 
             this.loggingLbl.AutoSize = true;
-            this.loggingLbl.Location = new System.Drawing.Point(903, 358);
+            this.loggingLbl.Location = new System.Drawing.Point(924, 354);
             this.loggingLbl.Name = "loggingLbl";
             this.loggingLbl.Size = new System.Drawing.Size(38, 17);
             this.loggingLbl.TabIndex = 17;
@@ -280,7 +280,7 @@
             // loggingEnabledLbl
             // 
             this.loggingEnabledLbl.AutoSize = true;
-            this.loggingEnabledLbl.Location = new System.Drawing.Point(788, 358);
+            this.loggingEnabledLbl.Location = new System.Drawing.Point(809, 354);
             this.loggingEnabledLbl.Name = "loggingEnabledLbl";
             this.loggingEnabledLbl.Size = new System.Drawing.Size(118, 17);
             this.loggingEnabledLbl.TabIndex = 18;
@@ -297,7 +297,7 @@
             // 
             // btnNewProfile
             // 
-            this.btnNewProfile.Location = new System.Drawing.Point(848, 464);
+            this.btnNewProfile.Location = new System.Drawing.Point(848, 493);
             this.btnNewProfile.Name = "btnNewProfile";
             this.btnNewProfile.Size = new System.Drawing.Size(114, 28);
             this.btnNewProfile.TabIndex = 20;
@@ -309,7 +309,7 @@
             // 
             this.btnRunSimulator.Location = new System.Drawing.Point(657, 493);
             this.btnRunSimulator.Name = "btnRunSimulator";
-            this.btnRunSimulator.Size = new System.Drawing.Size(154, 33);
+            this.btnRunSimulator.Size = new System.Drawing.Size(170, 28);
             this.btnRunSimulator.TabIndex = 21;
             this.btnRunSimulator.Text = "Run Simulator";
             this.btnRunSimulator.UseVisualStyleBackColor = true;
@@ -354,7 +354,7 @@
             // 
             this.btnExitSim.Location = new System.Drawing.Point(657, 532);
             this.btnExitSim.Name = "btnExitSim";
-            this.btnExitSim.Size = new System.Drawing.Size(154, 30);
+            this.btnExitSim.Size = new System.Drawing.Size(170, 26);
             this.btnExitSim.TabIndex = 26;
             this.btnExitSim.Text = "Disconnect from Sim";
             this.btnExitSim.UseVisualStyleBackColor = true;
