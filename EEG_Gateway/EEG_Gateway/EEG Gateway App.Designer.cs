@@ -417,7 +417,6 @@
         private System.Windows.Forms.Label eegStrlbl2;
         private System.Windows.Forms.Button btnLoadProf;
         private System.Windows.Forms.Timer emotionTimer;
-        private System.Windows.Forms.PictureBox signalImg;
         private System.Windows.Forms.OpenFileDialog browseForProfileDialog;
         private System.Windows.Forms.Label profileNameLbl;
         private System.Windows.Forms.Button btnSettings;
@@ -440,6 +439,7 @@
         public System.Windows.Forms.Button leftBtn;
         public System.Windows.Forms.Button rightBtn;
         private System.Windows.Forms.Label lblSignal;
+        private System.Windows.Forms.PictureBox signalImg;
     }
 }
 

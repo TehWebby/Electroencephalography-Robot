@@ -17,15 +17,13 @@ namespace EEG_Gateway_UnitTests
         EEG_Main form;
         public static int testCount = 0;
         [TestInitialize()]
-        public void MyTestInitialize()
-        {
+        public void MyTestInitialize(){
             form = new EEG_Gateway.EEG_Main();
         }
 
         [TestMethod]
         public void StartGUI()
-        {
-            
+        {            
             //Thread.CurrentThread.IsBackground = true;
             //Application.DoEvents();
             //var form = new EEG_Gateway.EEG_Main();
@@ -42,30 +40,31 @@ namespace EEG_Gateway_UnitTests
         public void UI_Updates()
         {
             Random r = new Random();
+            int x = 0;
             for (int i = 0; i < 30; i++)
             {
-                int x = r.Next(1, 5);
-                moveRobot(2);
-                isUIMoveBtnSet(2);
+                x = r.Next(1, 5);
+                moveRobot(x);
+                isUIMoveBtnSet(x);
             }
         }
 
         [TestMethod]
         public void graphUpdates()
-        {
-            //
+        {    
             new Thread(() =>
             {
                 Thread.Sleep(2000);
-                int series = form.eegEmotionChart.Series.Count-1;
-                //MessageBox.Show(form.eegEmotionChart.Series["Engagement/Boredom"].Points[0].ToString());
+                int series = form.eegEmotionChart.Series.Count - 1;
                 for (int l = 0; l < series; l++)
                 {
-                    Assert.IsTrue(form.eegEmotionChart.Series[l].Points[0] != null);
-                    incTestCount();                    
+                    if (form.eegEmotionChart.Series[l].Points[0] != null)
+                    {
+                        Assert.IsTrue(form.eegEmotionChart.Series[l].Points[0] != null);
+                        incTestCount();
+                    }
                 }
             }).Start();
-
         }
 
         [TestMethod]
@@ -88,6 +87,7 @@ namespace EEG_Gateway_UnitTests
                     int x = r.Next(1, 5);
                     moveRobot(x);
                     //also test colours blue here
+                    //isUIMoveBtnSet(x);
                     Assert.IsTrue(x > 0 && x < 5);
                     incTestCount();
                     Thread.Sleep(1200);

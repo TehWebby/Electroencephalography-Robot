@@ -28,7 +28,7 @@ namespace EEG_Gateway
         public bool updateChartData = false;
         public List<Affective> eegAffectiveData = new List<Affective>();
         public EdkDll.EE_CognitivAction_t latestAction;
-        EmoEngine engine = EmoEngine.Instance;
+        public EmoEngine engine = EmoEngine.Instance;
         ApplicationSettings appSettings = new ApplicationSettings();
 
         //used to contact simulation
@@ -286,6 +286,7 @@ namespace EEG_Gateway
                     break;
             }
             signalImg.Image = img;
+            
         }
 
         public void loadUp(string fName, int init)
@@ -651,7 +652,7 @@ namespace EEG_Gateway
             //string simState = _serverHost.State.ToString();
             if (simRunning)
             {
-                new Task(() =>
+                new Thread(() =>
                 {
                     //Thread.CurrentThread.IsBackground = true;
                     //only do this is simulation is open
@@ -673,7 +674,7 @@ namespace EEG_Gateway
             //Only if robot is connected
             if (serialPortArduino.IsOpen)
             {
-                new Task(() =>
+                new Thread(() =>
                 {
                     //Thread.CurrentThread.IsBackground = true;
                     Console.WriteLine("Connected!");

@@ -22,12 +22,9 @@ void loop(){
     unsigned long start = micros();
     
     //ensure the direction entered is valid
-    if (isValid(str)){
-      //set the speed to negative if command is reverse (2)
-      if (str == 2)
-        setReverseSpeed();
+    if (isValid(str))            
       setMotors(str);
-    }
+    
     resetValues();
 
     //used a custom timer when coding to increase performance
@@ -38,28 +35,23 @@ void loop(){
 }
 
 void setMotors(int dir){
-  //use pointer to ref speed
-  //as we can keep the existing speed if we don't change it
-  //can minimize code by this method
+  //use pointer to ref speed as we can keep the existing speed if we don't change it
   int *lSpeed = &speed;
   int *rSpeed = &speed;
-  if (dir == 3)
+  if (dir == 2)//Reverse
+    setReverseSpeed();
+  else if (dir == 3)//Left
     lSpeed = 0;
-  else if (dir == 4)
+  else if (dir == 4)//Right
     rSpeed = 0;
   
-
-  //loop from 0 to 400
-  //unless reverse is active then speed=-400,limit=0
-  //allows 1 loop to do the same for all directions
-  for (speed; speed <= limit; speed++)
-  {
+  //loop from 0 to 400 unless reverse is active then speed=-400,limit=0
+  for (speed; speed <= limit; speed++){
     motors.setSpeeds(*lSpeed, *rSpeed);
     delay(2);
   }
   //after the movement has completed, stop the motors (set speed to 0)
-  stopMotors();
-  
+  stopMotors();  
 }
 
 bool isValid(int dir){
@@ -67,11 +59,12 @@ bool isValid(int dir){
   if (dir > 0 && dir < 5){     
     return true;
   }
-  else
+  else//maybe remove else?
     return false;
 }
 
 void setReverseSpeed(){
+  //set the speed to negative if command is reverse (2)
   speed = limit*-1;
   limit = 0;
 }
