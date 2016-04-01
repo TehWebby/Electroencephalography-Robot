@@ -652,7 +652,7 @@ namespace EEG_Gateway
             //string simState = _serverHost.State.ToString();
             if (simRunning)
             {
-                new Thread(() =>
+                new Task(() =>
                 {
                     //Thread.CurrentThread.IsBackground = true;
                     //only do this is simulation is open
@@ -674,7 +674,7 @@ namespace EEG_Gateway
             //Only if robot is connected
             if (serialPortArduino.IsOpen)
             {
-                new Thread(() =>
+                new Task(() =>
                 {
                     //Thread.CurrentThread.IsBackground = true;
                     Console.WriteLine("Connected!");

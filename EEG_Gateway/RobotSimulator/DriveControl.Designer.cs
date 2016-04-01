@@ -694,6 +694,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(642, 703);
             this.Name = "DriveControl";
+            this.Opacity = 0D;
             this.Text = "Dashboard";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DriveControl_FormClosed);
             this.Load += new System.EventHandler(this.DriveControl_Load);

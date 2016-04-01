@@ -41,9 +41,9 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
         //used for WCF transmition between "server" and "client"
         Guid _clientID;
         ServiceHost _clientHost;
-
+        
         public DriveControl(DriveControlEvents EventsPort, double translateScaleFactor, double rotateScaleFactor)
-        {
+        {                       
             _eventsPort = EventsPort;
             _translateScaleFactor = translateScaleFactor;
             _rotateScaleFactor = rotateScaleFactor;

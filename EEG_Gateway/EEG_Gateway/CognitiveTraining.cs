@@ -77,7 +77,7 @@ namespace EEG_Gateway
             // 
             // profileNameTxt
             // 
-            this.profileNameTxt.Location = new System.Drawing.Point(121, 77);
+            this.profileNameTxt.Location = new System.Drawing.Point(131, 72);
             this.profileNameTxt.Name = "profileNameTxt";
             this.profileNameTxt.Size = new System.Drawing.Size(165, 22);
             this.profileNameTxt.TabIndex = 0;
@@ -85,24 +85,26 @@ namespace EEG_Gateway
             // newProfileLbl
             // 
             this.newProfileLbl.AutoSize = true;
-            this.newProfileLbl.Location = new System.Drawing.Point(121, 54);
+            this.newProfileLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newProfileLbl.Location = new System.Drawing.Point(146, 51);
             this.newProfileLbl.Name = "newProfileLbl";
-            this.newProfileLbl.Size = new System.Drawing.Size(118, 17);
+            this.newProfileLbl.Size = new System.Drawing.Size(125, 18);
             this.newProfileLbl.TabIndex = 1;
             this.newProfileLbl.Text = "New Profile name";
             // 
             // trainActionsLbl
             // 
             this.trainActionsLbl.AutoSize = true;
-            this.trainActionsLbl.Location = new System.Drawing.Point(108, 139);
+            this.trainActionsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainActionsLbl.Location = new System.Drawing.Point(129, 113);
             this.trainActionsLbl.Name = "trainActionsLbl";
-            this.trainActionsLbl.Size = new System.Drawing.Size(183, 17);
+            this.trainActionsLbl.Size = new System.Drawing.Size(192, 18);
             this.trainActionsLbl.TabIndex = 9;
             this.trainActionsLbl.Text = "Select which actions to train";
             // 
             // startTrainBtn
             // 
-            this.startTrainBtn.Location = new System.Drawing.Point(124, 323);
+            this.startTrainBtn.Location = new System.Drawing.Point(132, 225);
             this.startTrainBtn.Name = "startTrainBtn";
             this.startTrainBtn.Size = new System.Drawing.Size(148, 39);
             this.startTrainBtn.TabIndex = 10;
@@ -113,9 +115,10 @@ namespace EEG_Gateway
             // trainBox4
             // 
             this.trainBox4.AutoSize = true;
-            this.trainBox4.Location = new System.Drawing.Point(231, 206);
+            this.trainBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainBox4.Location = new System.Drawing.Point(223, 180);
             this.trainBox4.Name = "trainBox4";
-            this.trainBox4.Size = new System.Drawing.Size(73, 21);
+            this.trainBox4.Size = new System.Drawing.Size(83, 24);
             this.trainBox4.TabIndex = 11;
             this.trainBox4.Text = "RIGHT";
             this.trainBox4.UseVisualStyleBackColor = true;
@@ -123,9 +126,10 @@ namespace EEG_Gateway
             // trainBox3
             // 
             this.trainBox3.AutoSize = true;
-            this.trainBox3.Location = new System.Drawing.Point(111, 206);
+            this.trainBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainBox3.Location = new System.Drawing.Point(132, 180);
             this.trainBox3.Name = "trainBox3";
-            this.trainBox3.Size = new System.Drawing.Size(64, 21);
+            this.trainBox3.Size = new System.Drawing.Size(72, 24);
             this.trainBox3.TabIndex = 12;
             this.trainBox3.Text = "LEFT";
             this.trainBox3.UseVisualStyleBackColor = true;
@@ -133,9 +137,10 @@ namespace EEG_Gateway
             // trainBox2
             // 
             this.trainBox2.AutoSize = true;
-            this.trainBox2.Location = new System.Drawing.Point(231, 179);
+            this.trainBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainBox2.Location = new System.Drawing.Point(223, 153);
             this.trainBox2.Name = "trainBox2";
-            this.trainBox2.Size = new System.Drawing.Size(74, 21);
+            this.trainBox2.Size = new System.Drawing.Size(85, 24);
             this.trainBox2.TabIndex = 13;
             this.trainBox2.Text = "DOWN";
             this.trainBox2.UseVisualStyleBackColor = true;
@@ -143,9 +148,10 @@ namespace EEG_Gateway
             // trainBox1
             // 
             this.trainBox1.AutoSize = true;
-            this.trainBox1.Location = new System.Drawing.Point(111, 179);
+            this.trainBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trainBox1.Location = new System.Drawing.Point(132, 153);
             this.trainBox1.Name = "trainBox1";
-            this.trainBox1.Size = new System.Drawing.Size(49, 21);
+            this.trainBox1.Size = new System.Drawing.Size(54, 24);
             this.trainBox1.TabIndex = 14;
             this.trainBox1.Text = "UP";
             this.trainBox1.UseVisualStyleBackColor = true;
@@ -158,7 +164,7 @@ namespace EEG_Gateway
             // 
             this.newProfileHeaderLbl.AutoSize = true;
             this.newProfileHeaderLbl.Font = new System.Drawing.Font("Calibri Light", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newProfileHeaderLbl.Location = new System.Drawing.Point(28, 9);
+            this.newProfileHeaderLbl.Location = new System.Drawing.Point(40, 9);
             this.newProfileHeaderLbl.Name = "newProfileHeaderLbl";
             this.newProfileHeaderLbl.Size = new System.Drawing.Size(390, 37);
             this.newProfileHeaderLbl.TabIndex = 15;
@@ -166,7 +172,7 @@ namespace EEG_Gateway
             // 
             // CognitiveTraining
             // 
-            this.ClientSize = new System.Drawing.Size(414, 403);
+            this.ClientSize = new System.Drawing.Size(429, 293);
             this.Controls.Add(this.newProfileHeaderLbl);
             this.Controls.Add(this.trainBox1);
             this.Controls.Add(this.trainBox2);
