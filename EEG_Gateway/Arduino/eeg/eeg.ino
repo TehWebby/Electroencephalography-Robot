@@ -1,3 +1,11 @@
+//-----------------------------------------------------------------------
+//  Author: Shaun Webb
+//  University: Sheffield Hallam University
+//  Website: shaunwebb.co.uk
+//  Github: TehWebby
+//  
+//  Zumo Robot code
+//-----------------------------------------------------------------------
 #include <ZumoMotors.h>
 #define LED_PIN 13
 

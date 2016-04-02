@@ -1,0 +1,14 @@
+var searchData=
+[
+  ['ui_5fupdates',['UI_Updates',['../class_e_e_g___gateway___unit_tests_1_1_main_tests.html#aee20bcdbcb15a1aa7c31f27b07be7aa1',1,'EEG_Gateway_UnitTests::MainTests']]],
+  ['upbtn',['upBtn',['../class_e_e_g___gateway_1_1_e_e_g___main.html#af1b0fc9109b80c1a5e4823102f140dec',1,'EEG_Gateway::EEG_Main']]],
+  ['updatechart',['updateChart',['../class_e_e_g___gateway_1_1_e_e_g___main.html#a09813507fe561f114dc48ee68446c6c6',1,'EEG_Gateway::EEG_Main']]],
+  ['updatechartdata',['updateChartData',['../class_e_e_g___gateway_1_1_e_e_g___main.html#a046c2d493fbab4194742328d1b99b876',1,'EEG_Gateway::EEG_Main']]],
+  ['updatejoystickaxes',['UpdateJoystickAxes',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_drive_control.html#aa0f84a244d7e5607303cdb0cfabfd7bb',1,'Microsoft.Robotics.Services.SimpleDashboard.DriveControl.UpdateJoystickAxes(game.Axes axes)'],['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_drive_control.html#aa0f84a244d7e5607303cdb0cfabfd7bb',1,'Microsoft.Robotics.Services.SimpleDashboard.DriveControl.UpdateJoystickAxes(game.Axes axes)']]],
+  ['updatejoystickbuttons',['UpdateJoystickButtons',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_drive_control.html#a7879643c2fcad443996fd9a789a3be68',1,'Microsoft.Robotics.Services.SimpleDashboard.DriveControl.UpdateJoystickButtons(game.Buttons buttons)'],['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_drive_control.html#a7879643c2fcad443996fd9a789a3be68',1,'Microsoft.Robotics.Services.SimpleDashboard.DriveControl.UpdateJoystickButtons(game.Buttons buttons)']]],
+  ['updatemotordata',['UpdateMotorData',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_drive_control.html#aa037293f79f1eaf12c9fee86130fadd9',1,'Microsoft.Robotics.Services.SimpleDashboard.DriveControl.UpdateMotorData(drive.DriveDifferentialTwoWheelState data)'],['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_drive_control.html#aa037293f79f1eaf12c9fee86130fadd9',1,'Microsoft.Robotics.Services.SimpleDashboard.DriveControl.UpdateMotorData(drive.DriveDifferentialTwoWheelState data)']]],
+  ['user_2esimpledashboard_2ey2006_2em01_2eproxy_2ecs',['User.SimpleDashboard.Y2006.M01.Proxy.cs',['../_user_8_simple_dashboard_8_y2006_8_m01_8_proxy_8cs.html',1,'']]],
+  ['user_2esimpledashboard_2ey2006_2em01_2etransform_2ecs',['User.SimpleDashboard.Y2006.M01.Transform.cs',['../_user_8_simple_dashboard_8_y2006_8_m01_8_transform_8cs.html',1,'']]],
+  ['userid',['userId',['../class_e_e_g___gateway_1_1_cognitive_training.html#a6bb24493b9d01c66b4f2be1149e4ef1f',1,'EEG_Gateway::CognitiveTraining']]],
+  ['userprofile',['userProfile',['../class_e_e_g___gateway_1_1_cognitive_training.html#a48b9528d1145a66d4b3b1958400a570b',1,'EEG_Gateway::CognitiveTraining']]]
+];

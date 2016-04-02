@@ -1,4 +1,11 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+//  Author: Shaun Webb
+//  University: Sheffield Hallam University
+//  Website: shaunwebb.co.uk
+//  Github: TehWebby
+//-----------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,22 +28,28 @@ using MessagingInterfaces;
 
 namespace EEG_Gateway
 {
+    /// <summary>
+    /// EEG_Main Gateway Application
+    /// </summary>
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.Single)]
     public partial class EEG_Main : Form, IFromClientToServerMessages
     {        
-        public bool isLoad = true;
-        public bool updateChartData = false;
-        public List<Affective> eegAffectiveData = new List<Affective>();
-        public EdkDll.EE_CognitivAction_t latestAction;
-        public EmoEngine engine = EmoEngine.Instance;
-        ApplicationSettings appSettings = new ApplicationSettings();
-
-        //used to contact simulation
-        public ServiceHost _serverHost;
-        public List<Guid> _registeredClients = new List<Guid>();
-        public bool simRunning = false;
+        public bool isLoad = true; /// Is user profile loaded
+        public bool updateChartData = false; /// Used to monitor updates of Chart Data
+        public List<Affective> eegAffectiveData = new List<Affective>(); /// List of Affective data
+        public EdkDll.EE_CognitivAction_t latestAction; /// Latest cognitive action interpreted
+        public EmoEngine engine = EmoEngine.Instance; /// EmoEngine instance
+        public ApplicationSettings appSettings = new ApplicationSettings(); /// Settings the application should use
         
+        //Required for simulator
+        public ServiceHost _serverHost; /// used to contact simulation
+        public List<Guid> _registeredClients = new List<Guid>(); /// Lists the registered users GUID
+        public bool simRunning = false; /// Is the simulator active
 
+
+        /// <summary>
+        /// EEG Main Constructor
+        /// </summary>
         public EEG_Main()
         {
             InitializeComponent();
@@ -82,7 +95,10 @@ namespace EEG_Gateway
 
         }
 
-        private void OnApplicationExit(object sender, EventArgs e)
+        /// <summary>
+        /// Handles application closes
+        /// </summary>
+        public void OnApplicationExit(object sender, EventArgs e)
         {
             try
             {
@@ -94,10 +110,12 @@ namespace EEG_Gateway
             {
                 logEEG_Data(eX, "error");
             }
-        }      
+        }
 
-
-        void Instance_EmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
+        /// <summary>
+        /// Emotion state updated
+        /// </summary>
+        public void Instance_EmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
         {
             if (isLoad)
             {
@@ -109,7 +127,10 @@ namespace EEG_Gateway
                 updateChart(e); 
         }
 
-        private void logEEG_Data(EdkDll.EE_CognitivAction_t currentAction, float power, string file)//overloaded, used for data logs for cognitive actions
+        /// <summary>
+        /// Log EEG Data
+        /// </summary>
+        public void logEEG_Data(EdkDll.EE_CognitivAction_t currentAction, float power, string file)//overloaded, used for data logs for cognitive actions
         {
             //ensure logging is enabled first
             if (appSettings.Logging == true)
@@ -120,9 +141,10 @@ namespace EEG_Gateway
                 LogData(logData, logFile);
             }
         }
-
         
-
+        /// <summary>
+        /// Log EEG Data
+        /// </summary>
         public void logEEG_Data(Affective af, string file)//overloaded, used for data logs for affective info
         {
             //ensure logging is enabled first
@@ -133,6 +155,10 @@ namespace EEG_Gateway
                 LogData(logData, logFile);
             }
         }
+
+        /// <summary>
+        /// Log EEG Data
+        /// </summary>
         public void logEEG_Data(Exception eX, string file)//overloaded, used for error logs
         {
             //ensure logging is enabled first
@@ -143,8 +169,10 @@ namespace EEG_Gateway
                 LogData(logData, logFile);
             }
         }
-        
 
+        /// <summary>
+        /// Affectiv to String
+        /// </summary>
         public string convertAftoString(Affective af)
         {
             string afString="";
@@ -157,7 +185,11 @@ namespace EEG_Gateway
             }
             return afString;
         }
-        private string convertCAtoString(EdkDll.EE_CognitivAction_t currentAction, float power)
+
+        /// <summary>
+        /// Cognitiv to String
+        /// </summary>
+        public string convertCAtoString(EdkDll.EE_CognitivAction_t currentAction, float power)
         {
             string cgString = "";
             //use reflection to get all property names and values of object
@@ -165,6 +197,9 @@ namespace EEG_Gateway
             return cgString;
         }
 
+        /// <summary>
+        /// Log Data
+        /// </summary>
         public static void LogData(string logData, string logFile)
         {
             if (logFile != "")//ensure a file is being appended
@@ -176,6 +211,9 @@ namespace EEG_Gateway
             }
         }
 
+        /// <summary>
+        /// Logging
+        /// </summary>
         public static void Log(string logMessage, TextWriter w)
         {
             w.Write("\r\nLog Entry : ");
@@ -184,6 +222,10 @@ namespace EEG_Gateway
             w.WriteLine(logMessage);
             w.WriteLine("-------------------------------");
         }
+
+        /// <summary>
+        /// Robot command log
+        /// </summary>
         public static void RobotCmd(string cmdData, string logFile)
         {
             if (logFile != "")//ensure a file is being appended
@@ -194,11 +236,18 @@ namespace EEG_Gateway
                 }
             }
         }
+
+        /// <summary>
+        /// Robot command write log
+        /// </summary>
         public static void RobotCmdFile(string cmd, TextWriter w)
         {
             w.WriteLine(cmd);
         }
 
+        /// <summary>
+        /// Dump log
+        /// </summary>
         public static void DumpLog(StreamReader r)
         {
             string line;
@@ -208,10 +257,13 @@ namespace EEG_Gateway
             }
         }
 
+        /// <summary>
+        /// Update Chart
+        /// </summary>
         public void updateChart(EmoStateUpdatedEventArgs e)
         {
-            EmoState es = e.emoState;
-            Affective af = new Affective(es);
+            EmoState es = e.emoState; /// update EmoState on chart
+            Affective af = new Affective(es); /// new Affective from EmoState
             
             logEEG_Data(af, "data");
 
@@ -261,9 +313,12 @@ namespace EEG_Gateway
             updateChartData = false;
         }
 
+        /// <summary>
+        /// Sets the Signal Image
+        /// </summary>
         public void setSignalImg(string signalStrength)
         {
-            Image img;
+            Image img; /// Image for signal picture
             switch (signalStrength)
             {
                 case "EXCELLENT_SIGNAL":
@@ -289,6 +344,9 @@ namespace EEG_Gateway
             
         }
 
+        /// <summary>
+        /// Load a profile
+        /// </summary>
         public void loadUp(string fName, int init)
         {
             Profile profile = new Profile();
@@ -327,7 +385,10 @@ namespace EEG_Gateway
             }
         }
 
-        void Instance_CognitivEmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
+        /// <summary>
+        /// Cogntitv action updated
+        /// </summary>
+        public void Instance_CognitivEmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
         {
             EmoState es = e.emoState;
             EdkDll.EE_CognitivAction_t currentAction = es.CognitivGetCurrentAction();
@@ -345,10 +406,11 @@ namespace EEG_Gateway
             powerLbl.Text = power.ToString();
             latestAction = currentAction;
         }
-
         
-
-        private void loadProfBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Load profle button event
+        /// </summary>
+        public void loadProfBtn_Click(object sender, EventArgs e)
         {
             DialogResult result = browseForProfileDialog.ShowDialog();
             if (result == DialogResult.OK) // Test result.
@@ -363,7 +425,6 @@ namespace EEG_Gateway
                     engine.Connect();
                     loadUp(fName, 0);
                     //if (eX.Message == "EmoEngine has not been initialized")
-                    
                 }
                 catch (Exception eX){
                     logEEG_Data(eX, "error");
@@ -371,19 +432,28 @@ namespace EEG_Gateway
             }
         }
 
-        private void eegTimer_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// EEG Timer
+        /// </summary>
+        public void eegTimer_Tick(object sender, EventArgs e)
         {
             engine.ProcessEvents();
             simRunning = true;
         }
 
-        private void emotionTimer_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// Emotion timer
+        /// </summary>
+        public void emotionTimer_Tick(object sender, EventArgs e)
         {
             //used to update the chart at a consistent speed/time
             updateChartData = true;
         }
 
-        private void settingsBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Settings button event click
+        /// </summary>
+        public void settingsBtn_Click(object sender, EventArgs e)
         {
             //ensure that correct settings are already loaded before attempting to change them
             if (File.Exists("ConfigurationSettings.bin"))
@@ -399,12 +469,17 @@ namespace EEG_Gateway
             loggingLbl.Text = appSettings.Logging.ToString();
         }
 
+        /// <summary>
+        /// Turns on/off logging
+        /// </summary>
         public void switchLoggingSettings()
         {
             appSettings.Logging = !appSettings.Logging;
         }
 
-
+        /// <summary>
+        /// Serialize application settings for persistence
+        /// </summary>
         public void serializeSettings(ApplicationSettings appSettings)
         {
             try
@@ -421,6 +496,10 @@ namespace EEG_Gateway
             }
             
         }
+
+        /// <summary>
+        /// Deserialize application settings for persistence
+        /// </summary>
         public void deserializeSettings()
         {
             try
@@ -437,10 +516,12 @@ namespace EEG_Gateway
             }
         }
 
+        /// <summary>
+        /// New profile button event click
+        /// </summary>
         private void newProfileBtn_Click(object sender, EventArgs e)
         {
             CognitiveTraining cognitiveTraining = new CognitiveTraining();
-            
             cognitiveTraining.Initialize();
         }
 
@@ -460,6 +541,9 @@ namespace EEG_Gateway
             runSim();
         }
 
+        /// <summary>
+        /// Starts the robot simulator
+        /// </summary>
         public void runSim()
         {
             new Task(() =>
@@ -498,6 +582,9 @@ namespace EEG_Gateway
             simRunning = true;
         }
 
+        /// <summary>
+        /// Registers client WCF
+        /// </summary>
         public void Register(Guid clientID)
         {
             if (!_registeredClients.Contains(clientID))
@@ -505,6 +592,9 @@ namespace EEG_Gateway
             //MessageBox.Show(clientID.ToString());
         }
 
+        /// <summary>
+        /// Displays Text on WCF Server
+        /// </summary>
         public void DisplayTextOnServer(string text)
         {
             throw new NotImplementedException();
@@ -519,7 +609,11 @@ namespace EEG_Gateway
         {
             throw new NotImplementedException();
         }
-        private void SendText(Guid client, string text)
+
+        /// <summary>
+        /// Sends Command to client WCF
+        /// </summary>
+        public void SendText(Guid client, string text)
         {
             using (ChannelFactory<IFromServerToClientMessages> factory = new ChannelFactory<IFromServerToClientMessages>(new NetNamedPipeBinding(), new EndpointAddress("net.pipe://localhost/Client_" + client.ToString())))
             {
@@ -539,7 +633,11 @@ namespace EEG_Gateway
                 }
             }
         }
-        private void CloseChannel(ICommunicationObject channel)
+
+        /// <summary>
+        /// Closes WCF channel
+        /// </summary>
+        public void CloseChannel(ICommunicationObject channel)
         {
             try
             {
@@ -560,6 +658,9 @@ namespace EEG_Gateway
             connectToRobot();
         }
 
+        /// <summary>
+        /// Connect to real robot
+        /// </summary>
         public void connectToRobot()
         {
             if (serialPortArduino.IsOpen)
@@ -600,8 +701,10 @@ namespace EEG_Gateway
             }
         }
 
-
-        private void run_cmd(int cog)
+        /// <summary>
+        /// On command execute
+        /// </summary>
+        public void run_cmd(int cog)
         {            
             switch (cog)
             {
@@ -620,7 +723,10 @@ namespace EEG_Gateway
             }
         }
 
-        private void setupControls()
+        /// <summary>
+        /// Setup UI controls
+        /// </summary>
+        public void setupControls()
         {  
             upBtn.BackColor = Color.Empty;
             downBtn.BackColor = Color.Empty;
@@ -628,8 +734,10 @@ namespace EEG_Gateway
             rightBtn.BackColor = Color.Empty;
         }
 
-
-        void ButtonClicked(object sender, EventArgs e, int cog)
+        /// <summary>
+        /// Execute button/Command sent
+        /// </summary>
+        public void ButtonClicked(object sender, EventArgs e, int cog)
         {            
             Button thisButton = (Button)sender;
             thisButton.BackColor = Color.CornflowerBlue;
@@ -734,7 +842,10 @@ namespace EEG_Gateway
 
         }
 
-        private bool isCmdValid()
+        /// <summary>
+        /// Is command valid
+        /// </summary>
+        public bool isCmdValid()
         {
             string cmd = latestCogTxt.Text;
             if (cmd == "1" || cmd == "2" || cmd == "3" || cmd == "4")
@@ -754,6 +865,9 @@ namespace EEG_Gateway
             disconnectFromSim();
         }
 
+        /// <summary>
+        /// Displays from robot simulator
+        /// </summary>
         public void disconnectFromSim()
         {
             _serverHost.Close();

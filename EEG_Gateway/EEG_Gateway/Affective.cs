@@ -1,12 +1,25 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+//  Author: Shaun Webb
+//  University: Sheffield Hallam University
+//  Website: shaunwebb.co.uk
+//  Github: TehWebby
+//-----------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Emotiv;
 
+/// <summary>
+/// Main EEG_Gateway Project
+/// </summary>
 namespace EEG_Gateway
 {
+    /// <summary>
+    /// Affective Details to store
+    /// </summary>
     public class Affective
     {
         private float shortExcitementLvl; //short term Excitement level
@@ -20,7 +33,10 @@ namespace EEG_Gateway
         EdkDll.EE_SignalStrength_t signalStrength;
         //maybe change to datetime?
         private float timestamp;
-        
+
+        /// <summary>
+        /// Constructs an Affective using an EmoState
+        /// </summary>
         public Affective(EmoState es)
         {
             shortExcitementLvl = es.AffectivGetExcitementShortTermScore();
@@ -35,78 +51,88 @@ namespace EEG_Gateway
             timestamp = es.GetTimeFromStart();
         }
 
-        //setters added but likely wont need to modify the object
+        /// <summary>
+        /// Short Term Excitement Getter and Setter
+        /// </summary>
         public float ShortExcitementLevel
         {
-            //shortExcitementLvl = es.AffectivGetExcitementShortTermScore();
-            get{
-                return shortExcitementLvl;
-            }
-            set{
-                shortExcitementLvl = value;
-            }
+            get{return shortExcitementLvl;}
+            set{shortExcitementLvl = value;}
         }
-      
+
+        /// <summary>
+        /// Long Term Excitement Getter and Setter
+        /// </summary>
         public float LongExcitementLevel
         {
-            //longExcitementLvl = es.AffectivGetExcitementLongTermScore();
-            get{
-                return longExcitementLvl;
-            }
-            set{
-                longExcitementLvl = value;
-            }
+            get{return longExcitementLvl;}
+            set{longExcitementLvl = value;}
         }
+
+        /// <summary>
+        /// Frustration Getter and Setter
+        /// </summary>
         public float FrustrationLevel
         {
-            //frustrationLvl = es.AffectivGetFrustrationScore();
-            get{ 
-                return frustrationLvl;
-            }
-            set
-            {
-                frustrationLvl = value;
-            }
+            get{return frustrationLvl;}
+            set{frustrationLvl = value;}
         }
+
+        /// <summary>
+        /// Meditation Getter and Setter
+        /// </summary>
         public float MeditationLevel
         {
-            get{
-                return meditationLvl;
-            }
-            set
-            {
-                //meditationLvl = es.AffectivGetMeditationScore();
-                meditationLvl = value;
-            }
-            
+            get{return meditationLvl;}
+            set{meditationLvl = value;}
         }
+
+        /// <summary>
+        /// Valence Getter and Setter
+        /// </summary>
         public float ValenceLevel
         {
-            //valenceLvl = es.AffectivGetValenceScore();
             get{ return valenceLvl; }            
             set{ valenceLvl = value; }
         }
+
+        /// <summary>
+        /// Engagement/Boredom Getter and Setter
+        /// </summary>
         public float EngagementBoredomLevel
         {
-            //engagementBoredomLvl = es.AffectivGetEngagementBoredomScore();
             get{ return engagementBoredomLvl; }
             set{ engagementBoredomLvl = value; }
         }
+
+        /// <summary>
+        /// Smile Getter and Setter
+        /// </summary>
         public float SmileLevel
         {
-            //smileLvl = es.ExpressivGetSmileExtent();
             get{ return smileLvl; }
             set{ smileLvl = value; }
         }
-        
+
+        /// <summary>
+        /// Checks if the state is busy
+        /// </summary>
         public bool Busy
         {
             get { return busy; }
         }
+
+        /// <summary>
+        /// Gets EPOC headset signal strength
+        /// </summary>
         public EdkDll.EE_SignalStrength_t SignalStrength
         {
             get{ return signalStrength; }            
         }
+
+        /// <summary>
+        /// Gets a timestamp
+        /// </summary>
         public float Timestamp
         {
             get { return timestamp; }

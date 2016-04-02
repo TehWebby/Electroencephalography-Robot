@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['calibrate',['calibrate',['../class_q_t_r_sensors.html#ac9840e2429c7a962977057ba154c77da',1,'QTRSensors']]],
+  ['calibratedmaximumoff',['calibratedMaximumOff',['../class_q_t_r_sensors.html#ad75b42c57aec1081f7bb92579895c5dc',1,'QTRSensors']]],
+  ['calibratedmaximumon',['calibratedMaximumOn',['../class_q_t_r_sensors.html#a47e0ec394b2b8dd411a653c7874835ed',1,'QTRSensors']]],
+  ['calibratedminimumoff',['calibratedMinimumOff',['../class_q_t_r_sensors.html#a416eeb973577d19ed30aeb8ec5d301ee',1,'QTRSensors']]],
+  ['calibratedminimumon',['calibratedMinimumOn',['../class_q_t_r_sensors.html#a09a837b7fc1e33aa17850a05cb6331c3',1,'QTRSensors']]],
+  ['checkboxtrainingcalc',['checkBoxTrainingCalc',['../class_e_e_g___gateway_1_1_cognitive_training.html#a6b458297bb7172ee426c8cdbf51b6dcf',1,'EEG_Gateway::CognitiveTraining']]],
+  ['clone',['Clone',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_proxy_1_1_simple_dashboard_state.html#a96926e7fe7f7704bf6ebf18c2052e008',1,'Microsoft::Robotics::Services::SimpleDashboard::Proxy::SimpleDashboardState']]],
+  ['closechannel',['CloseChannel',['../class_e_e_g___gateway_1_1_e_e_g___main.html#ac459e677b36eeb10ba1b46f6b3840287',1,'EEG_Gateway::EEG_Main']]],
+  ['cognitivactionlist',['cognitivActionList',['../class_e_e_g___gateway_1_1_cognitive_training.html#a02dbdf19018c8e5e737a09e1967c40ff',1,'EEG_Gateway::CognitiveTraining']]],
+  ['cognitivetraining',['CognitiveTraining',['../class_e_e_g___gateway_1_1_cognitive_training.html',1,'EEG_Gateway']]],
+  ['cognitivetraining_2ecs',['CognitiveTraining.cs',['../_cognitive_training_8cs.html',1,'']]],
+  ['combinedoperationsport',['CombinedOperationsPort',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_proxy_1_1_combined_operations_port.html',1,'Microsoft::Robotics::Services::SimpleDashboard::Proxy']]],
+  ['combinedoperationsport',['CombinedOperationsPort',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_proxy_1_1_combined_operations_port.html#a1aeb258f747e5ac2bdc526e77fbcfb86',1,'Microsoft::Robotics::Services::SimpleDashboard::Proxy::CombinedOperationsPort']]],
+  ['connecttophysicalrobot',['ConnectToPhysicalRobot',['../class_e_e_g___gateway___unit_tests_1_1_main_tests.html#a779db09511858147d465aeaea4ec2b88',1,'EEG_Gateway_UnitTests::MainTests']]],
+  ['connecttorobot',['connectToRobot',['../class_e_e_g___gateway_1_1_e_e_g___main.html#a0d5c92ff40383dba1ad9371fd1653d0e',1,'EEG_Gateway::EEG_Main']]],
+  ['connecttorobotsim',['ConnectToRobotSim',['../class_e_e_g___gateway___unit_tests_1_1_main_tests.html#a6143660b0543da2f9176da9cf74aaae9',1,'EEG_Gateway_UnitTests::MainTests']]],
+  ['constructor',['Constructor',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_on_start_service.html#acef5b54240953a9c7cb988aa9945f422',1,'Microsoft::Robotics::Services::SimpleDashboard::OnStartService']]],
+  ['contract',['Contract',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_on_start_service.html#a25ec22a3d0b21f216c234cddbe4ab217',1,'Microsoft::Robotics::Services::SimpleDashboard::OnStartService']]],
+  ['contract',['Contract',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_proxy_1_1_contract.html',1,'Microsoft::Robotics::Services::SimpleDashboard::Proxy']]],
+  ['convertaftostring',['convertAftoString',['../class_e_e_g___gateway_1_1_e_e_g___main.html#a5e79f7916df9bd7b88f222678adcee38',1,'EEG_Gateway::EEG_Main']]],
+  ['convertcatostring',['convertCAtoString',['../class_e_e_g___gateway_1_1_e_e_g___main.html#a0a023f0b0bacbe466a6675b4d857dedf',1,'EEG_Gateway::EEG_Main']]],
+  ['copyto',['CopyTo',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_proxy_1_1_simple_dashboard_state.html#a17d18a4c56d046d67c39d7f34c3b9507',1,'Microsoft::Robotics::Services::SimpleDashboard::Proxy::SimpleDashboardState']]],
+  ['createservice',['CreateService',['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_proxy_1_1_contract.html#ab09e50c0a20fd3dda6ac112e9e18489b',1,'Microsoft.Robotics.Services.SimpleDashboard.Proxy.Contract.CreateService(global::Microsoft.Dss.Services.Constructor.ConstructorPort constructorServicePort, string service, params Microsoft.Dss.ServiceModel.Dssp.PartnerType[] partners)'],['../class_microsoft_1_1_robotics_1_1_services_1_1_simple_dashboard_1_1_proxy_1_1_contract.html#aae1ecf43462bf4c99d526073377415f9',1,'Microsoft.Robotics.Services.SimpleDashboard.Proxy.Contract.CreateService(global::Microsoft.Dss.Services.Constructor.ConstructorPort constructorServicePort, params Microsoft.Dss.ServiceModel.Dssp.PartnerType[] partners)']]],
+  ['cs',['cs',['../_e_e_g___gateway_2_simulation_2_drive_control_8cs.html#a0d1fc762906a42ff5fb4b29d16b57b30',1,'cs():&#160;DriveControl.cs'],['../_e_e_g___gateway_2_simulation_2_simple_dashboard_8cs.html#a0d1fc762906a42ff5fb4b29d16b57b30',1,'cs():&#160;SimpleDashboard.cs'],['../_robot_simulator_2_drive_control_8cs.html#a0d1fc762906a42ff5fb4b29d16b57b30',1,'cs():&#160;DriveControl.cs'],['../_robot_simulator_2_simple_dashboard_8cs.html#a0d1fc762906a42ff5fb4b29d16b57b30',1,'cs():&#160;SimpleDashboard.cs']]]
+];

@@ -1,29 +1,41 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+//  Author: Shaun Webb
+//  University: Sheffield Hallam University
+//  Website: shaunwebb.co.uk
+//  Github: TehWebby
+//-----------------------------------------------------------------------
+
+using System;
 using System.Windows.Forms;
 using Emotiv;
 using System.Linq;
 
 namespace EEG_Gateway
 {
+    /// <summary>
+    /// Train a users cognitive actions based on EEG
+    /// </summary>
     public class CognitiveTraining : Form
-    {
-        uint userId = 0;
-        bool neutral = true;
-        bool push = false;
-        bool pull = false;
-        bool left = false;
-        bool right = false;
+    {        
+        public uint userId = 0; ///< EPOC trainer ID
+        public bool neutral = true; ///< Cognitive action neutral
+        public bool push = false; ///< Cognitive action push/forward
+        public bool pull = false; ///< Cognitive action pull/backwards
+        public bool left = false; ///< Cognitive action left
+        public bool right = false; ///< Cognitive action right
 
         bool write = false;
         int numOfActions = 0;
         int totalActions = 0;
         int finalAction = 0;
-        Profile userProfile = new Profile();
-        string profileName;
+        public Profile userProfile = new Profile(); ///< Creates a new user Profile
+        public string profileName; ///< User Profile Name
         bool[] action = new bool[4]; //used to determine how many actions to activate
         bool[] notComplete = new bool[4];
 
-        //Total possible Cognitive actions using EPOC SDK
+        /// <summary>
+        /// Total possible Cognitive actions using EPOC SDK
+        /// </summary>
         public static EdkDll.EE_CognitivAction_t[] cognitivActionList = {
             EdkDll.EE_CognitivAction_t.COG_NEUTRAL,
             EdkDll.EE_CognitivAction_t.COG_PUSH,
@@ -51,15 +63,20 @@ namespace EEG_Gateway
         private Timer trainingTimer;
         private Label newProfileHeaderLbl;
         private System.ComponentModel.IContainer components;
-        
 
+        /// <summary>
+        /// Initializes training form
+        /// </summary>
         public void Initialize()
         {
             InitializeComponent();
             Show();
         }
 
-        private void InitializeComponent()
+        /// <summary>
+        /// Initializes training form components
+        /// </summary>
+        public void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CognitiveTraining));
@@ -189,9 +206,10 @@ namespace EEG_Gateway
 
         }
 
-        
-
-        private void startTrainBtn_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Start Training button event
+        /// </summary>
+        public void startTrainBtn_Click(object sender, EventArgs e)
         {
             profileName = profileNameTxt.Text;
             profileName = "_" + profileName + ".emu";
@@ -211,6 +229,7 @@ namespace EEG_Gateway
                     
             }
             /*
+            Action reminder
             action[0] == UP
             action[1] == DOWN
             action[2] == LEFT
@@ -229,10 +248,13 @@ namespace EEG_Gateway
             EmoEngine.Instance.Connect();
         }
 
-        private bool[] checkBoxTrainingCalc(bool[] action)
+        /// <summary>
+        /// Check box components checker
+        /// </summary>
+        public bool[] checkBoxTrainingCalc(bool[] action)
         {
             //Go through each checkbox and set bool array to true
-            int i = 0;
+            int i = 0; /** \brief interator */
             foreach (Control c in Controls)
             {
                 if ((c is CheckBox) && ((CheckBox)c).Checked)
@@ -242,8 +264,10 @@ namespace EEG_Gateway
             return action;
         }
 
-
-        void StartCognitivTraining(EdkDll.EE_CognitivAction_t cognitivAction)
+        /// <summary>
+        /// Starts cognitive training
+        /// </summary>
+        public void StartCognitivTraining(EdkDll.EE_CognitivAction_t cognitivAction)
         {
             if (cognitivAction == EdkDll.EE_CognitivAction_t.COG_NEUTRAL)
             {
@@ -275,7 +299,10 @@ namespace EEG_Gateway
             EmoEngine.Instance.CognitivSetTrainingControl(userId, EdkDll.EE_CognitivTrainingControl_t.COG_START);
         }
 
-        void SetActiveActions()
+        /// <summary>
+        /// Sets the allowed/restricted cognitive actions
+        /// </summary>
+        public void SetActiveActions()
         {
             uint cognitivActions = 0x0000;
             for (int i = 1; i < cognitivActionList.Length; i++)
@@ -285,7 +312,10 @@ namespace EEG_Gateway
             //EmoEngine.Instance.CognitivSetActiveActions(userId, cognitivActions);
         }
 
-        void Instance_CognitivTrainingCompleted(object sender, EmoEngineEventArgs e)
+        /// <summary>
+        /// Training completed
+        /// </summary>
+        public void Instance_CognitivTrainingCompleted(object sender, EmoEngineEventArgs e)
         {
             Console.WriteLine("Cognitiv Training completed");
             if ((notComplete[0]) && (action[0]))
@@ -311,20 +341,28 @@ namespace EEG_Gateway
             }
         }
 
-        void Instance_CognitivTrainingSucceeded(object sender, EmoEngineEventArgs e)
+        /// <summary>
+        /// Cognitive Training Succeeded
+        /// </summary>
+        public void Instance_CognitivTrainingSucceeded(object sender, EmoEngineEventArgs e)
         {
             Console.WriteLine("Cognitiv Training Succeeded");
             EmoEngine.Instance.CognitivSetTrainingControl(userId, EdkDll.EE_CognitivTrainingControl_t.COG_ACCEPT);
         }
 
-        void Instance_CognitivTrainingStarted(object sender, EmoEngineEventArgs e)
+        /// <summary>
+        /// Cognitive Training Started
+        /// </summary>
+        public void Instance_CognitivTrainingStarted(object sender, EmoEngineEventArgs e)
         {
             Console.WriteLine("Cognitiv Training started");
         }
 
-        void Instance_CognitivEmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
+        /// <summary>
+        /// Update and move to next Cognitive action
+        /// </summary>
+        public void Instance_CognitivEmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
         {
-            
             if (numOfActions >= totalActions)//total of action[] that is true
             {
                 Console.WriteLine("Cognitiv EmoState Updated...");
@@ -346,7 +384,10 @@ namespace EEG_Gateway
             
         }
 
-        void Instance_EmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
+        /// <summary>
+        /// Cognitive Action updated
+        /// </summary>
+        public void Instance_EmoStateUpdated(object sender, EmoStateUpdatedEventArgs e)
         {
             //Console.WriteLine("EmoState Updated..."); 
 
@@ -406,7 +447,10 @@ namespace EEG_Gateway
             //write is the save bool. Use this in the last training step (or each)
         }
 
-        private void trainingTimer_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// Process training timer
+        /// </summary>
+        public void trainingTimer_Tick(object sender, EventArgs e)
         {
             EmoEngine.Instance.ProcessEvents();
         }

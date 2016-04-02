@@ -1,4 +1,11 @@
-﻿using System;
+﻿//-----------------------------------------------------------------------
+//  Author: Shaun Webb
+//  University: Sheffield Hallam University
+//  Website: shaunwebb.co.uk
+//  Github: TehWebby
+//-----------------------------------------------------------------------
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EEG_Gateway;
 using System.Windows.Forms;
@@ -11,6 +18,9 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace EEG_Gateway_UnitTests
 {
+    /// <summary>
+    /// MainTests Unit tests for Gateway Application
+    /// </summary>
     [TestClass]
     public class MainTests
     {

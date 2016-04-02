@@ -1,9 +1,8 @@
 //-----------------------------------------------------------------------
-//  This file is part of Microsoft Robotics Developer Studio Code Samples.
-//
-//  Copyright (C) Microsoft Corporation.  All rights reserved.
-//
-//  $File: SimpleDashboard.cs $ $Revision: 6 $
+//  Author: Shaun Webb
+//  University: Sheffield Hallam University
+//  Website: shaunwebb.co.uk
+//  Github: TehWebby
 //-----------------------------------------------------------------------
 
 using System;

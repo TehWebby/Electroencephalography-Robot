@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['microsoft_5frobotics_5fservices_5fsimpledashboard_5fproxy_5fsimpledashboardstate_5fto_5fmicrosoft_5frobotics_5fservices_5fsimpledashboard_5fsimpledashboardstate',['Microsoft_Robotics_Services_SimpleDashboard_Proxy_SimpleDashboardState_TO_Microsoft_Robotics_Services_SimpleDashboard_SimpleDashboardState',['../class_dss_1_1_transforms_1_1_transform_user_1_1_transforms.html#a410c84715c1981192e449b3014935930',1,'Dss::Transforms::TransformUser::Transforms']]],
+  ['microsoft_5frobotics_5fservices_5fsimpledashboard_5fsimpledashboardstate_5fto_5fmicrosoft_5frobotics_5fservices_5fsimpledashboard_5fproxy_5fsimpledashboardstate',['Microsoft_Robotics_Services_SimpleDashboard_SimpleDashboardState_TO_Microsoft_Robotics_Services_SimpleDashboard_Proxy_SimpleDashboardState',['../class_dss_1_1_transforms_1_1_transform_user_1_1_transforms.html#af65b4e341fec9766d71fb07e52aa44a1',1,'Dss::Transforms::TransformUser::Transforms']]],
+  ['mytestinitialize',['MyTestInitialize',['../class_e_e_g___gateway___unit_tests_1_1_main_tests.html#a4bd4ec5576115084294e335869ff9e8b',1,'EEG_Gateway_UnitTests::MainTests']]]
+];

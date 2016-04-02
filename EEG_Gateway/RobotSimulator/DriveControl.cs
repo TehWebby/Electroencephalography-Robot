@@ -1,9 +1,8 @@
 //-----------------------------------------------------------------------
-//  Give my author details. SW
-//
-//  
-//
-//  
+//  Author: Shaun Webb
+//  University: Sheffield Hallam University
+//  Website: shaunwebb.co.uk
+//  Github: TehWebby
 //-----------------------------------------------------------------------
 
 using System;
@@ -31,6 +30,9 @@ using System.Threading;
 
 namespace Microsoft.Robotics.Services.SimpleDashboard
 {
+    /// <summary>
+    /// Robotics Simulator controller
+    /// </summary>
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.Single)]
     partial class DriveControl : Form, IFromServerToClientMessages
     {
