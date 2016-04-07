@@ -31,7 +31,7 @@ namespace EEG_Gateway
     /// <summary>
     /// EEG_Main Gateway Application
     /// </summary>
-    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant, InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public partial class EEG_Main : Form, IFromClientToServerMessages
     {        
         public bool isLoad = true; /// Is user profile loaded

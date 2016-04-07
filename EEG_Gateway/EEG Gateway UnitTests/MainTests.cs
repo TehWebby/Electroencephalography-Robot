@@ -26,6 +26,7 @@ namespace EEG_Gateway_UnitTests
     {
         EEG_Main form;
         public static int testCount = 0;
+        int testLimit = 30;
         [TestInitialize()]
         public void MyTestInitialize(){
             form = new EEG_Gateway.EEG_Main();
@@ -49,9 +50,10 @@ namespace EEG_Gateway_UnitTests
         [TestMethod]
         public void UI_Updates()
         {
+
             Random r = new Random();
             int x = 0;
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < testLimit; i++)
             {
                 x = r.Next(1, 5);
                 moveRobot(x);
