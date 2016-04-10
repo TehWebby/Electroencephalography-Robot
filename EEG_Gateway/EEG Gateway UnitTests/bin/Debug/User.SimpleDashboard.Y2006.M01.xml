@@ -4,6 +4,11 @@
         <name>User.SimpleDashboard.Y2006.M01</name>
     </assembly>
     <members>
+        <member name="T:Microsoft.Robotics.Services.SimpleDashboard.DriveControl">
+            <summary>
+            Robotics Simulator controller
+            </summary>
+        </member>
         <member name="F:Microsoft.Robotics.Services.SimpleDashboard.DriveControl.components">
             <summary>
             Required designer variable.

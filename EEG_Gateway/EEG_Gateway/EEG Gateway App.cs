@@ -45,7 +45,7 @@ namespace EEG_Gateway
         public ServiceHost _serverHost; /// used to contact simulation
         public List<Guid> _registeredClients = new List<Guid>(); /// Lists the registered users GUID
         public bool simRunning = false; /// Is the simulator active
-
+        public static bool[] allowedActions = new bool[5];
 
         /// <summary>
         /// EEG Main Constructor
@@ -53,10 +53,10 @@ namespace EEG_Gateway
         public EEG_Main()
         {
             InitializeComponent();
-            //liveEEG.Enabled = false;
+            //Setup which controls (directions) are enabled
+            setupAllowedActions();
             
-            //Used for application configuration settings, such as enable/disable logging
-            //add more here
+            
 
             //Set the correct directory for loading the user profile data file
             browseForProfileDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\Profiles";
@@ -80,12 +80,6 @@ namespace EEG_Gateway
             // Handle the ApplicationExit event to know when the application is exiting.
             Application.ApplicationExit += new EventHandler(OnApplicationExit);
 
-            /*ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = "C:\\Users\\Webby\\Microsoft Robotics Dev Studio 4\\bin\\DssHost32.exe";
-            startInfo.Arguments = "-p:50000 -t:50001 -m:Config\\SimpleSimulatedRobot.user.manifest.xml";
-            Process.Start(startInfo);*/
-
-
             //listen for simulation localhost
             //setup WCF details
             _serverHost = new ServiceHost(this);
@@ -93,6 +87,12 @@ namespace EEG_Gateway
             serialPortArduino.PortName = "COM5";
             serialPortArduino.BaudRate = 9600;
 
+        }
+
+        private void setupAllowedActions()
+        {
+            for (int i=1;i<5;i++)
+                allowedActions[i] = true;
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace EEG_Gateway
             {
                 //Try to disconnect from the emotiv engine as the app closes
                 engine.Disconnect();
-                //TODO could backup or log data completed to a csv file
+                
             }
             catch(Exception eX)
             {
@@ -849,9 +849,12 @@ namespace EEG_Gateway
         {
             string cmd = latestCogTxt.Text;
             if (cmd == "1" || cmd == "2" || cmd == "3" || cmd == "4")
-                return true;
-            else
-                return false;
+            {
+                if (allowedActions[Convert.ToInt16(cmd)] == true)
+                    return true;
+
+            }  
+            return false;
         }
 
         private void timerStatus_Tick(object sender, EventArgs e)
@@ -874,6 +877,11 @@ namespace EEG_Gateway
             if (_registeredClients.Count > 0)
                 _registeredClients.RemoveAt(0);
             simRunning = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

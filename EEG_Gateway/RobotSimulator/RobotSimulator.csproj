@@ -140,11 +140,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\Config\SimpleDashboard.user.manifest.xml">
-      <Link>SimpleDashboard.user.manifest.xml</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

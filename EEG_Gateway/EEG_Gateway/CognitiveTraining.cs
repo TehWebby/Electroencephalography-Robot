@@ -62,6 +62,8 @@ namespace EEG_Gateway
         private CheckBox trainBox1;
         private Timer trainingTimer;
         private Label newProfileHeaderLbl;
+        private Label lblAid;
+        private Label txtTraining;
         private System.ComponentModel.IContainer components;
 
         /// <summary>
@@ -90,6 +92,8 @@ namespace EEG_Gateway
             this.trainBox1 = new System.Windows.Forms.CheckBox();
             this.trainingTimer = new System.Windows.Forms.Timer(this.components);
             this.newProfileHeaderLbl = new System.Windows.Forms.Label();
+            this.lblAid = new System.Windows.Forms.Label();
+            this.txtTraining = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // profileNameTxt
@@ -113,7 +117,7 @@ namespace EEG_Gateway
             // 
             this.trainActionsLbl.AutoSize = true;
             this.trainActionsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trainActionsLbl.Location = new System.Drawing.Point(129, 113);
+            this.trainActionsLbl.Location = new System.Drawing.Point(114, 114);
             this.trainActionsLbl.Name = "trainActionsLbl";
             this.trainActionsLbl.Size = new System.Drawing.Size(192, 18);
             this.trainActionsLbl.TabIndex = 9;
@@ -187,9 +191,30 @@ namespace EEG_Gateway
             this.newProfileHeaderLbl.TabIndex = 15;
             this.newProfileHeaderLbl.Text = "Create a new EPOC EEG Profile";
             // 
+            // lblAid
+            // 
+            this.lblAid.AutoSize = true;
+            this.lblAid.Location = new System.Drawing.Point(347, 153);
+            this.lblAid.Name = "lblAid";
+            this.lblAid.Size = new System.Drawing.Size(70, 17);
+            this.lblAid.TabIndex = 17;
+            this.lblAid.Text = "Visual Aid";
+            // 
+            // txtTraining
+            // 
+            this.txtTraining.AutoSize = true;
+            this.txtTraining.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTraining.Location = new System.Drawing.Point(354, 170);
+            this.txtTraining.Name = "txtTraining";
+            this.txtTraining.Size = new System.Drawing.Size(36, 52);
+            this.txtTraining.TabIndex = 18;
+            this.txtTraining.Text = ".";
+            // 
             // CognitiveTraining
             // 
-            this.ClientSize = new System.Drawing.Size(429, 293);
+            this.ClientSize = new System.Drawing.Size(429, 282);
+            this.Controls.Add(this.txtTraining);
+            this.Controls.Add(this.lblAid);
             this.Controls.Add(this.newProfileHeaderLbl);
             this.Controls.Add(this.trainBox1);
             this.Controls.Add(this.trainBox2);
@@ -213,7 +238,7 @@ namespace EEG_Gateway
         {
             profileName = profileNameTxt.Text;
             profileName = "_" + profileName + ".emu";
-
+            EEG_Main.allowedActions = new bool[5];
             for (int i = 0; i < notComplete.Length; i++)
                 notComplete[i] = true;
             
@@ -225,6 +250,7 @@ namespace EEG_Gateway
                 {
                     totalActions++;
                     finalAction = i;
+                    EEG_Main.allowedActions[i + 1] = true;
                 }
                     
             }
@@ -258,7 +284,7 @@ namespace EEG_Gateway
             foreach (Control c in Controls)
             {
                 if ((c is CheckBox) && ((CheckBox)c).Checked)
-                    action[i-1] = true;
+                    action[i-3] = true;
                 i++;
             }
             return action;
@@ -272,28 +298,33 @@ namespace EEG_Gateway
             if (cognitivAction == EdkDll.EE_CognitivAction_t.COG_NEUTRAL)
             {
                 Console.WriteLine("Neutral Training");
+                txtTraining.Text = "x";
                 //    EmoEngine.Instance.CognitivSetActiveActions((uint)userId, 0x0000);
             }
             else if ((cognitivAction == EdkDll.EE_CognitivAction_t.COG_PUSH) && (action[0]))
             {
                 Console.WriteLine("Push Training");
+                txtTraining.Text = "⬆";
                 //    EmoEngine.Instance.CognitivSetActiveActions((uint)userId, 0x0002);
             }
             else if ((cognitivAction == EdkDll.EE_CognitivAction_t.COG_PULL) && (action[1]))
             {
                 Console.WriteLine("Pull Training");
+                txtTraining.Text = "⬇";
                 //    EmoEngine.Instance.CognitivSetActiveActions((uint)userId, 0x0004);
             }
-            /*else if ((cognitivAction == EdkDll.EE_CognitivAction_t.COG_LEFT) && (action[2]))
+            else if ((cognitivAction == EdkDll.EE_CognitivAction_t.COG_LEFT) && (action[2]))
             {
                 Console.WriteLine("Left Training");
+                txtTraining.Text = "⬅";
                 //EmoEngine.Instance.CognitivSetActiveActions((uint)userId, 0x0010);
             }
             else if ((cognitivAction == EdkDll.EE_CognitivAction_t.COG_RIGHT) && (action[3]))
             {
                 Console.WriteLine("Right Training");
+                txtTraining.Text = "➡";
                 //    EmoEngine.Instance.CognitivSetActiveActions((uint)userId, 0x0012);
-            }*/
+            }
 
             EmoEngine.Instance.CognitivSetTrainingAction(userId, cognitivAction);
             EmoEngine.Instance.CognitivSetTrainingControl(userId, EdkDll.EE_CognitivTrainingControl_t.COG_START);
@@ -322,10 +353,10 @@ namespace EEG_Gateway
                 push = true;
             else if ((notComplete[1]) && (action[1]))
                 pull = true;
-            /*else if ((notComplete[2]) && (action[2]))
+            else if ((notComplete[2]) && (action[2]))
                 left = true;
             else if ((notComplete[3]) && (action[3]))
-                right = true;*/
+                right = true;
             //else
                 //write = false;
             
@@ -368,18 +399,24 @@ namespace EEG_Gateway
                 Console.WriteLine("Cognitiv EmoState Updated...");
                 EmoState es = e.emoState;
                 EdkDll.EE_CognitivAction_t currentAction = es.CognitivGetCurrentAction();
-                if (currentAction == EdkDll.EE_CognitivAction_t.COG_NEUTRAL)
-                    Console.WriteLine("Current Action is COG_NEUTRAL");
-                if (currentAction == EdkDll.EE_CognitivAction_t.COG_PUSH)
-                    Console.WriteLine("Current Action is COG_PUSH");
-                if (currentAction == EdkDll.EE_CognitivAction_t.COG_PULL)
-                    Console.WriteLine("Current Action is COG_PULL");
+                //if (currentAction == EdkDll.EE_CognitivAction_t.COG_NEUTRAL)
+                //{
+                //    Console.WriteLine("Current Action is COG_NEUTRAL");
+                //}
+                //if (currentAction == EdkDll.EE_CognitivAction_t.COG_PUSH)
+                //{
+                //    Console.WriteLine("Current Action is COG_PUSH");
+                //}
+                //if (currentAction == EdkDll.EE_CognitivAction_t.COG_PULL)
+                //{
+                //    Console.WriteLine("Current Action is COG_PULL");
+                //}
                 /*if (currentAction == EdkDll.EE_CognitivAction_t.COG_LEFT)
                     Console.WriteLine("Current Action is COG_LEFT");
                 if (currentAction == EdkDll.EE_CognitivAction_t.COG_RIGHT)
                     Console.WriteLine("Current Action is COG_RIGHT");*/
                 float power = es.CognitivGetCurrentActionPower();
-                Console.WriteLine("Current action power {0}: " + power);
+                //Console.WriteLine("Current action power {0}: " + power);
             }
             
         }
@@ -398,9 +435,9 @@ namespace EEG_Gateway
 
                 EdkDll.EE_CognitivAction_t actions =
                 EdkDll.EE_CognitivAction_t.COG_PUSH
-                | EdkDll.EE_CognitivAction_t.COG_PULL;
-                /*| EdkDll.EE_CognitivAction_t.COG_LEFT
-                | EdkDll.EE_CognitivAction_t.COG_RIGHT;*/
+                | EdkDll.EE_CognitivAction_t.COG_PULL
+                | EdkDll.EE_CognitivAction_t.COG_LEFT
+                | EdkDll.EE_CognitivAction_t.COG_RIGHT;
 
                 EmoEngine.Instance.CognitivSetActiveActions((uint)userId, (UInt32)actions);
 
@@ -425,7 +462,7 @@ namespace EEG_Gateway
                 numOfActions++;
                 notComplete[1] = false;
             }
-            /*else if (left)
+            else if (left)
             {
                 StartCognitivTraining(EdkDll.EE_CognitivAction_t.COG_LEFT);
                 write = true;
@@ -440,7 +477,7 @@ namespace EEG_Gateway
                 right = false;
                 numOfActions++;
                 notComplete[3] = false;
-            }*/
+            }
 
             
 
