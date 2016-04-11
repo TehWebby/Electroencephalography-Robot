@@ -56,9 +56,9 @@
             this.browseForProfileDialog = new System.Windows.Forms.OpenFileDialog();
             this.profileNameLbl = new System.Windows.Forms.Label();
             this.btnSettings = new System.Windows.Forms.Button();
-            this.loggingLbl = new System.Windows.Forms.Label();
+            this.lblLogging = new System.Windows.Forms.Label();
             this.loggingEnabledLbl = new System.Windows.Forms.Label();
-            this.powerLbl = new System.Windows.Forms.Label();
+            this.lblPower = new System.Windows.Forms.Label();
             this.btnNewProfile = new System.Windows.Forms.Button();
             this.btnRunSimulator = new System.Windows.Forms.Button();
             this.btnRobot = new System.Windows.Forms.Button();
@@ -224,7 +224,7 @@
             // 
             // btnLoadProf
             // 
-            this.btnLoadProf.Location = new System.Drawing.Point(848, 532);
+            this.btnLoadProf.Location = new System.Drawing.Point(657, 418);
             this.btnLoadProf.Name = "btnLoadProf";
             this.btnLoadProf.Size = new System.Drawing.Size(114, 26);
             this.btnLoadProf.TabIndex = 13;
@@ -265,44 +265,44 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(782, 400);
+            this.btnSettings.Location = new System.Drawing.Point(860, 410);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(88, 30);
             this.btnSettings.TabIndex = 16;
-            this.btnSettings.Text = "Settings";
+            this.btnSettings.Text = "Toggle";
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.settingsBtn_Click);
             // 
-            // loggingLbl
+            // lblLogging
             // 
-            this.loggingLbl.AutoSize = true;
-            this.loggingLbl.Location = new System.Drawing.Point(858, 371);
-            this.loggingLbl.Name = "loggingLbl";
-            this.loggingLbl.Size = new System.Drawing.Size(38, 17);
-            this.loggingLbl.TabIndex = 17;
-            this.loggingLbl.Text = "True";
+            this.lblLogging.AutoSize = true;
+            this.lblLogging.Location = new System.Drawing.Point(910, 390);
+            this.lblLogging.Name = "lblLogging";
+            this.lblLogging.Size = new System.Drawing.Size(38, 17);
+            this.lblLogging.TabIndex = 17;
+            this.lblLogging.Text = "True";
             // 
             // loggingEnabledLbl
             // 
             this.loggingEnabledLbl.AutoSize = true;
-            this.loggingEnabledLbl.Location = new System.Drawing.Point(734, 371);
+            this.loggingEnabledLbl.Location = new System.Drawing.Point(786, 390);
             this.loggingEnabledLbl.Name = "loggingEnabledLbl";
             this.loggingEnabledLbl.Size = new System.Drawing.Size(118, 17);
             this.loggingEnabledLbl.TabIndex = 18;
             this.loggingEnabledLbl.Text = "Logging enabled:";
             // 
-            // powerLbl
+            // lblPower
             // 
-            this.powerLbl.AutoSize = true;
-            this.powerLbl.Location = new System.Drawing.Point(111, 31);
-            this.powerLbl.Name = "powerLbl";
-            this.powerLbl.Size = new System.Drawing.Size(47, 17);
-            this.powerLbl.TabIndex = 19;
-            this.powerLbl.Text = "Power";
+            this.lblPower.AutoSize = true;
+            this.lblPower.Location = new System.Drawing.Point(111, 31);
+            this.lblPower.Name = "lblPower";
+            this.lblPower.Size = new System.Drawing.Size(47, 17);
+            this.lblPower.TabIndex = 19;
+            this.lblPower.Text = "Power";
             // 
             // btnNewProfile
             // 
-            this.btnNewProfile.Location = new System.Drawing.Point(848, 493);
+            this.btnNewProfile.Location = new System.Drawing.Point(657, 379);
             this.btnNewProfile.Name = "btnNewProfile";
             this.btnNewProfile.Size = new System.Drawing.Size(114, 28);
             this.btnNewProfile.TabIndex = 20;
@@ -312,7 +312,7 @@
             // 
             // btnRunSimulator
             // 
-            this.btnRunSimulator.Location = new System.Drawing.Point(657, 493);
+            this.btnRunSimulator.Location = new System.Drawing.Point(88, 379);
             this.btnRunSimulator.Name = "btnRunSimulator";
             this.btnRunSimulator.Size = new System.Drawing.Size(170, 28);
             this.btnRunSimulator.TabIndex = 21;
@@ -322,7 +322,7 @@
             // 
             // btnRobot
             // 
-            this.btnRobot.Location = new System.Drawing.Point(224, 493);
+            this.btnRobot.Location = new System.Drawing.Point(280, 379);
             this.btnRobot.Name = "btnRobot";
             this.btnRobot.Size = new System.Drawing.Size(162, 33);
             this.btnRobot.TabIndex = 23;
@@ -333,7 +333,7 @@
             // lblRobotStatus
             // 
             this.lblRobotStatus.AutoSize = true;
-            this.lblRobotStatus.Location = new System.Drawing.Point(221, 529);
+            this.lblRobotStatus.Location = new System.Drawing.Point(277, 415);
             this.lblRobotStatus.Name = "lblRobotStatus";
             this.lblRobotStatus.Size = new System.Drawing.Size(94, 17);
             this.lblRobotStatus.TabIndex = 24;
@@ -343,7 +343,7 @@
             // 
             this.lblRobotStatusData.AutoSize = true;
             this.lblRobotStatusData.ForeColor = System.Drawing.Color.Red;
-            this.lblRobotStatusData.Location = new System.Drawing.Point(321, 529);
+            this.lblRobotStatusData.Location = new System.Drawing.Point(377, 415);
             this.lblRobotStatusData.Name = "lblRobotStatusData";
             this.lblRobotStatusData.Size = new System.Drawing.Size(94, 17);
             this.lblRobotStatusData.TabIndex = 25;
@@ -357,9 +357,9 @@
             // 
             // btnExitSim
             // 
-            this.btnExitSim.Location = new System.Drawing.Point(657, 532);
+            this.btnExitSim.Location = new System.Drawing.Point(88, 418);
             this.btnExitSim.Name = "btnExitSim";
-            this.btnExitSim.Size = new System.Drawing.Size(170, 26);
+            this.btnExitSim.Size = new System.Drawing.Size(170, 28);
             this.btnExitSim.TabIndex = 26;
             this.btnExitSim.Text = "Disconnect from Sim";
             this.btnExitSim.UseVisualStyleBackColor = true;
@@ -379,9 +379,9 @@
             this.chkBoxInvert.AutoSize = true;
             this.chkBoxInvert.Location = new System.Drawing.Point(15, 60);
             this.chkBoxInvert.Name = "chkBoxInvert";
-            this.chkBoxInvert.Size = new System.Drawing.Size(65, 21);
+            this.chkBoxInvert.Size = new System.Drawing.Size(67, 21);
             this.chkBoxInvert.TabIndex = 28;
-            this.chkBoxInvert.Text = "Invert";
+            this.chkBoxInvert.Text = "Assist";
             this.chkBoxInvert.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -390,8 +390,8 @@
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.chkBoxInvert);
             this.panel1.Controls.Add(this.latestCogTxt);
-            this.panel1.Controls.Add(this.powerLbl);
-            this.panel1.Location = new System.Drawing.Point(712, 251);
+            this.panel1.Controls.Add(this.lblPower);
+            this.panel1.Location = new System.Drawing.Point(724, 261);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 100);
             this.panel1.TabIndex = 29;
@@ -410,7 +410,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(967, 577);
+            this.ClientSize = new System.Drawing.Size(967, 458);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblSignal);
             this.Controls.Add(this.btnExitSim);
@@ -420,7 +420,7 @@
             this.Controls.Add(this.btnRunSimulator);
             this.Controls.Add(this.btnNewProfile);
             this.Controls.Add(this.loggingEnabledLbl);
-            this.Controls.Add(this.loggingLbl);
+            this.Controls.Add(this.lblLogging);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.profileNameLbl);
             this.Controls.Add(this.signalImg);
@@ -455,9 +455,9 @@
         private System.Windows.Forms.OpenFileDialog browseForProfileDialog;
         private System.Windows.Forms.Label profileNameLbl;
         private System.Windows.Forms.Button btnSettings;
-        private System.Windows.Forms.Label loggingLbl;
+        private System.Windows.Forms.Label lblLogging;
         private System.Windows.Forms.Label loggingEnabledLbl;
-        private System.Windows.Forms.Label powerLbl;
+        private System.Windows.Forms.Label lblPower;
         private System.Windows.Forms.Button btnNewProfile;
         private System.Windows.Forms.Label lblRobotStatus;
         private System.Windows.Forms.Label lblRobotStatusData;

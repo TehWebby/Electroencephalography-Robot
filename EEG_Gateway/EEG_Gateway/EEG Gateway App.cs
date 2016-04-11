@@ -64,8 +64,9 @@ namespace EEG_Gateway
             //set configuration settings
             if (File.Exists("ConfigurationSettings.bin"))
                 deserializeSettings();
-            loggingLbl.Text = appSettings.Logging.ToString();
-
+            lblLogging.Text = appSettings.Logging.ToString();
+            
+            setButtonSettings(appSettings.Logging);
             //Modifications to GUI after init completed
             eegEmotionChart.ChartAreas[0].AxisY.Maximum = 1;
             setupControls();
@@ -87,6 +88,14 @@ namespace EEG_Gateway
             serialPortArduino.PortName = "COM5";
             serialPortArduino.BaudRate = 9600;
 
+        }
+
+        private void setButtonSettings(bool logging)
+        {
+            if (logging)
+                btnSettings.Text = "Disable";
+            else
+                btnSettings.Text = "Enable";
         }
 
         private void setupAllowedActions()
@@ -403,7 +412,7 @@ namespace EEG_Gateway
             else if (currentAction == EdkDll.EE_CognitivAction_t.COG_RIGHT)
                 latestCogTxt.Text = "4";
             float power = es.CognitivGetCurrentActionPower();
-            powerLbl.Text = power.ToString();
+            lblPower.Text = power.ToString();
             latestAction = currentAction;
         }
         
@@ -468,7 +477,8 @@ namespace EEG_Gateway
             serializeSettings(appSettings);
 
             //Update the relevant GUI label with latest status
-            loggingLbl.Text = appSettings.Logging.ToString();
+            lblLogging.Text = appSettings.Logging.ToString();
+            setButtonSettings(appSettings.Logging);
         }
 
         /// <summary>
@@ -764,8 +774,8 @@ namespace EEG_Gateway
             if (latestAction != 0)
             {
                 float cogPower;
-                if (powerLbl.Text != "Power")//ensure some power value is set
-                    cogPower = float.Parse(powerLbl.Text);
+                if (lblPower.Text != "Power")//ensure some power value is set
+                    cogPower = float.Parse(lblPower.Text);
                 else
                     cogPower = 0;
 
