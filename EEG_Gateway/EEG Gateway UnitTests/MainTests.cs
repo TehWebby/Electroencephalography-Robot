@@ -29,18 +29,17 @@ namespace EEG_Gateway_UnitTests
         int testLimit = 30;
         [TestInitialize()]
         public void MyTestInitialize(){
+            //start the form
             form = new EEG_Gateway.EEG_Main();
         }
 
         [TestMethod]
         public void StartGUI()
         {            
-            //Thread.CurrentThread.IsBackground = true;
-            //Application.DoEvents();
-            //var form = new EEG_Gateway.EEG_Main();
             form.Load += (sender, e) => (sender as EEG_Gateway.EEG_Main).Visible = true;
             form.Show();
             form.MinimizeBox = false;
+            //ensure form is loaded
             Assert.IsTrue(form != null);
             incTestCount();
             MessageBox.Show("Tests started!");
@@ -50,7 +49,7 @@ namespace EEG_Gateway_UnitTests
         [TestMethod]
         public void UI_Updates()
         {
-
+            //checks that the UI buttons are being set when actions are received
             Random r = new Random();
             int x = 0;
             for (int i = 0; i < testLimit; i++)
@@ -64,6 +63,7 @@ namespace EEG_Gateway_UnitTests
         [TestMethod]
         public void graphUpdates()
         {    
+            //check the chart is updating when receiving affective data
             new Thread(() =>
             {
                 Thread.Sleep(2000);
@@ -90,6 +90,7 @@ namespace EEG_Gateway_UnitTests
         [TestMethod]
         public void ConnectToPhysicalRobot()
         {
+            //test connection to real zumo ardunio
             form.connectToRobot();
             Assert.IsTrue(form.serialPortArduino.IsOpen);
             Assert.IsTrue(form.serialPortArduino.BaudRate == 9600);
@@ -105,6 +106,7 @@ namespace EEG_Gateway_UnitTests
                 Random r = new Random();
                 for (int i = 0; i < 10; i++)
                 {
+                    //send random move commands to the robot
                     form.Focus();
                     int x = r.Next(1, 5);
                     moveRobot(x);
@@ -123,6 +125,7 @@ namespace EEG_Gateway_UnitTests
         [TestMethod]
         public void ConnectToRobotSim()
         {
+            //try to connect to the simulated robot
             form.Focus();
             form.runSim();
 

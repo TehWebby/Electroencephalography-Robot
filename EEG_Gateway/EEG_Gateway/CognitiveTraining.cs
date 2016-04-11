@@ -408,24 +408,8 @@ namespace EEG_Gateway
                 Console.WriteLine("Cognitiv EmoState Updated...");
                 EmoState es = e.emoState;
                 EdkDll.EE_CognitivAction_t currentAction = es.CognitivGetCurrentAction();
-                //if (currentAction == EdkDll.EE_CognitivAction_t.COG_NEUTRAL)
-                //{
-                //    Console.WriteLine("Current Action is COG_NEUTRAL");
-                //}
-                //if (currentAction == EdkDll.EE_CognitivAction_t.COG_PUSH)
-                //{
-                //    Console.WriteLine("Current Action is COG_PUSH");
-                //}
-                //if (currentAction == EdkDll.EE_CognitivAction_t.COG_PULL)
-                //{
-                //    Console.WriteLine("Current Action is COG_PULL");
-                //}
-                /*if (currentAction == EdkDll.EE_CognitivAction_t.COG_LEFT)
-                    Console.WriteLine("Current Action is COG_LEFT");
-                if (currentAction == EdkDll.EE_CognitivAction_t.COG_RIGHT)
-                    Console.WriteLine("Current Action is COG_RIGHT");*/
+                //current action now contains the cognitive action
                 float power = es.CognitivGetCurrentActionPower();
-                //Console.WriteLine("Current action power {0}: " + power);
             }
             
         }
@@ -442,14 +426,15 @@ namespace EEG_Gateway
                 //7 highest sensitivity
                 EmoEngine.Instance.CognitivSetActivationLevel(0, 7);
 
+                //total possible cognitiv actions to allow
                 EdkDll.EE_CognitivAction_t actions =
                 EdkDll.EE_CognitivAction_t.COG_PUSH
                 | EdkDll.EE_CognitivAction_t.COG_PULL
                 | EdkDll.EE_CognitivAction_t.COG_LEFT
                 | EdkDll.EE_CognitivAction_t.COG_RIGHT;
 
+                //set the cognitive actions.
                 EmoEngine.Instance.CognitivSetActiveActions((uint)userId, (UInt32)actions);
-
                 //EmoEngine.Instance.CognitivSetActiveActions((uint)userId, 0x0000 | 0x0002 | 0x0004 | 0x0010 | 0x0012);
                 StartCognitivTraining(EdkDll.EE_CognitivAction_t.COG_NEUTRAL);
                 neutral = false;
@@ -457,6 +442,7 @@ namespace EEG_Gateway
             }
             if (push)
             {
+                //write is the save bool. Use this in the last training step (or each)
                 StartCognitivTraining(EdkDll.EE_CognitivAction_t.COG_PUSH);
                 push = false;
                 write = true;
@@ -487,10 +473,7 @@ namespace EEG_Gateway
                 numOfActions++;
                 notComplete[3] = false;
             }
-
             
-
-            //write is the save bool. Use this in the last training step (or each)
         }
 
         /// <summary>

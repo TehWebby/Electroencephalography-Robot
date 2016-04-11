@@ -45,7 +45,7 @@ namespace EEG_Gateway
         public ServiceHost _serverHost; /// used to contact simulation
         public List<Guid> _registeredClients = new List<Guid>(); /// Lists the registered users GUID
         public bool simRunning = false; /// Is the simulator active
-        public static bool[] allowedActions = new bool[5];
+        public static bool[] allowedActions = new bool[5]; ///used to set which actions are allowed
 
         /// <summary>
         /// EEG Main Constructor
