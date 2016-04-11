@@ -19,3 +19,4 @@ F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\obj\Debug\EEG 
 F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\obj\Debug\EEG Gateway UnitTests.dll
 F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\obj\Debug\EEG Gateway UnitTests.pdb
 F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\User.SimpleDashboard.Y2006.M01.xml
+F:\Electroencephalography-Robot\EEG_Gateway\EEG Gateway UnitTests\bin\Debug\EEG Gateway.pdb

@@ -691,6 +691,7 @@ namespace Microsoft.Robotics.Services.SimpleDashboard
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Location = new System.Drawing.Point(-5000, 0);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(642, 703);
             this.Name = "DriveControl";

@@ -70,11 +70,19 @@ namespace EEG_Gateway_UnitTests
                 int series = form.eegEmotionChart.Series.Count - 1;
                 for (int l = 0; l < series; l++)
                 {
-                    if (form.eegEmotionChart.Series[l].Points[0] != null)
+                    try
                     {
-                        Assert.IsTrue(form.eegEmotionChart.Series[l].Points[0] != null);
-                        incTestCount();
+                        if (form.eegEmotionChart.Series[l].Points[0] != null)
+                        {
+                            Assert.IsTrue(form.eegEmotionChart.Series[l].Points[0] != null);
+                            incTestCount();
+                        }
                     }
+                    catch
+                    {
+                        MessageBox.Show("Test Failed: Check connection to headset");
+                    }
+                    
                 }
             }).Start();
         }
@@ -90,10 +98,12 @@ namespace EEG_Gateway_UnitTests
             incTestCount();
             incTestCount();
 
+            graphUpdates();
+
             new Thread(() =>
             {
                 Random r = new Random();
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     form.Focus();
                     int x = r.Next(1, 5);
@@ -102,7 +112,7 @@ namespace EEG_Gateway_UnitTests
                     //isUIMoveBtnSet(x);
                     Assert.IsTrue(x > 0 && x < 5);
                     incTestCount();
-                    Thread.Sleep(1200);
+                    Thread.Sleep(600);
                 }
                 //MessageBox.Show("Completed robot tests!");
                 
@@ -118,6 +128,8 @@ namespace EEG_Gateway_UnitTests
 
             Assert.IsTrue(form.simRunning == true);
             incTestCount();
+
+            graphUpdates();
             new Thread(() =>
             {
                 //only try a set amount of times or will loop forever
