@@ -68,8 +68,12 @@
             this.timerStatus = new System.Windows.Forms.Timer(this.components);
             this.btnExitSim = new System.Windows.Forms.Button();
             this.lblSignal = new System.Windows.Forms.Label();
+            this.chkBoxInvert = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCmdWindow = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // latestCogTxt
@@ -77,7 +81,7 @@
             this.latestCogTxt.BackColor = System.Drawing.Color.Black;
             this.latestCogTxt.Font = new System.Drawing.Font("Consolas", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.latestCogTxt.ForeColor = System.Drawing.Color.White;
-            this.latestCogTxt.Location = new System.Drawing.Point(878, 262);
+            this.latestCogTxt.Location = new System.Drawing.Point(77, 31);
             this.latestCogTxt.MaxLength = 1;
             this.latestCogTxt.Name = "latestCogTxt";
             this.latestCogTxt.Size = new System.Drawing.Size(28, 23);
@@ -86,7 +90,7 @@
             // 
             // upBtn
             // 
-            this.upBtn.Location = new System.Drawing.Point(763, 69);
+            this.upBtn.Location = new System.Drawing.Point(751, 99);
             this.upBtn.Name = "upBtn";
             this.upBtn.Size = new System.Drawing.Size(76, 44);
             this.upBtn.TabIndex = 1;
@@ -95,7 +99,7 @@
             // 
             // downBtn
             // 
-            this.downBtn.Location = new System.Drawing.Point(763, 153);
+            this.downBtn.Location = new System.Drawing.Point(751, 183);
             this.downBtn.Name = "downBtn";
             this.downBtn.Size = new System.Drawing.Size(76, 44);
             this.downBtn.TabIndex = 2;
@@ -104,7 +108,7 @@
             // 
             // leftBtn
             // 
-            this.leftBtn.Location = new System.Drawing.Point(669, 110);
+            this.leftBtn.Location = new System.Drawing.Point(657, 140);
             this.leftBtn.Name = "leftBtn";
             this.leftBtn.Size = new System.Drawing.Size(76, 44);
             this.leftBtn.TabIndex = 3;
@@ -113,7 +117,7 @@
             // 
             // rightBtn
             // 
-            this.rightBtn.Location = new System.Drawing.Point(860, 110);
+            this.rightBtn.Location = new System.Drawing.Point(848, 140);
             this.rightBtn.Name = "rightBtn";
             this.rightBtn.Size = new System.Drawing.Size(76, 44);
             this.rightBtn.TabIndex = 4;
@@ -122,7 +126,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(806, 262);
+            this.textBox1.Location = new System.Drawing.Point(15, 31);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(56, 23);
@@ -131,7 +135,7 @@
             // eegCogLbl
             // 
             this.eegCogLbl.AutoSize = true;
-            this.eegCogLbl.Location = new System.Drawing.Point(712, 220);
+            this.eegCogLbl.Location = new System.Drawing.Point(673, 76);
             this.eegCogLbl.Name = "eegCogLbl";
             this.eegCogLbl.Size = new System.Drawing.Size(215, 17);
             this.eegCogLbl.TabIndex = 6;
@@ -261,7 +265,7 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(857, 374);
+            this.btnSettings.Location = new System.Drawing.Point(782, 400);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(88, 30);
             this.btnSettings.TabIndex = 16;
@@ -272,7 +276,7 @@
             // loggingLbl
             // 
             this.loggingLbl.AutoSize = true;
-            this.loggingLbl.Location = new System.Drawing.Point(924, 354);
+            this.loggingLbl.Location = new System.Drawing.Point(858, 371);
             this.loggingLbl.Name = "loggingLbl";
             this.loggingLbl.Size = new System.Drawing.Size(38, 17);
             this.loggingLbl.TabIndex = 17;
@@ -281,7 +285,7 @@
             // loggingEnabledLbl
             // 
             this.loggingEnabledLbl.AutoSize = true;
-            this.loggingEnabledLbl.Location = new System.Drawing.Point(809, 354);
+            this.loggingEnabledLbl.Location = new System.Drawing.Point(734, 371);
             this.loggingEnabledLbl.Name = "loggingEnabledLbl";
             this.loggingEnabledLbl.Size = new System.Drawing.Size(118, 17);
             this.loggingEnabledLbl.TabIndex = 18;
@@ -290,7 +294,7 @@
             // powerLbl
             // 
             this.powerLbl.AutoSize = true;
-            this.powerLbl.Location = new System.Drawing.Point(776, 124);
+            this.powerLbl.Location = new System.Drawing.Point(111, 31);
             this.powerLbl.Name = "powerLbl";
             this.powerLbl.Size = new System.Drawing.Size(47, 17);
             this.powerLbl.TabIndex = 19;
@@ -370,12 +374,44 @@
             this.lblSignal.TabIndex = 27;
             this.lblSignal.Text = "Signal";
             // 
+            // chkBoxInvert
+            // 
+            this.chkBoxInvert.AutoSize = true;
+            this.chkBoxInvert.Location = new System.Drawing.Point(15, 60);
+            this.chkBoxInvert.Name = "chkBoxInvert";
+            this.chkBoxInvert.Size = new System.Drawing.Size(65, 21);
+            this.chkBoxInvert.TabIndex = 28;
+            this.chkBoxInvert.Text = "Invert";
+            this.chkBoxInvert.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblCmdWindow);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.chkBoxInvert);
+            this.panel1.Controls.Add(this.latestCogTxt);
+            this.panel1.Controls.Add(this.powerLbl);
+            this.panel1.Location = new System.Drawing.Point(712, 251);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 100);
+            this.panel1.TabIndex = 29;
+            // 
+            // lblCmdWindow
+            // 
+            this.lblCmdWindow.AutoSize = true;
+            this.lblCmdWindow.Location = new System.Drawing.Point(15, 4);
+            this.lblCmdWindow.Name = "lblCmdWindow";
+            this.lblCmdWindow.Size = new System.Drawing.Size(124, 17);
+            this.lblCmdWindow.TabIndex = 29;
+            this.lblCmdWindow.Text = "Command Window";
+            // 
             // EEG_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(967, 577);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblSignal);
             this.Controls.Add(this.btnExitSim);
             this.Controls.Add(this.lblRobotStatusData);
@@ -383,7 +419,6 @@
             this.Controls.Add(this.btnRobot);
             this.Controls.Add(this.btnRunSimulator);
             this.Controls.Add(this.btnNewProfile);
-            this.Controls.Add(this.powerLbl);
             this.Controls.Add(this.loggingEnabledLbl);
             this.Controls.Add(this.loggingLbl);
             this.Controls.Add(this.btnSettings);
@@ -394,17 +429,17 @@
             this.Controls.Add(this.eegTimelbl2);
             this.Controls.Add(this.eegEmotionChart);
             this.Controls.Add(this.eegCogLbl);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.rightBtn);
             this.Controls.Add(this.leftBtn);
             this.Controls.Add(this.downBtn);
             this.Controls.Add(this.upBtn);
-            this.Controls.Add(this.latestCogTxt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EEG_Main";
             this.Text = "EEG Gateway - Shaun Webb";
             ((System.ComponentModel.ISupportInitialize)(this.eegEmotionChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalImg)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,6 +475,9 @@
         public System.Windows.Forms.Button rightBtn;
         private System.Windows.Forms.Label lblSignal;
         private System.Windows.Forms.PictureBox signalImg;
+        private System.Windows.Forms.CheckBox chkBoxInvert;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblCmdWindow;
     }
 }
 

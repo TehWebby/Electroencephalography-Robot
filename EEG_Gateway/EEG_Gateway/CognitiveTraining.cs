@@ -102,6 +102,7 @@ namespace EEG_Gateway
             this.profileNameTxt.Name = "profileNameTxt";
             this.profileNameTxt.Size = new System.Drawing.Size(165, 22);
             this.profileNameTxt.TabIndex = 0;
+            this.profileNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.profileNameTxt_KeyPress);
             // 
             // newProfileLbl
             // 
@@ -136,6 +137,8 @@ namespace EEG_Gateway
             // trainBox4
             // 
             this.trainBox4.AutoSize = true;
+            this.trainBox4.Checked = true;
+            this.trainBox4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.trainBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trainBox4.Location = new System.Drawing.Point(223, 180);
             this.trainBox4.Name = "trainBox4";
@@ -147,6 +150,8 @@ namespace EEG_Gateway
             // trainBox3
             // 
             this.trainBox3.AutoSize = true;
+            this.trainBox3.Checked = true;
+            this.trainBox3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.trainBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trainBox3.Location = new System.Drawing.Point(132, 180);
             this.trainBox3.Name = "trainBox3";
@@ -158,6 +163,8 @@ namespace EEG_Gateway
             // trainBox2
             // 
             this.trainBox2.AutoSize = true;
+            this.trainBox2.Checked = true;
+            this.trainBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.trainBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trainBox2.Location = new System.Drawing.Point(223, 153);
             this.trainBox2.Name = "trainBox2";
@@ -169,6 +176,8 @@ namespace EEG_Gateway
             // trainBox1
             // 
             this.trainBox1.AutoSize = true;
+            this.trainBox1.Checked = true;
+            this.trainBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.trainBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trainBox1.Location = new System.Drawing.Point(132, 153);
             this.trainBox1.Name = "trainBox1";
@@ -206,7 +215,7 @@ namespace EEG_Gateway
             this.txtTraining.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTraining.Location = new System.Drawing.Point(354, 170);
             this.txtTraining.Name = "txtTraining";
-            this.txtTraining.Size = new System.Drawing.Size(36, 52);
+            this.txtTraining.Size = new System.Drawing.Size(35, 51);
             this.txtTraining.TabIndex = 18;
             this.txtTraining.Text = ".";
             // 
@@ -490,6 +499,11 @@ namespace EEG_Gateway
         public void trainingTimer_Tick(object sender, EventArgs e)
         {
             EmoEngine.Instance.ProcessEvents();
+        }
+
+        private void profileNameTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
     }
 }

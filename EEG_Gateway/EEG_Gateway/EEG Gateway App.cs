@@ -448,6 +448,8 @@ namespace EEG_Gateway
         {
             //used to update the chart at a consistent speed/time
             updateChartData = true;
+            if (this.ContainsFocus)
+                latestCogTxt.Focus();
         }
 
         /// <summary>
@@ -705,7 +707,8 @@ namespace EEG_Gateway
         /// On command execute
         /// </summary>
         public void run_cmd(int cog)
-        {            
+        {
+            cog = invertCheck(cog);      
             switch (cog)
             {
                 case 1:
@@ -721,6 +724,22 @@ namespace EEG_Gateway
                     ButtonClicked(rightBtn, EventArgs.Empty, cog);
                     break;
             }
+        }
+
+        private int invertCheck(int cog)
+        {
+            if (chkBoxInvert.Checked)
+            {
+                if (cog == 1)
+                    cog = 3;
+                else if (cog == 2)
+                    cog = 4;
+                else if (cog == 3)
+                    cog = 1;
+                else if (cog == 4)
+                    cog = 2;
+            }
+            return cog;
         }
 
         /// <summary>
