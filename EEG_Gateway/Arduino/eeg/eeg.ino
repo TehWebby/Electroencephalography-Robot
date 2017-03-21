@@ -10,7 +10,6 @@
 #define LED_PIN 13
 
 ZumoMotors motors;
-int x;
 int str;
 int speed = 0;
 int limit = 400;
